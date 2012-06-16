@@ -14,7 +14,7 @@ Features
 
 Installation
 
-+ download the static library and header for it ([LIB][],[HEADER][])
++ download the static library and header for it (latest build: [LIB][],[HEADER][])
 + add these files to your project (drag&drop into xCode project)
 + make sure that you have added “-ObjC -all_load” to “other linker flags” (click at project root element, select “Build settings” tab, search for “other linker flags”)
 + if you already have JSONKit.m file in your project, please remove it because of linker conflict
