@@ -6,6 +6,7 @@ iOS Hierarchy Viewer allows developers to debug their user interfaces. If there 
 ![](http://androiddev.vipserv.org/wordpress/wp-content/uploads/2012/04/Screen-Shot-2012-04-24-at-9.09.20-PM.png)
 
 Features
+====================
 
 + the client is implemented in HTML/JS/CSS. Additional software is not required
 + preview of device/simulator screen. Can be scaled and/or rotated on demand
@@ -13,6 +14,7 @@ Features
 + property list shows obj-c properties and their values for selected UIView
 
 Installation
+====================
 
 + download the static library and header for it (latest build: [LIB][],[HEADER][])
 + add these files to your project (drag&drop into xCode project)
