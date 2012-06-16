@@ -3,7 +3,7 @@ iOS-Hierarchy-Viewer
 
 iOS Hierarchy Viewer allows developers to debug their user interfaces. If there are problems with layout calculations, it will catch them by giving a real time preview of the UIViews hierarchy.
 
-[![](http://androiddev.vipserv.org/wordpress/wp-content/uploads/2012/04/Screen-Shot-2012-04-24-at-9.09.20-PM.png)
+![](http://androiddev.vipserv.org/wordpress/wp-content/uploads/2012/04/Screen-Shot-2012-04-24-at-9.09.20-PM.png)
 
 Features
 
