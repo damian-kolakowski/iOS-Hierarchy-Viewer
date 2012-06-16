@@ -21,7 +21,7 @@ Installation
 + launch hierarchy viewer in your code by calling [iOSHierarchyViewer start];. The best place for it is AppDelegate::applicationDidBecomeActive callback
 + find or get from logs device/simulator ip address and go to ‘http://[ip_address]:9449′ address (Chrome/Firefox only)
 
-,,,
+'''
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
     /*
@@ -30,4 +30,4 @@ Installation
      */
     [iOSHierarchyViewer start];    
 }
-,,,
+'''
