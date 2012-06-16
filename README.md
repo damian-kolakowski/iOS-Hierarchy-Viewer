@@ -14,7 +14,7 @@ Features
 
 Installation
 
-+ download the static library and header for it (lib,header)
++ download the static library and header for it ([LIB][],[HEADER][])
 + add these files to your project (drag&drop into xCode project)
 + make sure that you have added “-ObjC -all_load” to “other linker flags” (click at project root element, select “Build settings” tab, search for “other linker flags”)
 + if you already have JSONKit.m file in your project, please remove it because of linker conflict
@@ -28,3 +28,6 @@ Installation
     [iOSHierarchyViewer start];    
 }
 ```
+
+[LIB]: http://dl.dropbox.com/u/858551/iOS%20Hierarchy%20Viewer/libiOSHierarchyViewer_fat.a
+[HEADER]: http://dl.dropbox.com/u/858551/iOS%20Hierarchy%20Viewer/iOSHierarchyViewer.h
