@@ -8,12 +8,12 @@
 #import "HVBaseRequestHandler.h"
 
 @interface HVStaticFileHandler : HVBaseRequestHandler {
-    
-    NSString* file;
+
+  NSString *file;
 }
 
-+(HVStaticFileHandler*) handler:(NSString*)filePath;
++ (HVStaticFileHandler *)handler:(NSString *)filePath;
 
--(id) initWithFileName:(NSString*)filePath;
+- (id)initWithFileName:(NSString *)filePath;
 
 @end

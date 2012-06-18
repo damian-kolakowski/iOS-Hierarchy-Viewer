@@ -8,9 +8,9 @@
 #import "HVBaseRequestHandler.h"
 
 @interface HVIndexBASE64 : HVBaseRequestHandler {
-    NSData* cachedResponse;
+  NSData *cachedResponse;
 }
 
-+(HVIndexBASE64*) handler;
++ (HVIndexBASE64 *)handler;
 
 @end

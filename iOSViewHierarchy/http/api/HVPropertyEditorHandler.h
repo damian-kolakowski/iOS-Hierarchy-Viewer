@@ -8,6 +8,6 @@
 
 @interface HVPropertyEditorHandler : HVBaseRequestHandler
 
-+(HVPropertyEditorHandler*) handler;
++ (HVPropertyEditorHandler *)handler;
 
 @end

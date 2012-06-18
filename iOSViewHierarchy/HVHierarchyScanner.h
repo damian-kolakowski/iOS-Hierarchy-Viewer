@@ -11,8 +11,10 @@ CGFloat handleNaN(CGFloat value);
 
 @interface HVHierarchyScanner : NSObject
 
-+(NSDictionary*) recursivePropsScan:(UIView*)view;
-+(NSArray*) hierarchySnapshot;
-+(UIView*) findViewById:(long)id;
++ (NSDictionary *)recursivePropertiesScan:(UIView *)view;
+
++ (NSArray *)hierarchySnapshot;
+
++ (UIView *)findViewById:(long)id;
 
 @end

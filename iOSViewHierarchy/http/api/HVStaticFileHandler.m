@@ -9,41 +9,43 @@
 
 @implementation HVStaticFileHandler : HVBaseRequestHandler
 
-+(HVStaticFileHandler*) handler:(NSString*)filePath
++ (HVStaticFileHandler *)handler:(NSString *)filePath
 {
-    return [[[HVStaticFileHandler alloc] initWithFileName: filePath] autorelease];
+  return [[[HVStaticFileHandler alloc] initWithFileName:filePath] autorelease];
 }
 
--(id) initWithFileName:(NSString*)filePath {
-    self = [super init];
-    if (self) {
-        file = [filePath retain];
-    }
-    return self;
-}
-
-- (void)dealloc {
-    [file release];
-    file = nil;
-    [super dealloc];
-}
-
--(BOOL) handleRequest:(NSString*) url withHeaders:(NSDictionary*)headers query:(NSDictionary *)query address:(NSString *)address onSocket:(int)socket
+- (id)initWithFileName:(NSString *)filePath
 {
-    if ( [super handleRequest:url withHeaders:headers query:query address:address onSocket:socket] ) {
-        if ( [self writeText:@"\r\n" toSocket:socket] ) {
-            NSString* filePath = [[NSBundle mainBundle] pathForResource:file ofType:nil];
-            if ( filePath ) {
-                NSData* data = [[NSData alloc] initWithContentsOfFile:filePath];
-                if ( data ) {
-                    [self writeData:(char*)[data bytes] length:[data length] toSocket:socket];
-                    [data release];
-                }            
-            }
-            return YES;
+  self = [super init];
+  if (self) {
+    file = [filePath retain];
+  }
+  return self;
+}
+
+- (void)dealloc
+{
+  [file release];
+  file = nil;
+  [super dealloc];
+}
+
+- (BOOL)handleRequest:(NSString *)url withHeaders:(NSDictionary *)headers query:(NSDictionary *)query address:(NSString *)address onSocket:(int)socket
+{
+  if ([super handleRequest:url withHeaders:headers query:query address:address onSocket:socket]) {
+    if ([self writeText:@"\r\n" toSocket:socket]) {
+      NSString *filePath = [[NSBundle mainBundle] pathForResource:file ofType:nil];
+      if (filePath) {
+        NSData *data = [[NSData alloc] initWithContentsOfFile:filePath];
+        if (data) {
+          [self writeData:(char *)[data bytes] length:[data length] toSocket:socket];
+          [data release];
         }
+      }
+      return YES;
     }
-    return NO;
+  }
+  return NO;
 }
 
 @end

@@ -9,19 +9,21 @@
 @protocol HVRequestHandler <NSObject>
 @required
 
--(BOOL) handleRequest:(NSString*)url withHeaders:(NSDictionary*)headers query:(NSDictionary*)query address:(NSString*)address onSocket:(int)socket;
+- (BOOL)handleRequest:(NSString *)url withHeaders:(NSDictionary *)headers query:(NSDictionary *)query address:(NSString *)address onSocket:(int)socket;
 
 @end
 
 @interface HVHTTPServer : NSObject {
-    int listenPort;
-    int listenSocket;
-    BOOL done;
-    NSMutableDictionary* handlers;
+  int listenPort;
+  int listenSocket;
+  BOOL done;
+  NSMutableDictionary *handlers;
 }
 
--(void) registerHandler:(NSObject<HVRequestHandler>*)handler forUrl:(NSString*)url;
--(BOOL) start:(int)port;
--(void) stop;
+- (void)registerHandler:(NSObject <HVRequestHandler> *)handler forUrl:(NSString *)url;
+
+- (BOOL)start:(int)port;
+
+- (void)stop;
 
 @end

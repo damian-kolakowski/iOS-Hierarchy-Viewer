@@ -1,0 +1,455 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		572B2E6615348E1B0002228B /* RotableTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 572B2E6515348E1B0002228B /* RotableTabBarController.m */; };
+		572B2E6A153496880002228B /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 572B2E68153496870002228B /* background.png */; };
+		572B2E6B153496880002228B /* background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 572B2E69153496870002228B /* background@2x.png */; };
+		5735F8BC14FD2FFC00DD7370 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5735F8BB14FD2FFC00DD7370 /* UIKit.framework */; };
+		5735F8BE14FD2FFC00DD7370 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5735F8BD14FD2FFC00DD7370 /* Foundation.framework */; };
+		5735F8C014FD2FFC00DD7370 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5735F8BF14FD2FFC00DD7370 /* CoreGraphics.framework */; };
+		5735F8C614FD2FFC00DD7370 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5735F8C414FD2FFC00DD7370 /* InfoPlist.strings */; };
+		5735F8C814FD2FFC00DD7370 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5735F8C714FD2FFC00DD7370 /* main.m */; };
+		5735F8CC14FD2FFC00DD7370 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5735F8CB14FD2FFC00DD7370 /* AppDelegate.m */; };
+		57360BDD14FF84F600343B7B /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 57360BDC14FF84F600343B7B /* MainWindow.xib */; };
+		57360BDF14FF889B00343B7B /* ExampleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 57360BDE14FF889B00343B7B /* ExampleViewController.xib */; };
+		57360BE114FF911200343B7B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57360BE014FF911200343B7B /* QuartzCore.framework */; };
+		578998C41535E02000E06FCA /* PrettyCustomViewTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 578998B31535E02000E06FCA /* PrettyCustomViewTableViewCell.m */; };
+		578998C51535E02000E06FCA /* PrettyGridTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 578998B51535E02000E06FCA /* PrettyGridTableViewCell.m */; };
+		578998C61535E02000E06FCA /* PrettySegmentedControlTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 578998B71535E02000E06FCA /* PrettySegmentedControlTableViewCell.m */; };
+		578998C71535E02000E06FCA /* PrettyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 578998B91535E02000E06FCA /* PrettyTableViewCell.m */; };
+		578998C81535E02000E06FCA /* PrettyDrawing.m in Sources */ = {isa = PBXBuildFile; fileRef = 578998BB1535E02000E06FCA /* PrettyDrawing.m */; };
+		578998C91535E02000E06FCA /* PrettyNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 578998BE1535E02000E06FCA /* PrettyNavigationBar.m */; };
+		578998CA1535E02000E06FCA /* PrettyShadowPlainTableview.m in Sources */ = {isa = PBXBuildFile; fileRef = 578998C01535E02000E06FCA /* PrettyShadowPlainTableview.m */; };
+		578998CB1535E02000E06FCA /* PrettyTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 578998C21535E02000E06FCA /* PrettyTabBar.m */; };
+		57A6337614FE7672004D2647 /* ExampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57A6337514FE7672004D2647 /* ExampleViewController.m */; };
+		57CF9FB1151BA08600BC035B /* PlainExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 57CF9FAF151BA08600BC035B /* PlainExample.m */; };
+		57CF9FB2151BA08600BC035B /* PlainExample.xib in Resources */ = {isa = PBXBuildFile; fileRef = 57CF9FB0151BA08600BC035B /* PlainExample.xib */; };
+		D108B951158FC42E002DCC6F /* libiOSViewHierarchy.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D108B94B158FC411002DCC6F /* libiOSViewHierarchy.a */; };
+		EDA7DCB11548EBD1002219BA /* PrettyToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = EDA7DCB01548EBD1002219BA /* PrettyToolbar.m */; };
+		EDA7DCB61548ED3F002219BA /* ModalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDA7DCB41548ED3E002219BA /* ModalViewController.m */; };
+		EDA7DCB71548ED3F002219BA /* ModalViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDA7DCB51548ED3E002219BA /* ModalViewController.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		D108B94A158FC411002DCC6F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D108B943158FC411002DCC6F /* iOSHierarchyViewer.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 7C861E34153DF2E000935C95;
+			remoteInfo = iOSHierarchyViewer;
+		};
+		D108B94F158FC42B002DCC6F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D108B943158FC411002DCC6F /* iOSHierarchyViewer.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 7C861E33153DF2E000935C95;
+			remoteInfo = iOSHierarchyViewer;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		572B2E6415348E1B0002228B /* RotableTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RotableTabBarController.h; sourceTree = "<group>"; };
+		572B2E6515348E1B0002228B /* RotableTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RotableTabBarController.m; sourceTree = "<group>"; };
+		572B2E68153496870002228B /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
+		572B2E69153496870002228B /* background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "background@2x.png"; sourceTree = "<group>"; };
+		5735F8B714FD2FFC00DD7370 /* PrettyExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PrettyExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		5735F8BB14FD2FFC00DD7370 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		5735F8BD14FD2FFC00DD7370 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		5735F8BF14FD2FFC00DD7370 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		5735F8C314FD2FFC00DD7370 /* PrettyExample-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PrettyExample-Info.plist"; sourceTree = "<group>"; };
+		5735F8C514FD2FFC00DD7370 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		5735F8C714FD2FFC00DD7370 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		5735F8C914FD2FFC00DD7370 /* PrettyExample-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PrettyExample-Prefix.pch"; sourceTree = "<group>"; };
+		5735F8CA14FD2FFC00DD7370 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		5735F8CB14FD2FFC00DD7370 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		57360BDC14FF84F600343B7B /* MainWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
+		57360BDE14FF889B00343B7B /* ExampleViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExampleViewController.xib; sourceTree = "<group>"; };
+		57360BE014FF911200343B7B /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		578998B21535E02000E06FCA /* PrettyCustomViewTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrettyCustomViewTableViewCell.h; sourceTree = "<group>"; };
+		578998B31535E02000E06FCA /* PrettyCustomViewTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrettyCustomViewTableViewCell.m; sourceTree = "<group>"; };
+		578998B41535E02000E06FCA /* PrettyGridTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrettyGridTableViewCell.h; sourceTree = "<group>"; };
+		578998B51535E02000E06FCA /* PrettyGridTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrettyGridTableViewCell.m; sourceTree = "<group>"; };
+		578998B61535E02000E06FCA /* PrettySegmentedControlTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrettySegmentedControlTableViewCell.h; sourceTree = "<group>"; };
+		578998B71535E02000E06FCA /* PrettySegmentedControlTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrettySegmentedControlTableViewCell.m; sourceTree = "<group>"; };
+		578998B81535E02000E06FCA /* PrettyTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrettyTableViewCell.h; sourceTree = "<group>"; };
+		578998B91535E02000E06FCA /* PrettyTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrettyTableViewCell.m; sourceTree = "<group>"; };
+		578998BA1535E02000E06FCA /* PrettyDrawing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrettyDrawing.h; sourceTree = "<group>"; };
+		578998BB1535E02000E06FCA /* PrettyDrawing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrettyDrawing.m; sourceTree = "<group>"; };
+		578998BC1535E02000E06FCA /* PrettyKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrettyKit.h; sourceTree = "<group>"; };
+		578998BD1535E02000E06FCA /* PrettyNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrettyNavigationBar.h; sourceTree = "<group>"; };
+		578998BE1535E02000E06FCA /* PrettyNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrettyNavigationBar.m; sourceTree = "<group>"; };
+		578998BF1535E02000E06FCA /* PrettyShadowPlainTableview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrettyShadowPlainTableview.h; sourceTree = "<group>"; };
+		578998C01535E02000E06FCA /* PrettyShadowPlainTableview.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrettyShadowPlainTableview.m; sourceTree = "<group>"; };
+		578998C11535E02000E06FCA /* PrettyTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrettyTabBar.h; sourceTree = "<group>"; };
+		578998C21535E02000E06FCA /* PrettyTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrettyTabBar.m; sourceTree = "<group>"; };
+		57A6337414FE7672004D2647 /* ExampleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExampleViewController.h; sourceTree = "<group>"; };
+		57A6337514FE7672004D2647 /* ExampleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExampleViewController.m; sourceTree = "<group>"; };
+		57CF9FAE151BA08600BC035B /* PlainExample.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlainExample.h; sourceTree = "<group>"; };
+		57CF9FAF151BA08600BC035B /* PlainExample.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlainExample.m; sourceTree = "<group>"; };
+		57CF9FB0151BA08600BC035B /* PlainExample.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlainExample.xib; sourceTree = "<group>"; };
+		D108B943158FC411002DCC6F /* iOSHierarchyViewer.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = iOSHierarchyViewer.xcodeproj; path = ../iOSHierarchyViewer.xcodeproj; sourceTree = "<group>"; };
+		D108B94E158FC425002DCC6F /* iOSHierarchyViewer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iOSHierarchyViewer.h; path = ../iOSViewHierarchy/iOSHierarchyViewer.h; sourceTree = "<group>"; };
+		EDA7DCAF1548EBD1002219BA /* PrettyToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrettyToolbar.h; sourceTree = "<group>"; };
+		EDA7DCB01548EBD1002219BA /* PrettyToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrettyToolbar.m; sourceTree = "<group>"; };
+		EDA7DCB31548ED3E002219BA /* ModalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModalViewController.h; sourceTree = "<group>"; };
+		EDA7DCB41548ED3E002219BA /* ModalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModalViewController.m; sourceTree = "<group>"; };
+		EDA7DCB51548ED3E002219BA /* ModalViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ModalViewController.xib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		5735F8B414FD2FFC00DD7370 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D108B951158FC42E002DCC6F /* libiOSViewHierarchy.a in Frameworks */,
+				57360BE114FF911200343B7B /* QuartzCore.framework in Frameworks */,
+				5735F8BC14FD2FFC00DD7370 /* UIKit.framework in Frameworks */,
+				5735F8BE14FD2FFC00DD7370 /* Foundation.framework in Frameworks */,
+				5735F8C014FD2FFC00DD7370 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		5735F8AC14FD2FFC00DD7370 = {
+			isa = PBXGroup;
+			children = (
+				D108B94E158FC425002DCC6F /* iOSHierarchyViewer.h */,
+				5735F8C114FD2FFC00DD7370 /* PrettyExample */,
+				5735F8BA14FD2FFC00DD7370 /* Frameworks */,
+				5735F8B814FD2FFC00DD7370 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		5735F8B814FD2FFC00DD7370 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				5735F8B714FD2FFC00DD7370 /* PrettyExample.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		5735F8BA14FD2FFC00DD7370 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D108B943158FC411002DCC6F /* iOSHierarchyViewer.xcodeproj */,
+				57360BE014FF911200343B7B /* QuartzCore.framework */,
+				5735F8BB14FD2FFC00DD7370 /* UIKit.framework */,
+				5735F8BD14FD2FFC00DD7370 /* Foundation.framework */,
+				5735F8BF14FD2FFC00DD7370 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		5735F8C114FD2FFC00DD7370 /* PrettyExample */ = {
+			isa = PBXGroup;
+			children = (
+				578998AF1535E02000E06FCA /* PrettyKit */,
+				5735F8CA14FD2FFC00DD7370 /* AppDelegate.h */,
+				5735F8CB14FD2FFC00DD7370 /* AppDelegate.m */,
+				5735F8C214FD2FFC00DD7370 /* Supporting Files */,
+				57A6337414FE7672004D2647 /* ExampleViewController.h */,
+				57A6337514FE7672004D2647 /* ExampleViewController.m */,
+				57360BDE14FF889B00343B7B /* ExampleViewController.xib */,
+				57360BDC14FF84F600343B7B /* MainWindow.xib */,
+				EDA7DCB31548ED3E002219BA /* ModalViewController.h */,
+				EDA7DCB41548ED3E002219BA /* ModalViewController.m */,
+				EDA7DCB51548ED3E002219BA /* ModalViewController.xib */,
+				57CF9FAE151BA08600BC035B /* PlainExample.h */,
+				57CF9FAF151BA08600BC035B /* PlainExample.m */,
+				57CF9FB0151BA08600BC035B /* PlainExample.xib */,
+				572B2E6415348E1B0002228B /* RotableTabBarController.h */,
+				572B2E6515348E1B0002228B /* RotableTabBarController.m */,
+				572B2E68153496870002228B /* background.png */,
+				572B2E69153496870002228B /* background@2x.png */,
+			);
+			path = PrettyExample;
+			sourceTree = "<group>";
+		};
+		5735F8C214FD2FFC00DD7370 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				5735F8C314FD2FFC00DD7370 /* PrettyExample-Info.plist */,
+				5735F8C414FD2FFC00DD7370 /* InfoPlist.strings */,
+				5735F8C714FD2FFC00DD7370 /* main.m */,
+				5735F8C914FD2FFC00DD7370 /* PrettyExample-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		578998AF1535E02000E06FCA /* PrettyKit */ = {
+			isa = PBXGroup;
+			children = (
+				578998B01535E02000E06FCA /* Cells */,
+				578998BA1535E02000E06FCA /* PrettyDrawing.h */,
+				578998BB1535E02000E06FCA /* PrettyDrawing.m */,
+				578998BC1535E02000E06FCA /* PrettyKit.h */,
+				578998BD1535E02000E06FCA /* PrettyNavigationBar.h */,
+				578998BE1535E02000E06FCA /* PrettyNavigationBar.m */,
+				578998BF1535E02000E06FCA /* PrettyShadowPlainTableview.h */,
+				578998C01535E02000E06FCA /* PrettyShadowPlainTableview.m */,
+				578998C11535E02000E06FCA /* PrettyTabBar.h */,
+				578998C21535E02000E06FCA /* PrettyTabBar.m */,
+				EDA7DCAF1548EBD1002219BA /* PrettyToolbar.h */,
+				EDA7DCB01548EBD1002219BA /* PrettyToolbar.m */,
+			);
+			path = PrettyKit;
+			sourceTree = SOURCE_ROOT;
+		};
+		578998B01535E02000E06FCA /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				578998B21535E02000E06FCA /* PrettyCustomViewTableViewCell.h */,
+				578998B31535E02000E06FCA /* PrettyCustomViewTableViewCell.m */,
+				578998B41535E02000E06FCA /* PrettyGridTableViewCell.h */,
+				578998B51535E02000E06FCA /* PrettyGridTableViewCell.m */,
+				578998B61535E02000E06FCA /* PrettySegmentedControlTableViewCell.h */,
+				578998B71535E02000E06FCA /* PrettySegmentedControlTableViewCell.m */,
+				578998B81535E02000E06FCA /* PrettyTableViewCell.h */,
+				578998B91535E02000E06FCA /* PrettyTableViewCell.m */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		D108B944158FC411002DCC6F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D108B94B158FC411002DCC6F /* libiOSViewHierarchy.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		5735F8B614FD2FFC00DD7370 /* PrettyExample */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5735F8CF14FD2FFC00DD7370 /* Build configuration list for PBXNativeTarget "PrettyExample" */;
+			buildPhases = (
+				5735F8B314FD2FFC00DD7370 /* Sources */,
+				5735F8B414FD2FFC00DD7370 /* Frameworks */,
+				5735F8B514FD2FFC00DD7370 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D108B950158FC42B002DCC6F /* PBXTargetDependency */,
+			);
+			name = PrettyExample;
+			productName = VPPTableViewExample;
+			productReference = 5735F8B714FD2FFC00DD7370 /* PrettyExample.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		5735F8AE14FD2FFC00DD7370 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+			};
+			buildConfigurationList = 5735F8B114FD2FFC00DD7370 /* Build configuration list for PBXProject "PrettyExample" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 5735F8AC14FD2FFC00DD7370;
+			productRefGroup = 5735F8B814FD2FFC00DD7370 /* Products */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = D108B944158FC411002DCC6F /* Products */;
+					ProjectRef = D108B943158FC411002DCC6F /* iOSHierarchyViewer.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				5735F8B614FD2FFC00DD7370 /* PrettyExample */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		D108B94B158FC411002DCC6F /* libiOSViewHierarchy.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			name = libiOSViewHierarchy.a;
+			path = libiOSHierarchyViewer.a;
+			remoteRef = D108B94A158FC411002DCC6F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXResourcesBuildPhase section */
+		5735F8B514FD2FFC00DD7370 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5735F8C614FD2FFC00DD7370 /* InfoPlist.strings in Resources */,
+				57360BDD14FF84F600343B7B /* MainWindow.xib in Resources */,
+				57360BDF14FF889B00343B7B /* ExampleViewController.xib in Resources */,
+				57CF9FB2151BA08600BC035B /* PlainExample.xib in Resources */,
+				572B2E6A153496880002228B /* background.png in Resources */,
+				572B2E6B153496880002228B /* background@2x.png in Resources */,
+				EDA7DCB71548ED3F002219BA /* ModalViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		5735F8B314FD2FFC00DD7370 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5735F8C814FD2FFC00DD7370 /* main.m in Sources */,
+				5735F8CC14FD2FFC00DD7370 /* AppDelegate.m in Sources */,
+				57A6337614FE7672004D2647 /* ExampleViewController.m in Sources */,
+				57CF9FB1151BA08600BC035B /* PlainExample.m in Sources */,
+				572B2E6615348E1B0002228B /* RotableTabBarController.m in Sources */,
+				578998C41535E02000E06FCA /* PrettyCustomViewTableViewCell.m in Sources */,
+				578998C51535E02000E06FCA /* PrettyGridTableViewCell.m in Sources */,
+				578998C61535E02000E06FCA /* PrettySegmentedControlTableViewCell.m in Sources */,
+				578998C71535E02000E06FCA /* PrettyTableViewCell.m in Sources */,
+				578998C81535E02000E06FCA /* PrettyDrawing.m in Sources */,
+				578998C91535E02000E06FCA /* PrettyNavigationBar.m in Sources */,
+				578998CA1535E02000E06FCA /* PrettyShadowPlainTableview.m in Sources */,
+				578998CB1535E02000E06FCA /* PrettyTabBar.m in Sources */,
+				EDA7DCB11548EBD1002219BA /* PrettyToolbar.m in Sources */,
+				EDA7DCB61548ED3F002219BA /* ModalViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D108B950158FC42B002DCC6F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = iOSHierarchyViewer;
+			targetProxy = D108B94F158FC42B002DCC6F /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		5735F8C414FD2FFC00DD7370 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5735F8C514FD2FFC00DD7370 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		5735F8CD14FD2FFC00DD7370 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		5735F8CE14FD2FFC00DD7370 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		5735F8D014FD2FFC00DD7370 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "PrettyExample/PrettyExample-Prefix.pch";
+				INFOPLIST_FILE = "PrettyExample/PrettyExample-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				OTHER_LDFLAGS = (
+					"-all_load",
+					"-ObjC",
+				);
+				PRODUCT_NAME = PrettyExample;
+				TARGETED_DEVICE_FAMILY = 1;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		5735F8D114FD2FFC00DD7370 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "PrettyExample/PrettyExample-Prefix.pch";
+				INFOPLIST_FILE = "PrettyExample/PrettyExample-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				OTHER_LDFLAGS = (
+					"-all_load",
+					"-ObjC",
+				);
+				PRODUCT_NAME = PrettyExample;
+				TARGETED_DEVICE_FAMILY = 1;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		5735F8B114FD2FFC00DD7370 /* Build configuration list for PBXProject "PrettyExample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5735F8CD14FD2FFC00DD7370 /* Debug */,
+				5735F8CE14FD2FFC00DD7370 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5735F8CF14FD2FFC00DD7370 /* Build configuration list for PBXNativeTarget "PrettyExample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5735F8D014FD2FFC00DD7370 /* Debug */,
+				5735F8D114FD2FFC00DD7370 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 5735F8AE14FD2FFC00DD7370 /* Project object */;
+}

@@ -8,6 +8,6 @@
 
 @interface HVPreviewHandler : HVBaseRequestHandler
 
-+(HVPreviewHandler*) handler;
++ (HVPreviewHandler *)handler;
 
 @end

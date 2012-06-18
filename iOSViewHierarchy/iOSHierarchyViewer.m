@@ -20,62 +20,62 @@
 
 @implementation iOSHierarchyViewer
 
-HVHTTPServer* server = nil;
+HVHTTPServer *server = nil;
 
 - (id)init
 {
-    self = [super init];
-    if (self) {}
-    return self;
+  self = [super init];
+  if (self) {}
+  return self;
 }
 
-+(void) logServiceAdresses
++ (void)logServiceAdresses
 {
-    struct ifaddrs *interfaces  = NULL;
-    struct ifaddrs *temp_addr   = NULL;
-    NSLog(@"#### iOS Hierarchy Viewer ver: %@ ####", @IOS_HIERARCHY_VIEWER_VERSION);
-    if (getifaddrs(&interfaces) == 0) {
-        temp_addr = interfaces;
-        while(temp_addr != NULL) {
-            if(temp_addr->ifa_addr->sa_family == AF_INET) {
-                NSLog(@"(%@): %@", [NSString stringWithUTF8String:temp_addr->ifa_name], [NSString stringWithFormat:@"http://%@:%d",
-                [NSString stringWithUTF8String:inet_ntoa(((struct sockaddr_in *)temp_addr->ifa_addr)->sin_addr)], IOS_HIERARCHY_VIEWER_PORT]);                
-            }
-            temp_addr = temp_addr->ifa_next;
-        }
+  struct ifaddrs *interfaces = NULL;
+  struct ifaddrs *temp_addr = NULL;
+  NSLog(@"#### iOS Hierarchy Viewer ver: %@ ####", @IOS_HIERARCHY_VIEWER_VERSION);
+  if (getifaddrs(&interfaces) == 0) {
+    temp_addr = interfaces;
+    while (temp_addr != NULL) {
+      if (temp_addr->ifa_addr->sa_family == AF_INET) {
+        NSLog(@"(%@): %@", [NSString stringWithUTF8String:temp_addr->ifa_name], [NSString stringWithFormat:@"http://%@:%d",
+                                                                                                           [NSString stringWithUTF8String:inet_ntoa(((struct sockaddr_in *)temp_addr->ifa_addr)->sin_addr)], IOS_HIERARCHY_VIEWER_PORT]);
+      }
+      temp_addr = temp_addr->ifa_next;
     }
-    NSLog(@"#######################################");
-    freeifaddrs(interfaces);
+  }
+  NSLog(@"#######################################");
+  freeifaddrs(interfaces);
 }
 
-+(BOOL) start
++ (BOOL)start
 {
-    if ( server ) {
-        return YES;
-    }
-    server = [[HVHTTPServer alloc] init];
-    [server registerHandler:[HVHierarchyHandler handler] forUrl:@"/snapshot"];
-    HVIndexBASE64* indexHandler = [HVIndexBASE64 handler];
-    //HVStaticFileHandler* indexHandler = [HVStaticFileHandler handler:@"index2"];
-    [server registerHandler:indexHandler forUrl:@""];
-    [server registerHandler:indexHandler forUrl:@"/"];
-    [server registerHandler:indexHandler forUrl:@"/index"];
-    [server registerHandler:[HVPreviewHandler handler] forUrl:@"/preview"];
-    [server registerHandler:[HVPropertyEditorHandler handler] forUrl:@"/update"];
-    if ( [server start:IOS_HIERARCHY_VIEWER_PORT] ) {
-        [iOSHierarchyViewer logServiceAdresses];
-        return YES;
-    }
-    return NO;
+  if (server) {
+    return YES;
+  }
+  server = [[HVHTTPServer alloc] init];
+  [server registerHandler:[HVHierarchyHandler handler] forUrl:@"/snapshot"];
+  HVIndexBASE64 *indexHandler = [HVIndexBASE64 handler];
+  //HVStaticFileHandler* indexHandler = [HVStaticFileHandler handler:@"index2"];
+  [server registerHandler:indexHandler forUrl:@""];
+  [server registerHandler:indexHandler forUrl:@"/"];
+  [server registerHandler:indexHandler forUrl:@"/index"];
+  [server registerHandler:[HVPreviewHandler handler] forUrl:@"/preview"];
+  [server registerHandler:[HVPropertyEditorHandler handler] forUrl:@"/update"];
+  if ([server start:IOS_HIERARCHY_VIEWER_PORT]) {
+    [iOSHierarchyViewer logServiceAdresses];
+    return YES;
+  }
+  return NO;
 }
 
-+(void) stop
++ (void)stop
 {
-    if ( server ) {
-        [server stop]; 
-        [server release];
-        server = nil;
-    }
+  if (server) {
+    [server stop];
+    [server release];
+    server = nil;
+  }
 }
 
 @end

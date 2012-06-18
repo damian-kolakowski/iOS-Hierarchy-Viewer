@@ -8,6 +8,6 @@
 
 @interface HVHierarchyHandler : HVBaseRequestHandler
 
-+(HVHierarchyHandler*) handler;
++ (HVHierarchyHandler *)handler;
 
 @end

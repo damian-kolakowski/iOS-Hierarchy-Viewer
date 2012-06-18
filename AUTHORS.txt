@@ -1,0 +1,5 @@
+Lead Development:
+	Damian Kołakowski (http://androiddev.vipserv.org/wordpress/) - Lead developer and idea creator.
+	Krzysztof Zabłocki (http://merowing.info).
+	
+Contributors (alphabetically ordered):
