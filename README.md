@@ -34,7 +34,7 @@ Changelog:
 ====================
 
 Version 1.3:
-fixed crashes at UITextView:
++ fixed crashes at UITextView:
 + some properties can be read only from UI thread
 + some properties ( like 'autocapitalizationType' ) are not KVC compliant.
 
