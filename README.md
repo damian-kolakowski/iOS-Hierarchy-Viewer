@@ -16,7 +16,7 @@ Features
 Installation
 ====================
 
-+ download the static library and header for it (latest build: [LIB][],[HEADER][])
++ download the static library and header for it (latest build (ver:1.3) [LIB][],[HEADER][])
 + add these files to your project (drag&drop into xCode project)
 + make sure that you have added “-ObjC -all_load” to “other linker flags” (click at project root element, select “Build settings” tab, search for “other linker flags”)
 + if you already have JSONKit.m file in your project, please remove it because of linker conflict
@@ -30,6 +30,14 @@ Installation
     [iOSHierarchyViewer start];    
 }
 ```
+Changelog:
+====================
+
+Version 1.3:
+fixed crashes at UITextView:
++ some properties can be read only from UI thread
++ some properties ( like 'autocapitalizationType' ) are not KVC compliant.
+
 License
 ====================
 
