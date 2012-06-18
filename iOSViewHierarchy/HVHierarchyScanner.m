@@ -43,7 +43,6 @@ CGFloat handleNaN(CGFloat value)
     return nil;    
 }
 
-
 +(NSString*) UIColorToNSString:(UIColor*)color
 {
     if ( color ) {
@@ -78,6 +77,20 @@ CGFloat handleNaN(CGFloat value)
     return @"nil";
 }
 
++ (id) readValueInUIThread:(NSObject*)obj property:(NSString*)propertyName
+{
+    id __block propertyValue = nil;
+    dispatch_sync(dispatch_get_main_queue(), ^{
+        @try {
+            propertyValue = [[obj valueForKey:propertyName] retain];
+        } 
+        @catch (NSException* ex) { 
+            // we will return nil
+        }
+    });
+    return [propertyValue autorelease];
+}
+
 +(NSMutableArray*) classProperties:(Class)class object:(NSObject*)obj
 {
     unsigned int outCount, i;
@@ -99,7 +112,7 @@ CGFloat handleNaN(CGFloat value)
         
         BOOL readValue = NO;
         BOOL checkOnlyIfNil = NO;
-        
+    
         if (strcmp(rawPropertyType, @encode(float)) == 0) {
             [propDic setValue:@"float" forKey:@"type"];
             readValue = YES;
@@ -115,7 +128,7 @@ CGFloat handleNaN(CGFloat value)
         } else if (strcmp(rawPropertyType, @encode(BOOL)) == 0) {
             [propDic setValue:@"BOOL" forKey:@"type"];
             readValue = NO;
-            NSNumber* propertyValue = [obj valueForKey:propertyName];
+            NSNumber* propertyValue = [HVHierarchyScanner readValueInUIThread:obj property:propertyName];
             [propDic setValue: ( [propertyValue boolValue] ? @"YES" : @"NO" ) forKey:@"value"];
         } else if (strcmp(rawPropertyType, @encode(char)) == 0) {
             [propDic setValue:@"char" forKey:@"type"];
@@ -126,7 +139,7 @@ CGFloat handleNaN(CGFloat value)
             [propDic setValue:typeClassName forKey:@"type"];
             if ( [typeClassName isEqualToString:[[UIColor class] description]] ) {
                 readValue = NO;
-                id propertyValue = [obj valueForKey:propertyName];
+                id propertyValue = [HVHierarchyScanner readValueInUIThread:obj property:propertyName];
                 [propDic setValue: ( propertyValue ? [HVHierarchyScanner UIColorToNSString:propertyValue] : @"nil" ) forKey:@"value"];
             }
             if ( [typeClassName isEqualToString:[[NSString class] description]] ) {
@@ -139,14 +152,14 @@ CGFloat handleNaN(CGFloat value)
             [propDic setValue:propertyType forKey:@"type"];
         }
         if ( readValue ) {
-            id propertyValue = [obj valueForKey:propertyName];
+            id propertyValue = [HVHierarchyScanner readValueInUIThread:obj property:propertyName];
             if ( !checkOnlyIfNil ) {
-                [propDic setValue: ( propertyValue ? [NSString stringWithFormat:@"%@", propertyValue] : @"nil" ) forKey:@"value"];
+                [propDic setValue: ( propertyValue != nil ? [NSString stringWithFormat:@"%@", propertyValue] : @"nil" ) forKey:@"value"];
             } else {
-                [propDic setValue: ( propertyValue ? @"OBJECT": @"nil" ) forKey:@"value"];
+                [propDic setValue: ( propertyValue != nil ? @"OBJECT": @"nil" ) forKey:@"value"];
             }
         }
-        [propertiesArray addObject:propDic];
+        [propertiesArray addObject:propDic];        
         [propertyName release];
         [propertyType release];
         [propDic release];
@@ -170,9 +183,6 @@ CGFloat handleNaN(CGFloat value)
     
     return uiGeometryProperties;
 }
-
-
-
 
 +(NSArray*) UIViewRenderingProps:(UIView*)view
 {

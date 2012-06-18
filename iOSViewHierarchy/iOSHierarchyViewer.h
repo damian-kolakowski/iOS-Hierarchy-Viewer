@@ -6,7 +6,7 @@
 
 #import <Foundation/Foundation.h>
 
-#define IOS_HIERARCHY_VIEWER_VERSION "1.2"
+#define IOS_HIERARCHY_VIEWER_VERSION "1.3"
 #define IOS_HIERARCHY_VIEWER_PORT 9449
 
 @interface iOSHierarchyViewer : NSObject
