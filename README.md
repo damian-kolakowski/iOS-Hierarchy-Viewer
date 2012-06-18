@@ -59,3 +59,6 @@ Contributing:
 ====================
 Did you find a bug ? Do you have feature request ? Do you want to merge a feature ?
 Send us a pull request or add an issue in the tracker!
+
+[LIB]: https://github.com/glock45/iOS-Hierarchy-Viewer/blob/master/compiled/libiOSHierarchyViewer_fat.a
+[HEADER]: https://github.com/glock45/iOS-Hierarchy-Viewer/blob/master/iOSViewHierarchy/iOSHierarchyViewer.h
