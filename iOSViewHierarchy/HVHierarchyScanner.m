@@ -112,11 +112,11 @@ CGFloat handleNaN(CGFloat value) {
 
     NSString *propertyName = [[[NSString alloc] initWithCString:property_getName(property) encoding:[NSString defaultCStringEncoding]] autorelease];
     
-    if ( conformsToUITextInputTraits ) {
-      if (  protocol_getMethodDescription(@protocol(UITextInputTraits), NSSelectorFromString(propertyName), NO, YES).name != NULL ) {
+    if (conformsToUITextInputTraits) {
+      if (protocol_getMethodDescription(@protocol(UITextInputTraits), NSSelectorFromString(propertyName), NO, YES).name != NULL) {
         continue;
       }
-      if ( [@"secureTextEntry" isEqualToString:propertyName] ) {
+      if ([@"secureTextEntry" isEqualToString:propertyName]) {
         continue;
       }
     }
