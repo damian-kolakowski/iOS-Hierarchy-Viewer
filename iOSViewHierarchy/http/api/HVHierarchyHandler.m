@@ -25,6 +25,7 @@
       CGRect screenRect = [[UIScreen mainScreen] bounds];
       [responseDic setValue:[NSNumber numberWithFloat:screenRect.size.width] forKey:@"screen_w"];
       [responseDic setValue:[NSNumber numberWithFloat:screenRect.size.height] forKey:@"screen_h"];
+      [responseDic setValue:@IOS_HIERARCHY_VIEWER_VERSION forKey:@"version"];
       //[responseDic setValue:[NSArray arrayWithObjects:@"CGRect", @"CGPoint", @"NSString", @"BOOL", nil] forKey:@"editable"];];
       return [self writeText:[responseDic JSONString] toSocket:socket];
     }
