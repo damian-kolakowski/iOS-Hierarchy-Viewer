@@ -9,7 +9,6 @@
 #import "HVHierarchyScanner.h"
 #import "JSONKit.h"
 
-
 @implementation HVHierarchyScanner
 
 CGFloat handleNaN(CGFloat value) {
@@ -102,12 +101,26 @@ CGFloat handleNaN(CGFloat value) {
   unsigned int outCount, i;
   objc_property_t *properties = class_copyPropertyList(class, &outCount);
   NSMutableArray *propertiesArray = [[[NSMutableArray alloc] initWithCapacity:10] autorelease];
+  
+  // handle UITextInputTraits properties which aren't KVO compilant
+  BOOL conformsToUITextInputTraits = [class conformsToProtocol:@protocol(UITextInputTraits)];
+
   for (i = 0; i < outCount; i++) {
     objc_property_t property = properties[i];
 
     NSMutableDictionary *propertyDescription = [[NSMutableDictionary alloc] initWithCapacity:2];
 
-    NSString *propertyName = [[NSString alloc] initWithCString:property_getName(property) encoding:[NSString defaultCStringEncoding]];
+    NSString *propertyName = [[[NSString alloc] initWithCString:property_getName(property) encoding:[NSString defaultCStringEncoding]] autorelease];
+    
+    if ( conformsToUITextInputTraits ) {
+      if (  protocol_getMethodDescription(@protocol(UITextInputTraits), NSSelectorFromString(propertyName), NO, YES).name != NULL ) {
+        continue;
+      }
+      if ( [@"secureTextEntry" isEqualToString:propertyName] ) {
+        continue;
+      }
+    }
+    
     NSString *propertyType = [[NSString alloc] initWithCString:property_getAttributes(property) encoding:[NSString defaultCStringEncoding]];
     [propertyDescription setValue:propertyName forKey:@"name"];
 
@@ -166,7 +179,6 @@ CGFloat handleNaN(CGFloat value) {
       }
     }
     [propertiesArray addObject:propertyDescription];
-    [propertyName release];
     [propertyType release];
     [propertyDescription release];
   }
