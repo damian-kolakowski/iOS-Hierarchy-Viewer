@@ -55,8 +55,8 @@ HVHTTPServer *server = nil;
   }
   server = [[HVHTTPServer alloc] init];
   [server registerHandler:[HVHierarchyHandler handler] forUrl:@"/snapshot"];
-  //HVIndexBASE64 *indexHandler = [HVIndexBASE64 handler];
-  HVStaticFileHandler* indexHandler = [HVStaticFileHandler handler:@"index2"];
+  HVIndexBASE64 *indexHandler = [HVIndexBASE64 handler];
+  //HVStaticFileHandler* indexHandler = [HVStaticFileHandler handler:@"index2"];
   [server registerHandler:indexHandler forUrl:@""];
   [server registerHandler:indexHandler forUrl:@"/"];
   [server registerHandler:indexHandler forUrl:@"/index"];

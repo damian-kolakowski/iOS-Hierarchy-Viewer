@@ -30,7 +30,6 @@
 		57A6337614FE7672004D2647 /* ExampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57A6337514FE7672004D2647 /* ExampleViewController.m */; };
 		57CF9FB1151BA08600BC035B /* PlainExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 57CF9FAF151BA08600BC035B /* PlainExample.m */; };
 		57CF9FB2151BA08600BC035B /* PlainExample.xib in Resources */ = {isa = PBXBuildFile; fileRef = 57CF9FB0151BA08600BC035B /* PlainExample.xib */; };
-		7CD3191115938954004647DE /* index2 in Resources */ = {isa = PBXBuildFile; fileRef = 7CD3191015938954004647DE /* index2 */; };
 		D108B951158FC42E002DCC6F /* libiOSViewHierarchy.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D108B94B158FC411002DCC6F /* libiOSViewHierarchy.a */; };
 		EDA7DCB11548EBD1002219BA /* PrettyToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = EDA7DCB01548EBD1002219BA /* PrettyToolbar.m */; };
 		EDA7DCB61548ED3F002219BA /* ModalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDA7DCB41548ED3E002219BA /* ModalViewController.m */; };
@@ -94,7 +93,6 @@
 		57CF9FAE151BA08600BC035B /* PlainExample.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlainExample.h; sourceTree = "<group>"; };
 		57CF9FAF151BA08600BC035B /* PlainExample.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlainExample.m; sourceTree = "<group>"; };
 		57CF9FB0151BA08600BC035B /* PlainExample.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlainExample.xib; sourceTree = "<group>"; };
-		7CD3191015938954004647DE /* index2 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = index2; path = ../iOSViewHierarchy/webapp/index2; sourceTree = "<group>"; };
 		D108B943158FC411002DCC6F /* iOSHierarchyViewer.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = iOSHierarchyViewer.xcodeproj; path = ../iOSHierarchyViewer.xcodeproj; sourceTree = "<group>"; };
 		D108B94E158FC425002DCC6F /* iOSHierarchyViewer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iOSHierarchyViewer.h; path = ../iOSViewHierarchy/iOSHierarchyViewer.h; sourceTree = "<group>"; };
 		EDA7DCAF1548EBD1002219BA /* PrettyToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrettyToolbar.h; sourceTree = "<group>"; };
@@ -124,7 +122,6 @@
 			isa = PBXGroup;
 			children = (
 				D108B94E158FC425002DCC6F /* iOSHierarchyViewer.h */,
-				7CD3191015938954004647DE /* index2 */,
 				5735F8C114FD2FFC00DD7370 /* PrettyExample */,
 				5735F8BA14FD2FFC00DD7370 /* Frameworks */,
 				5735F8B814FD2FFC00DD7370 /* Products */,
@@ -304,7 +301,6 @@
 				572B2E6A153496880002228B /* background.png in Resources */,
 				572B2E6B153496880002228B /* background@2x.png in Resources */,
 				EDA7DCB71548ED3F002219BA /* ModalViewController.xib in Resources */,
-				7CD3191115938954004647DE /* index2 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

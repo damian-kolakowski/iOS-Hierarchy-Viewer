@@ -472,19 +472,19 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
         		var viewId = parseInt($(this).attr('data_id'));
         		if ( o.onHoverOutCallback ) o.onHoverOutCallback(viewId);
         	}).click(function() {
-        		var viewId = parseInt($(this).attr('data_id'));
-        		if ( o.onClickCallback ) o.onClickCallback(viewId);
-        	});
-        	nodesParent.find('.tree_node_name[can_expand=1]').click(function() {
-        		$('.tree_node_name_selected').removeClass('tree_node_name_selected');
         		var target = $(this);
+        		var viewId = parseInt(target.attr('data_id'));
+        		if ( o.onClickCallback ) o.onClickCallback(viewId);
+        		$('.tree_node_name_selected').removeClass('tree_node_name_selected');
         		target.addClass('tree_node_name_selected');
-        		if ( target.attr('opened') == '1' ) {
-        			target.attr('opened', '0');
-        			target.parent().children('.tree_child').hide();
-        		} else {
-        			target.attr('opened', '1');
-        			target.parent().children('.tree_child').show();
+        		if ( target.attr('can_expand') == '1' ) {
+	        		if ( target.attr('opened') == '1' ) {
+	        			target.attr('opened', '0');
+	        			target.parent().children('.tree_child').hide();
+	        		} else {
+	        			target.attr('opened', '1');
+	        			target.parent().children('.tree_child').show();
+	        		}
         		}
         	});
 	    }
