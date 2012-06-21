@@ -62,6 +62,12 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
     }
     .tree_node_name:hover
     {
+        background: #21011F;
+        border-radius: 3px;
+        box-shadow: 0px 0px 3px #213140;
+    }
+    .tree_node_name_selected
+    {
         background: #213140;
         border-radius: 3px;
         box-shadow: 0px 0px 3px #213140;
@@ -443,9 +449,9 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
 		var nodesParent = $('<div class="tree_parent"></div>');
 
 		function buildViewFunc(view) {
-	        var newList = $('<ul class="tree_node"></ul');
-	        var isOpenable = view.views && view.views.length > 0;
-	        newList.append('<div class="tree_expand" can_be_open="'+isOpenable+'" is_open="0">' + (isOpenable?'𐄂':'·') + '</div><div class="tree_node_name" data_id="' + view.id + '">' + view['class'] + '</div>');
+			var isOpenable = view.views && view.views.length > 0;
+	        var newList = $('<ul class="tree_node" data_id="' + view.id + '"></ul');
+	        newList.append('<div class="tree_node_name" opened="0" data_id="' + view.id + '" can_expand="' + (isOpenable?'1':'0') + '">' + (isOpenable?'○':'·') +  view['class'] + '</div>');
 
 	        if ( view.views ) $.each(view.views, function(index, data) {
 	               var newElement = $('<li class="tree_child"></li>');
@@ -469,22 +475,33 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
         		var viewId = parseInt($(this).attr('data_id'));
         		if ( o.onClickCallback ) o.onClickCallback(viewId);
         	});
-        	nodesParent.find('.tree_expand[can_be_open=true]').click(function() {
+        	nodesParent.find('.tree_node_name[can_expand=1]').click(function() {
+        		$('.tree_node_name_selected').removeClass('tree_node_name_selected');
         		var target = $(this);
-        		if ( target.attr('is_open') == '0' ) {
-        			target.text('-');
-        			target.attr('is_open', '1');
-        			target.parent().children('.tree_child').show();
-        		} else {
-        			target.text('𐄂');
-        			target.attr('is_open', '0');
+        		target.addClass('tree_node_name_selected');
+        		if ( target.attr('opened') == '1' ) {
+        			target.attr('opened', '0');
         			target.parent().children('.tree_child').hide();
+        		} else {
+        			target.attr('opened', '1');
+        			target.parent().children('.tree_child').show();
         		}
         	});
 	    }
 
-	    var clearFunc = function() { nodesParent.empty(); }
+	    var expandFunc = function(id) {
+	    	$('.tree_node_name_selected').removeClass('tree_node_name_selected');
+	    	$('.tree_node_name[data_id=' + id + ']').addClass('tree_node_name_selected');
+	    	var view = $('.tree_node[data_id=' + id + ']')
+	    	if ( view ) {
+	    		var parents = view.parents('.tree_child');
+	    		parents.show();
+	    		parents.parents().children('.tree_child').show();
+	    	}
+	    	console.log(view);
+	    }
 
+	    var clearFunc = function() { nodesParent.empty(); }
 		var showFunc = function() { nodesParent.show(); }
 		var hideFunc = function() { nodesParent.hide(); }
 
@@ -495,6 +512,7 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
 			clear: clearFunc,
 			show: showFunc,
 			hide: hideFunc,
+			expand: expandFunc,
 			wrapper: nodesParent
 		}
 	}
@@ -708,7 +726,7 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
 <script>	
 	var propsEditor = new PropsEditor({ parentDom: $('body') });
 
-    var mockData;
+    var viewsData;
 
     var findViewById = function(parent, id) {
     	if ( parent.id == id ) return parent;
@@ -728,8 +746,8 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
     		previewScreen.blur(viewId);
     	},
     	onClickCallback: function(viewId) {
-    		var view = findViewById(mockData.windows[0], viewId)
-    		if ( view ) propsEditor.showProps(viewId, view.props, mockData.editable);
+    		var view = findViewById(viewsData.windows[0], viewId)
+    		if ( view ) propsEditor.showProps(viewId, view.props, viewsData.editable);
     	}
     });
 
@@ -744,8 +762,11 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
     	frame_h: 500,
     	onSelected: function(viewId) {
     		console.log(viewId);
-    		var view = findViewById(mockData.windows[0], viewId)
-    		if ( view ) propsEditor.showProps(viewId, view.props, mockData.editable);
+    		var view = findViewById(viewsData.windows[0], viewId)
+    		if ( view ) {
+    			propsEditor.showProps(viewId, view.props, viewsData.editable);
+    			viewsTree.expand(viewId);
+    		}
     	}
     });
 
@@ -777,7 +798,7 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
 
     $.getJSON('/snapshot?nocache=' + (new Date().getTime()), function(data) {
     	console.log(data);
-    	mockData = data;
+    	viewsData = data;
         viewsTree.fill(data.windows);
         previewScreen.size({ frame_x: 0, frame_y: 0, frame_w: data.screen_w, frame_h: data.screen_h });
         previewScreen.clear();
