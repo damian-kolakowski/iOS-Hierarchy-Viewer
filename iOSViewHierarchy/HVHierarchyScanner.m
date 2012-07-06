@@ -101,7 +101,7 @@ CGFloat handleNaN(CGFloat value) {
   unsigned int outCount, i;
   objc_property_t *properties = class_copyPropertyList(class, &outCount);
   NSMutableArray *propertiesArray = [[[NSMutableArray alloc] initWithCapacity:10] autorelease];
-  
+
   // handle UITextInputTraits properties which aren't KVO compilant
   BOOL conformsToUITextInputTraits = [class conformsToProtocol:@protocol(UITextInputTraits)];
 
@@ -111,7 +111,7 @@ CGFloat handleNaN(CGFloat value) {
     NSMutableDictionary *propertyDescription = [[NSMutableDictionary alloc] initWithCapacity:2];
 
     NSString *propertyName = [[[NSString alloc] initWithCString:property_getName(property) encoding:[NSString defaultCStringEncoding]] autorelease];
-    
+
     if (conformsToUITextInputTraits) {
       if (protocol_getMethodDescription(@protocol(UITextInputTraits), NSSelectorFromString(propertyName), NO, YES).name != NULL) {
         continue;
@@ -120,7 +120,7 @@ CGFloat handleNaN(CGFloat value) {
         continue;
       }
     }
-    
+
     NSString *propertyType = [[NSString alloc] initWithCString:property_getAttributes(property) encoding:[NSString defaultCStringEncoding]];
     [propertyDescription setValue:propertyName forKey:@"name"];
 
@@ -147,7 +147,13 @@ CGFloat handleNaN(CGFloat value) {
     } else if (strcmp(rawPropertyType, @encode(BOOL)) == 0) {
       [propertyDescription setValue:@"BOOL" forKey:@"type"];
       readValue = NO;
-      NSNumber *propertyValue = [obj valueForKey:propertyName];
+      NSNumber *propertyValue;
+      @try {
+        propertyValue = [obj valueForKey:propertyName];
+      }
+      @catch (NSException *exception) {
+        propertyValue = nil;
+      }
       [propertyDescription setValue:([propertyValue boolValue] ? @"YES" : @"NO") forKey:@"value"];
     } else if (strcmp(rawPropertyType, @encode(char)) == 0) {
       [propertyDescription setValue:@"char" forKey:@"type"];
@@ -158,7 +164,14 @@ CGFloat handleNaN(CGFloat value) {
       [propertyDescription setValue:typeClassName forKey:@"type"];
       if ([typeClassName isEqualToString:[[UIColor class] description]]) {
         readValue = NO;
-        id propertyValue = [obj valueForKey:propertyName];
+        id propertyValue;
+        @try {
+          propertyValue = [obj valueForKey:propertyName];
+        }
+        @catch (NSException *exception) {
+          propertyValue = nil;
+        }
+
         [propertyDescription setValue:(propertyValue ? [HVHierarchyScanner UIColorToNSString:propertyValue] : @"nil") forKey:@"value"];
       }
       if ([typeClassName isEqualToString:[[NSString class] description]]) {
@@ -171,7 +184,13 @@ CGFloat handleNaN(CGFloat value) {
       [propertyDescription setValue:propertyType forKey:@"type"];
     }
     if (readValue) {
-      id propertyValue = [obj valueForKey:propertyName];
+      id propertyValue;
+      @try {
+        propertyValue = [obj valueForKey:propertyName];
+      }
+      @catch (NSException *exception) {
+        propertyValue = nil;
+      }
       if (!checkOnlyIfNil) {
         [propertyDescription setValue:(propertyValue != nil ? [NSString stringWithFormat:@"%@", propertyValue] : @"nil") forKey:@"value"];
       } else {
