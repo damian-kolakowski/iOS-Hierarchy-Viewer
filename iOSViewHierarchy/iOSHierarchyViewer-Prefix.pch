@@ -6,7 +6,7 @@
 
 #import <Foundation/Foundation.h>
 
-#define IOS_HIERARCHY_VIEWER_VERSION "1.4.3"
+#define IOS_HIERARCHY_VIEWER_VERSION "1.4.4"
 #define IOS_HIERARCHY_VIEWER_PORT 9449
 
 #endif

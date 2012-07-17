@@ -6,6 +6,7 @@
 
 #import <objc/runtime.h>
 #import <math.h>
+#import <QuartzCore/QuartzCore.h>
 #import "HVHierarchyScanner.h"
 #import "JSONKit.h"
 
@@ -96,6 +97,39 @@ CGFloat handleNaN(CGFloat value) {
   return @"nil";
 }
 
+NSString* NSStringFromCGAffineTransform2(CGAffineTransform transform)
+{
+  return [NSString stringWithFormat:@"%f,%f,%f,%f,%f,%f", 
+          transform.a, 
+          transform.b, 
+          transform.c, 
+          transform.d, 
+          transform.tx, 
+          transform.ty];
+}
+
+NSString* NSStringFromCATransform3D(CATransform3D transform)
+{
+  return [NSString stringWithFormat:@"%.2f,%.2f,%.2f,%.2f,%.2f,%.2f,%.2f,%.2f,%.2f,%.2f,%.2f,%.2f,%.2f,%.2f,%.2f,%.2f",
+     (transform.m11),
+     (transform.m12),
+     (transform.m13),
+     (transform.m14),
+     (transform.m21),
+     (transform.m22),
+     (transform.m23),
+     (transform.m24),
+     (transform.m31),
+     (transform.m32),
+     (transform.m33),
+     (transform.m34),
+     (transform.m41),
+     (transform.m42),
+     (transform.m43),
+     (transform.m44)
+     ];
+}
+
 + (NSMutableArray *)classProperties:(Class)class object:(NSObject *)obj
 {
   unsigned int outCount, i;
@@ -157,6 +191,61 @@ CGFloat handleNaN(CGFloat value) {
       [propertyDescription setValue:([propertyValue boolValue] ? @"YES" : @"NO") forKey:@"value"];
     } else if (strcmp(rawPropertyType, @encode(char)) == 0) {
       [propertyDescription setValue:@"char" forKey:@"type"];
+    } else if ( type && ( [type hasPrefix:@"{CGRect="] ) ) {
+      readValue = NO;
+      NSValue *propertyValue;
+      @try {
+        propertyValue = [obj valueForKey:propertyName];
+      }
+      @catch (NSException *exception) {
+        propertyValue = nil;
+      }
+      [propertyDescription setValue:[NSString stringWithFormat:@"%@", NSStringFromCGRect([propertyValue CGRectValue])] forKey:@"value"];
+      [propertyDescription setValue:@"CGRect" forKey:@"type"];
+    } else if ( type && ( [type hasPrefix:@"{CGPoint="] ) ) {
+      readValue = NO;
+      NSValue *propertyValue;
+      @try {
+        propertyValue = [obj valueForKey:propertyName];
+      }
+      @catch (NSException *exception) {
+        propertyValue = nil;
+      }
+      [propertyDescription setValue:[NSString stringWithFormat:@"%@", NSStringFromCGPoint([propertyValue CGPointValue])] forKey:@"value"];
+      [propertyDescription setValue:@"CGPoint" forKey:@"type"];
+    } else if ( type && ( [type hasPrefix:@"{CGSize="] ) ) {
+      readValue = NO;
+      NSValue *propertyValue;
+      @try {
+        propertyValue = [obj valueForKey:propertyName];
+      }
+      @catch (NSException *exception) {
+        propertyValue = nil;
+      }
+      [propertyDescription setValue:[NSString stringWithFormat:@"%@", NSStringFromCGSize([propertyValue CGSizeValue])] forKey:@"value"];
+      [propertyDescription setValue:@"CGSize" forKey:@"type"];
+    } else if ( type && ( [type hasPrefix:@"{CGAffineTransform="] ) ) {
+      readValue = NO;
+      CGAffineTransform *propertyValue;
+      @try {
+        propertyValue = (CGAffineTransform*)[obj valueForKey:propertyName];
+      }
+      @catch (NSException *exception) {
+        propertyValue = nil;
+      }
+      [propertyDescription setValue:[NSString stringWithFormat:@"%@", NSStringFromCGAffineTransform2(*propertyValue)] forKey:@"value"];
+      [propertyDescription setValue:@"CGAffineTransform" forKey:@"type"];
+    } else if ( type && ( [type hasPrefix:@"{CATransform3D="] ) ) {
+      readValue = NO;
+      CATransform3D *propertyValue;
+      @try {
+        propertyValue = (CATransform3D*)[obj valueForKey:propertyName];
+      }
+      @catch (NSException *exception) {
+        propertyValue = nil;
+      }
+      [propertyDescription setValue:[NSString stringWithFormat:@"%@", NSStringFromCATransform3D(*propertyValue)] forKey:@"value"];
+      [propertyDescription setValue:@"CATransform3D" forKey:@"type"];
     } else if (type && [type hasPrefix:@"@"] && [type length] > 3) {
       readValue = YES;
       checkOnlyIfNil = YES;
@@ -217,6 +306,12 @@ CGFloat handleNaN(CGFloat value) {
 
   NSDictionary *center = [NSDictionary dictionaryWithObjectsAndKeys:@"center", @"name", @"CGPoint", @"type", NSStringFromCGPoint(view.center), @"value", nil];
   [properties addObject:center];
+  
+  NSDictionary *transform = [NSDictionary dictionaryWithObjectsAndKeys:@"transform", @"name", @"CGAffineTransform", @"type", NSStringFromCGAffineTransform2(view.transform), @"value", nil];
+  [properties addObject:transform];
+  
+  NSDictionary *layerTransform = [NSDictionary dictionaryWithObjectsAndKeys:@"layer.transform", @"name", @"CATransform3D", @"type", NSStringFromCATransform3D(view.layer.transform), @"value", nil];
+  [properties addObject:layerTransform];
 
   return properties;
 }
@@ -246,6 +341,7 @@ CGFloat handleNaN(CGFloat value) {
   NSDictionary *clearContextBeforeDrawing = [NSDictionary dictionaryWithObjectsAndKeys:@"clearsContextBeforeDrawing", @"name", @"BOOL", @"type", view.clearsContextBeforeDrawing ? @"YES" : @"NO", @"value", nil];
   [properties addObject:clearContextBeforeDrawing];
 
+  
   return properties;
 }
 
@@ -258,14 +354,16 @@ CGFloat handleNaN(CGFloat value) {
     NSString *objectName = view.accessibilityLabel ? [NSString stringWithFormat:@"%@ : %@", view.accessibilityLabel, className] : className;
     [viewDescription setValue:objectName forKey:@"class"];
     [viewDescription setValue:[NSNumber numberWithLong:(long)view] forKey:@"id"];
-    [viewDescription setValue:[NSNumber numberWithFloat:handleNaN(view.frame.origin.x)] forKey:@"frame_x"];
-    [viewDescription setValue:[NSNumber numberWithFloat:handleNaN(view.frame.origin.y)] forKey:@"frame_y"];
-    [viewDescription setValue:[NSNumber numberWithFloat:handleNaN(view.frame.size.width)] forKey:@"frame_w"];
-    [viewDescription setValue:[NSNumber numberWithFloat:handleNaN(view.frame.size.height)] forKey:@"frame_h"];
-    [viewDescription setValue:[NSNumber numberWithFloat:handleNaN(view.bounds.size.width)] forKey:@"bounds_w"];
-    [viewDescription setValue:[NSNumber numberWithFloat:handleNaN(view.bounds.size.height)] forKey:@"bounds_h"];
-    [viewDescription setValue:[NSNumber numberWithFloat:handleNaN(view.bounds.origin.x)] forKey:@"bounds_x"];
-    [viewDescription setValue:[NSNumber numberWithFloat:handleNaN(view.bounds.origin.y)] forKey:@"bounds_y"];
+    
+    [viewDescription setValue:NSStringFromCATransform3D(view.layer.transform) forKey:@"layer_transform"];
+    [viewDescription setValue:[NSNumber numberWithFloat:handleNaN(view.layer.bounds.origin.x)] forKey:@"layer_bounds_x"];
+    [viewDescription setValue:[NSNumber numberWithFloat:handleNaN(view.layer.bounds.origin.y)] forKey:@"layer_bounds_y"];
+    [viewDescription setValue:[NSNumber numberWithFloat:handleNaN(view.layer.bounds.size.width)] forKey:@"layer_bounds_w"];
+    [viewDescription setValue:[NSNumber numberWithFloat:handleNaN(view.layer.bounds.size.height)] forKey:@"layer_bounds_h"];
+    [viewDescription setValue:[NSNumber numberWithFloat:handleNaN(view.layer.position.x)] forKey:@"layer_position_x"];
+    [viewDescription setValue:[NSNumber numberWithFloat:handleNaN(view.layer.position.y)] forKey:@"layer_position_y"];
+    [viewDescription setValue:[NSNumber numberWithFloat:handleNaN(view.layer.anchorPoint.x)] forKey:@"layer_anchor_x"];
+    [viewDescription setValue:[NSNumber numberWithFloat:handleNaN(view.layer.anchorPoint.y)] forKey:@"layer_anchor_y"];
 
     // put properties from super classes
     NSMutableArray *properties = [[[NSMutableArray alloc] initWithCapacity:10] autorelease];
@@ -291,8 +389,15 @@ CGFloat handleNaN(CGFloat value) {
       [properties addObject:classProperties];
       class = [class superclass];
     }
+    
+    // put CALayer
+    NSMutableDictionary *layerProperties = [[[NSMutableDictionary alloc] initWithCapacity:2] autorelease];
+    [layerProperties setValue:@"CALayer" forKey:@"name"];
+    [layerProperties setValue:[HVHierarchyScanner classProperties:[CALayer class] object:view.layer] forKey:@"props"];
+    [properties addObject:layerProperties];
+    
     [viewDescription setValue:properties forKey:@"props"];
-
+    
     NSMutableArray *subViewsArray = [[[NSMutableArray alloc] initWithCapacity:10] autorelease];
     for (UIView *subview in [view subviews]) {
       NSDictionary *subviewDictionary = [HVHierarchyScanner recursivePropertiesScan:subview];
@@ -314,7 +419,9 @@ CGFloat handleNaN(CGFloat value) {
   if (app && app.windows) {
     void (^gatherProperties)() = ^() {
       for (UIWindow *window in app.windows) {
-        [windowViews addObject:[HVHierarchyScanner recursivePropertiesScan:window]];
+        NSDictionary* windowDictionary = [HVHierarchyScanner recursivePropertiesScan:window];
+        [windowDictionary setValue:[NSString stringWithFormat:@"/preview?id=%d", (long)window] forKey:@"preview"];
+        [windowViews addObject:windowDictionary];
       }
     };
 

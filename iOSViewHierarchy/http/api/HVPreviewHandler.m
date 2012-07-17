@@ -24,13 +24,14 @@
         UIView *view = [HVHierarchyScanner findViewById:id];
         if (view) {
           UIGraphicsBeginImageContext(view.bounds.size);
+          
           [view.layer renderInContext:UIGraphicsGetCurrentContext()];
           UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
 
-          NSData *scaledData = UIImagePNGRepresentation(image);
+          NSData *pngData = UIImagePNGRepresentation(image);
           UIGraphicsEndImageContext();
 
-          return [self writeData:(char *)[scaledData bytes] length:[scaledData length] toSocket:socket];
+          return [self writeData:(char *)[pngData bytes] length:[pngData length] toSocket:socket];
         }
       } else {
         CGRect screenRect = [[UIScreen mainScreen] bounds];

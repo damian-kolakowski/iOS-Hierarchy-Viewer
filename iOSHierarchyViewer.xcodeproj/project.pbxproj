@@ -31,7 +31,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		7C861E34153DF2E000935C95 /* libiOSViewHierarchy.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libiOSViewHierarchy.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		7C861E34153DF2E000935C95 /* libiOSViewHierarchy.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libiOSViewHierarchy.a; path = libiOSHierarchyViewer.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C861E37153DF2E000935C95 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		7C861E3B153DF2E000935C95 /* iOSHierarchyViewer-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iOSHierarchyViewer-Prefix.pch"; sourceTree = "<group>"; };
 		7C861E49153DF33A00935C95 /* iOSHierarchyViewer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iOSHierarchyViewer.h; sourceTree = "<group>"; };
@@ -53,6 +53,7 @@
 		7CB3BD75158A45690001D338 /* index2 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = index2; sourceTree = "<group>"; };
 		7CB3BD77158A45850001D338 /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONKit.h; sourceTree = "<group>"; };
 		7CB3BD78158A45850001D338 /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
+		7CD97A5415B299E500CBAAA1 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		7CE955D01540C5CB0042A03A /* HVHierarchyScanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HVHierarchyScanner.h; sourceTree = "<group>"; };
 		7CE955D11540C5CB0042A03A /* HVHierarchyScanner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HVHierarchyScanner.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -72,6 +73,7 @@
 		7C861E29153DF2DF00935C95 = {
 			isa = PBXGroup;
 			children = (
+				7CD97A5415B299E500CBAAA1 /* QuartzCore.framework */,
 				7C861E39153DF2E000935C95 /* iOSViewHierarchy */,
 				7C861E36153DF2E000935C95 /* Frameworks */,
 				7C861E35153DF2E000935C95 /* Products */,

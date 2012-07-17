@@ -97,6 +97,7 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
     	background-repeat: no-repeat;
     	cursor: crosshair;
     	background-position: -1px -1px;
+    	overflow: hidden;
     }
     .screen_node
     {
@@ -315,27 +316,31 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
 	function Screen(options) {
 		var o = options;
 
-		var setSizeFunc = function(viewNode, view) {
-			viewNode.css('top', (view.frame_y-1)+'px');
-			viewNode.css('left', (view.frame_x-1)+'px');
-			viewNode.css('width', (view.frame_w-2)+'px');
-			viewNode.css('height', (view.frame_h-2)+'px');
-		}
-
-		var createScreenNode = function(view) {
-			var viewNode = $('<div class="screen_node" data_id="' + view.id + '"></div>');
-			setSizeFunc(viewNode, view);
+		var createScreenNode = function(viewMeta, viewParentMeta) {
+			var viewNode = $('<div class="screen_node" data_id="' + viewMeta.id + '"></div>');
+			var leftOffset = viewParentMeta ? viewParentMeta.layer_bounds_x : 0;
+			var topOffset = viewParentMeta ? viewParentMeta.layer_bounds_y : 0;
+			viewNode.css('left'  , ( viewMeta.layer_position_x - viewMeta.layer_bounds_w * viewMeta.layer_anchor_x - leftOffset -1  ) + 'px');
+			viewNode.css('top'	 , ( viewMeta.layer_position_y - viewMeta.layer_bounds_h * viewMeta.layer_anchor_y - topOffset  -1  ) + 'px');
+			viewNode.css('width' , ( viewMeta.layer_bounds_w - 2 ) + 'px');
+			viewNode.css('height', ( viewMeta.layer_bounds_h - 2 ) + 'px');
+			viewNode.css('-webkit-origin', ( viewMeta.layer_anchor_x * 10 ) + '%', ( viewMeta.layer_anchor_y * 10 ) + '%');
+			viewNode.css('-webkit-transform', 'matrix3d(' + viewMeta.layer_transform + ')');
+			if ( viewMeta.preview ) {
+				viewNode.css('background-image', "url('" + viewMeta.preview + "')");
+				viewNode.css('background-origin', 'border-box');
+			}
 			return viewNode;
 		}
 
 		var mainNodeView = createScreenNode(o);
-		mainNodeView.css('background-image',"url('/preview?nocache=" + (new Date().getTime()) + "')");
+		//mainNodeView.css('background-image',"url('/preview?nocache=" + (new Date().getTime()) + "')");
 		mainNodeView.addClass('screen_root_node');
 
-		var transformScale = 1, transformX = 0, transformY = 0, transformRot = 0;
+		var viewportScale = 1, viewportTranslateX = 0, viewportTranslateY = 0, viewportRotation = 0;
 
 		function updateTransform() {
-			var transformValue = 'translate(' + transformX  + 'px,' + transformY + 'px) rotate(' + transformRot + 'deg) scale(' + transformScale + ')';
+			var transformValue = 'translate(' + viewportTranslateX  + 'px,' + viewportTranslateY + 'px) rotate(' + viewportRotation + 'deg) scale(' + viewportScale + ')';
 			mainNodeView.css('-webkit-transform', transformValue);
 			mainNodeView.css('-moz-transform', transformValue);
 		}
@@ -345,10 +350,10 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
 		var rotLeftDom = $('<div class="screen_rot_left screen_zoom" title="rotate left">↺</div>');
 		var rotRightDom = $('<div class="screen_rot_right screen_zoom" title="rotate right">↻</div>');
 
-		zoomInDom.click(function() { transformScale += 0.1; updateTransform(); });
-		zoomOutDom.click(function() { transformScale -= 0.1; updateTransform(); });
-		rotLeftDom.click(function() { transformRot -= 90.0; updateTransform(); } );
-		rotRightDom.click(function() { transformRot += 90; updateTransform(); } );
+		zoomInDom.click(function() { viewportScale += 0.1; updateTransform(); });
+		zoomOutDom.click(function() { viewportScale -= 0.1; updateTransform(); });
+		rotLeftDom.click(function() { viewportRotation -= 90.0; updateTransform(); } );
+		rotRightDom.click(function() { viewportRotation += 90; updateTransform(); } );
 
 		o.parentDom.append(zoomInDom);
 		o.parentDom.append(zoomOutDom);
@@ -359,10 +364,10 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
 			mainNodeView.empty();
 		}
 
-		var fillRecursive = function(parent, views) {
+		var fillRecursive = function(parent, views, parentView) {
 			$.each(views, function(index, v) {
-				var viewNode = createScreenNode(v);
-				fillRecursive(viewNode, v.views);
+				var viewNode = createScreenNode(v, parentView);
+				fillRecursive(viewNode, v.views, v);
 				parent.append(viewNode);
 			});
 		}
@@ -374,12 +379,13 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
 			var viewId = 0;
 
 			var handleMouseMove = function(ee) {
-				transformX += -(lastX - ee.pageX);
-				transformY += -(lastY - ee.pageY);
+				viewportTranslateX += -(lastX - ee.pageX);
+				viewportTranslateY += -(lastY - ee.pageY);
 				lastX = ee.pageX;
 				lastY = ee.pageY;
 				updateTransform();
 			};
+
 			var handleMouseUp = function(e) {
 				e.preventDefault();
 				e.stopPropagation();
@@ -389,6 +395,7 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
 				$(window).unbind('mouseup', handleMouseUp);
 				$(window).unbind('mousemove', handleMouseMove);
 			};
+
 			mainNodeView.find('.screen_node').mousedown(function(e) {
 				viewId = parseInt($(this).attr('data_id'));
 				e.stopPropagation();
@@ -402,11 +409,12 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
 		}
 
 		var sizeFunc = function(view) {
-			setSizeFunc(mainNodeView, view);
 			mainNodeView.css('left', '50%');
 			mainNodeView.css('top', '50%');
-			mainNodeView.css('margin-left', '-' + view.frame_w/2 + 'px');
-			mainNodeView.css('margin-top', '-' + view.frame_h/2 + 'px');
+			mainNodeView.css('margin-left', '-' + view.bounds_w/2 + 'px');
+			mainNodeView.css('margin-top' , '-' + view.bounds_h/2 + 'px');
+			mainNodeView.css('width', (view.bounds_w-2) + 'px');
+			mainNodeView.css('height',(view.bounds_h-2) + 'px');
 		}
 
 		var focusFunc = function(viewId) {
@@ -724,9 +732,10 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
 	}
 </script>
 <script>	
-	var propsEditor = new PropsEditor({ parentDom: $('body') });
 
-    var viewsData;
+	var viewsData;
+
+	var propsEditor = new PropsEditor({ parentDom: $('body') });
 
     var findViewById = function(parent, id) {
     	if ( parent.id == id ) return parent;
@@ -796,16 +805,15 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
     viewsTree.hide();
     previewScreen.hide();
 
-    $.getJSON('/snapshot?nocache=' + (new Date().getTime()), function(data) {
-    	console.log(data);
-    	viewsData = data;
-        viewsTree.fill(data.windows);
-        previewScreen.size({ frame_x: 0, frame_y: 0, frame_w: data.screen_w, frame_h: data.screen_h });
+    $.getJSON('/snapshot?nocache=' + (new Date().getTime()), function(loadedData) {
+    	viewsData = loadedData;
+        viewsTree.fill(loadedData.windows);
+        previewScreen.size({ frame_x: 0, frame_y: 0, bounds_w: loadedData.screen_w, bounds_h: loadedData.screen_h });
         previewScreen.clear();
-        previewScreen.fill(data.windows);
-        if ( data.windows[0] ) propsEditor.showProps(data.windows[0].id, data.windows[0].props, data.editable);
+        previewScreen.fill(loadedData.windows);
+        if ( loadedData.windows[0] ) propsEditor.showProps(loadedData.windows[0].id, loadedData.windows[0].props, loadedData.editable);
         navbar.hideLoading();
-        navbar.version(data.version);
+        navbar.version(loadedData.version);
    		propsEditor.show();
     	viewsTree.show();
     	previewScreen.show();
