@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		688149D115D1929400E38AE0 /* HVDefines.h in Headers */ = {isa = PBXBuildFile; fileRef = 688149CF15D1929400E38AE0 /* HVDefines.h */; };
 		7C861E38153DF2E000935C95 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C861E37153DF2E000935C95 /* Foundation.framework */; };
 		7C861E5C153DF33A00935C95 /* iOSHierarchyViewer.h in Headers */ = {isa = PBXBuildFile; fileRef = 7C861E49153DF33A00935C95 /* iOSHierarchyViewer.h */; };
 		7C861E5D153DF33A00935C95 /* iOSHierarchyViewer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C861E4A153DF33A00935C95 /* iOSHierarchyViewer.m */; };
@@ -31,6 +32,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		688149CF15D1929400E38AE0 /* HVDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HVDefines.h; sourceTree = "<group>"; };
 		7C861E34153DF2E000935C95 /* libiOSViewHierarchy.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libiOSViewHierarchy.a; path = libiOSHierarchyViewer.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C861E37153DF2E000935C95 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		7C861E3B153DF2E000935C95 /* iOSHierarchyViewer-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iOSHierarchyViewer-Prefix.pch"; sourceTree = "<group>"; };
@@ -107,6 +109,7 @@
 				7C861E49153DF33A00935C95 /* iOSHierarchyViewer.h */,
 				7C861E4A153DF33A00935C95 /* iOSHierarchyViewer.m */,
 				7C861E3A153DF2E000935C95 /* Supporting Files */,
+				688149CF15D1929400E38AE0 /* HVDefines.h */,
 			);
 			path = iOSViewHierarchy;
 			sourceTree = "<group>";
@@ -182,6 +185,7 @@
 				7CB3BD70158A44CF0001D338 /* HVBaseRequestHandler.h in Headers */,
 				7CB3BD72158A44CF0001D338 /* HVHTTPServer.h in Headers */,
 				7CB3BD79158A45850001D338 /* JSONKit.h in Headers */,
+				688149D115D1929400E38AE0 /* HVDefines.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
