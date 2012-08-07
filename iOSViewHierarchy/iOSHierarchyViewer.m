@@ -11,6 +11,7 @@
 #import <arpa/inet.h>
 
 #import "iOSHierarchyViewer.h"
+#import "HVDefines.h"
 #import "HVHierarchyHandler.h"
 #import "HVHTTPServer.h"
 #import "HVPreviewHandler.h"
