@@ -29,7 +29,7 @@ for r in releases:
 
 print 'Latest release version: ' + max_version
 
-version_form_src = ver_re.search(open('iOSViewHierarchy/iOSHierarchyViewer-Prefix.pch', 'r').read())
+version_form_src = ver_re.search(open('iOSViewHierarchy/HVDefines.h', 'r').read())
 
 if version_form_src:
 	version_form_src = version_form_src.group()
@@ -44,4 +44,4 @@ if version_form_src:
 		releaseZip.write("build/libiOSHierarchyViewer_fat.a", "libiOSHierarchyViewer_fat.a", zipfile.ZIP_DEFLATED )
 		print '...zipped and ready to upload ('  + zipFilePath + ')'
 else:
-	print "Can't find version number in 'iOSHierarchyViewer-Prefix.pch' file"
+	print "Can't find version number in 'HVDefines.h' file"
