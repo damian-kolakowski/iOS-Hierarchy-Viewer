@@ -747,6 +747,15 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
     	}
     }
 
+    var findView = function(snapshot, id) {
+    	if ( snapshot.windows ) {
+    		for ( var i = 0 ; i < snapshot.windows.length ; ++i ) {
+    			var view = findViewById(snapshot.windows[i], id);
+    			if ( view ) return view;
+    		}
+    	}
+    }
+
     var viewsTree = new ViewsTree({ parentDom: $('body'),
     	onHoverInCallback: function(viewId) {
     		previewScreen.focus(viewId);
@@ -755,7 +764,7 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
     		previewScreen.blur(viewId);
     	},
     	onClickCallback: function(viewId) {
-    		var view = findViewById(viewsData.windows[0], viewId)
+    		var view = findView(viewsData, viewId);
     		if ( view ) propsEditor.showProps(viewId, view.props, viewsData.editable);
     	}
     });
@@ -771,7 +780,7 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
     	frame_h: 500,
     	onSelected: function(viewId) {
     		console.log(viewId);
-    		var view = findViewById(viewsData.windows[0], viewId)
+    		var view = findView(viewsData, viewId);
     		if ( view ) {
     			propsEditor.showProps(viewId, view.props, viewsData.editable);
     			viewsTree.expand(viewId);
