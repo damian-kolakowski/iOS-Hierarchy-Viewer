@@ -4,6 +4,7 @@
 //  Copyright (c) 2012 Damian Kolakowski. All rights reserved.
 //
 
+#import "HVDefines.h"
 #import "HVHierarchyHandler.h"
 #import "HVHierarchyScanner.h"
 #import "JSONKit.h"
