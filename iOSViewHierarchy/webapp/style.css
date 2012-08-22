@@ -1,4 +1,4 @@
- html, body, div, ul, li
+    html, body, div, ul, li, table, tr, td, tbody
     {
         padding: 0px; margin: 0px; list-style: none;
         cursor: default;
@@ -11,6 +11,10 @@
     {
         background: #3c5a75;
     }
+    table, tr, td, tbody
+    {
+        border: 0px;
+    }
     .selectable_text
     {
     	-moz-user-select: text;  
@@ -18,6 +22,89 @@
    		-ms-user-select: text;
    		user-select: text;
    		cursor: text;
+    }
+    .datatable_wrap
+    {
+        position: fixed;
+        top: 58px;
+        left: 220px;
+        right: 0px;
+        bottom: 0px;
+        display: block;
+        overflow: auto;
+    }
+    .datatable
+    {
+        border-collapse:collapse;
+    }
+    .datatable tr
+    {
+
+    }
+    .datatable th
+    {
+        text-align: center;
+        background: #000;
+        padding: 5px;
+        color: #777;
+    }
+    .datatable td
+    {
+        text-align: center;
+        padding: 5px;
+        color: #FFF;
+        border: 1px solid #000;
+    }
+    .entities_list
+    {
+        position: fixed;
+        top: 58px;
+        left: 0px;
+        width: 200px;
+        bottom: 0px;
+        background: #111;
+        padding: 10px;
+    }
+    .entities_list_item
+    {
+        color: white;
+        font-size: 17px;
+        font-family: Arial;
+        border-bottom: 1px solid #222;
+        padding-bottom: 10px;
+        padding-top: 10px;
+    }
+    .entities_list_item:hover
+    {
+        background: #333;
+    }
+    .context_list
+    {
+        position: fixed;
+        top: 25px;
+        left: 0px;
+        right: 0px;
+        height: 33px;
+        background: #222;
+        line-height: 23px;
+    }
+    .context_list_item
+    {
+        color: white;
+        background: #111;
+        padding-left: 6px;
+        position: static;
+        display: inline-block;
+        padding-right: 5px;
+        border: 1px solid #444;
+        text-shadow: 0px 1px 2px black;
+        font-family: Arial;
+        font-size: 13px;
+        margin: 4px;
+    }
+    .context_list_item:hover
+    {
+        background: #333;
     }
     .tree_parent
     {

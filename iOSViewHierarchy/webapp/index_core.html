@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>iOS Hierarchy Viewer</title>
+    <link href="style.css" rel="stylesheet" type="text/css">
+      <script type="text/javascript" src="jquery.js"></script>
+      <script type="text/javascript" src="navbar.js"></script>
+  </head>
+<body>
+</body>
+  <script>
+  	function ContextsList(options) {
+  		var o = options;
+
+  		var dom = $('<div class="context_list"></div>');
+
+  		var showFunc = function() {
+  			dom.show();
+  		}
+
+  		var hideFunc = function() {
+  			dom.hide();
+  		}
+
+  		o.parentDom.append(dom);
+
+  		var presentSchemeFunc = function(schemes) {
+  			dom.empty();
+  			$.each(schemes, function(index, scheme) {
+  				var itemDom = $('<div class="context_list_item"></div>');
+  				itemDom.text(scheme.name);
+  				dom.append(itemDom);
+  			});
+  		}
+
+  		return {
+  			show: showFunc,
+  			hide: hideFunc,
+  			presentScheme: presentSchemeFunc
+  		}
+  	};
+  	function EntitiesList(options) {
+  		var o = options;
+
+  		var dom = $('<div class="entities_list"></div>');
+
+  		var showFunc = function() {
+  			dom.show();
+  		}
+
+  		var hideFunc = function() {
+  			dom.hide();
+  		}
+
+  		o.parentDom.append(dom);
+
+  		var contextSechme;
+
+  		var handleClickFunc = function(ev) {
+  			var index = parseInt($(this).attr('data-index'));
+  			if ( o.onEntitSelected ) {
+  				o.onEntitSelected(contextSechme.name, contextSechme.entities[index]);
+  			}
+  		}
+
+  		var presentEntitiesFunc = function(context) {
+  			dom.empty();
+  			contextSechme = context;
+  			$.each(context.entities, function(index, entity) {
+  				var itemDom = $('<div class="entities_list_item"></div>');
+  				itemDom.attr('data-index', index);
+  				itemDom.text(entity.name);
+  				itemDom.click(handleClickFunc);
+  				dom.append(itemDom);
+  			});
+  		}
+
+  		return {
+  			show: showFunc,
+  			hide: hideFunc,
+  			presentEntities: presentEntitiesFunc
+  		}
+  	}
+  	function DataTable(options) {
+  		var o = options;
+
+  		var dom = $('<div class="datatable_wrap"></div>');
+  		var table = $('<table width="100%" class="datatable"></table>');
+  		dom.append(table);
+
+  		var showFunc = function() {
+  			dom.show();
+  		}
+
+  		var hideFunc = function() {
+  			dom.hide();
+  		}
+
+  		o.parentDom.append(dom);
+
+  		var presentDataFunc = function(contextName, entityScheme, data) {
+  			table.empty();
+  			var trHeader = $('<tr></tr>');
+  			$.each(entityScheme.properties, function(index, attribute) {
+  				var td = $('<th></th>');
+  				td.attr('width', (100/entityScheme.properties.length) + '%');
+  				td.text(attribute.name);
+  				trHeader.append(td);
+  			});
+  			table.append(trHeader);
+  			$.getJSON('/core?entity=' + encodeURIComponent(entityScheme.name) + '&context=' + encodeURIComponent(contextName), function(data) {
+  				$.each(data, function(index, row) {
+	  				var tr = $('<tr></tr>');	
+	  				$.each(entityScheme.properties, function(index, attribute) {
+		  				var td = $('<td></td>');
+		  				td.attr('width', (100/entityScheme.properties.length) + '%');
+		  				td.text(row[attribute.name]);
+		  				tr.append(td);
+		  			});
+  					table.append(tr);
+  				});
+  			});
+  			/*$.each(schemes.entities, function(index, entity) {
+  				//var itemDom = $('<div class="entities_list_item"></div>');
+  				//itemDom.text(entity.name);
+  				//dom.append(itemDom);
+  			});*/
+  		}
+
+  		return {
+  			show: showFunc,
+  			hide: hideFunc,
+  			presentData: presentDataFunc
+  		}
+  	}
+   </script>
+  <script>
+  	var navbar = new Navbar({ parentDom: $('body') });
+    navbar.showLoading();
+    
+    var contextList = new ContextsList({ parentDom: $('body') });
+    contextList.show();
+
+    var dataTable = new DataTable({ parentDom: $('body') });
+    dataTable.show();
+    
+    var entitiesList = new EntitiesList({ 
+    	parentDom: $('body') ,
+    	onEntitSelected: function(contextName, entityScheme) {
+    		dataTable.presentData(contextName, entityScheme, undefined);
+    	}
+    });
+    entitiesList.show();
+    
+    $.getJSON('/core', function(scheme) {
+       console.log(scheme);       
+       navbar.hideLoading();     
+       contextList.presentScheme(scheme); 
+       entitiesList.presentEntities(scheme[0]);
+    });
+  </script>
+</html>

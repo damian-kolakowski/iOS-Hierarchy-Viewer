@@ -11,6 +11,9 @@
 		7C11391A15E57627004AED3F /* webapp_index2.h in Headers */ = {isa = PBXBuildFile; fileRef = 7C11391715E57627004AED3F /* webapp_index2.h */; };
 		7C11391B15E57627004AED3F /* webapp_jquery.h in Headers */ = {isa = PBXBuildFile; fileRef = 7C11391815E57627004AED3F /* webapp_jquery.h */; };
 		7C11391C15E57627004AED3F /* webapp_style.h in Headers */ = {isa = PBXBuildFile; fileRef = 7C11391915E57627004AED3F /* webapp_style.h */; };
+		7C11395615E58076004AED3F /* webapp_index_core.h in Headers */ = {isa = PBXBuildFile; fileRef = 7C11395515E58076004AED3F /* webapp_index_core.h */; };
+		7C11395815E580BA004AED3F /* navbar.js in Sources */ = {isa = PBXBuildFile; fileRef = 7C11395715E580BA004AED3F /* navbar.js */; };
+		7C11395A15E580C4004AED3F /* webapp_navbar.h in Headers */ = {isa = PBXBuildFile; fileRef = 7C11395915E580C4004AED3F /* webapp_navbar.h */; };
 		7C861E38153DF2E000935C95 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C861E37153DF2E000935C95 /* Foundation.framework */; };
 		7C861E5C153DF33A00935C95 /* iOSHierarchyViewer.h in Headers */ = {isa = PBXBuildFile; fileRef = 7C861E49153DF33A00935C95 /* iOSHierarchyViewer.h */; };
 		7C861E5D153DF33A00935C95 /* iOSHierarchyViewer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C861E4A153DF33A00935C95 /* iOSHierarchyViewer.m */; };
@@ -42,6 +45,10 @@
 		7C11391715E57627004AED3F /* webapp_index2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = webapp_index2.h; sourceTree = "<group>"; };
 		7C11391815E57627004AED3F /* webapp_jquery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = webapp_jquery.h; sourceTree = "<group>"; };
 		7C11391915E57627004AED3F /* webapp_style.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = webapp_style.h; sourceTree = "<group>"; };
+		7C11395315E58063004AED3F /* index_core.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = index_core.html; sourceTree = "<group>"; };
+		7C11395515E58076004AED3F /* webapp_index_core.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = webapp_index_core.h; sourceTree = "<group>"; };
+		7C11395715E580BA004AED3F /* navbar.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = navbar.js; sourceTree = "<group>"; };
+		7C11395915E580C4004AED3F /* webapp_navbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = webapp_navbar.h; sourceTree = "<group>"; };
 		7C861E34153DF2E000935C95 /* libiOSViewHierarchy.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libiOSViewHierarchy.a; path = libiOSHierarchyViewer.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C861E37153DF2E000935C95 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		7C861E3B153DF2E000935C95 /* iOSHierarchyViewer-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iOSHierarchyViewer-Prefix.pch"; sourceTree = "<group>"; };
@@ -168,11 +175,15 @@
 		7CB3BD74158A45690001D338 /* webapp */ = {
 			isa = PBXGroup;
 			children = (
+				7C11395915E580C4004AED3F /* webapp_navbar.h */,
+				7C11395515E58076004AED3F /* webapp_index_core.h */,
 				7C11391715E57627004AED3F /* webapp_index2.h */,
 				7C11391815E57627004AED3F /* webapp_jquery.h */,
 				7C11391915E57627004AED3F /* webapp_style.h */,
 				7CB3BD75158A45690001D338 /* index2.html */,
+				7C11395315E58063004AED3F /* index_core.html */,
 				7CDFD54415E55B97001D5841 /* jquery.js */,
+				7C11395715E580BA004AED3F /* navbar.js */,
 				7C11391615E57573004AED3F /* style.css */,
 			);
 			path = webapp;
@@ -209,6 +220,8 @@
 				7C11391A15E57627004AED3F /* webapp_index2.h in Headers */,
 				7C11391B15E57627004AED3F /* webapp_jquery.h in Headers */,
 				7C11391C15E57627004AED3F /* webapp_style.h in Headers */,
+				7C11395615E58076004AED3F /* webapp_index_core.h in Headers */,
+				7C11395A15E580C4004AED3F /* webapp_navbar.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -291,6 +304,7 @@
 				7CB3BD73158A44CF0001D338 /* HVHTTPServer.m in Sources */,
 				7CB3BD7A158A45850001D338 /* JSONKit.m in Sources */,
 				7CE2ED1515E40CDE00684792 /* HVCoreDataHandler.m in Sources */,
+				7C11395815E580BA004AED3F /* navbar.js in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -19,6 +19,8 @@
 #import "HVPropertyEditorHandler.h"
 #import "HVCoreDataHandler.h"
 #import "webapp_index2.h"
+#import "webapp_index_core.h"
+#import "webapp_navbar.h"
 #import "webapp_jquery.h"
 #import "webapp_style.h"
 
@@ -65,7 +67,9 @@ HVCoreDataHandler *coreDataHandler = nil;
   [server registerHandler:indexHandler forUrl:@"/"];
   [server registerHandler:indexHandler forUrl:@"/index"];
   [server registerHandler:indexHandler forUrl:@"/index.html"];
+  [server registerHandler:[HVBase64StaticFile handler:WEBAPP_INDEX_CORE] forUrl:@"/core.html"];
   [server registerHandler:[HVBase64StaticFile handler:WEBAPP_JQUERY] forUrl:@"/jquery.js"];
+  [server registerHandler:[HVBase64StaticFile handler:WEBAPP_NAVBAR] forUrl:@"/navbar.js"];
   [server registerHandler:[HVBase64StaticFile handler:WEBAPP_STYLE] forUrl:@"/style.css"];
   [server registerHandler:[HVPreviewHandler handler] forUrl:@"/preview"];
   [server registerHandler:[HVPropertyEditorHandler handler] forUrl:@"/update"];
