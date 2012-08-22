@@ -7,12 +7,22 @@
 		<key>iOSViewHierarchy.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>0</integer>
+			<integer>1</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
 		<key>7C861E33153DF2E000935C95</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>7CDFD53A15E556BC001D5841</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>7CDFD54B15E55E01001D5841</key>
 		<dict>
 			<key>primary</key>
 			<true/>

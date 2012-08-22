@@ -15,13 +15,17 @@
 #import "HVHierarchyHandler.h"
 #import "HVHTTPServer.h"
 #import "HVPreviewHandler.h"
-#import "HVStaticFileHandler.h"
-#import "HVIndexBASE64.h"
+#import "HVBase64StaticFile.h"
 #import "HVPropertyEditorHandler.h"
+#import "HVCoreDataHandler.h"
+#import "webapp_index2.h"
+#import "webapp_jquery.h"
+#import "webapp_style.h"
 
 @implementation iOSHierarchyViewer
 
 HVHTTPServer *server = nil;
+HVCoreDataHandler *coreDataHandler = nil;
 
 - (id)init
 {
@@ -56,13 +60,17 @@ HVHTTPServer *server = nil;
   }
   server = [[HVHTTPServer alloc] init];
   [server registerHandler:[HVHierarchyHandler handler] forUrl:@"/snapshot"];
-  HVIndexBASE64 *indexHandler = [HVIndexBASE64 handler];
-  //HVStaticFileHandler* indexHandler = [HVStaticFileHandler handler:@"index2"];
+  HVBase64StaticFile *indexHandler = [HVBase64StaticFile handler:WEBAPP_INDEX2];
   [server registerHandler:indexHandler forUrl:@""];
   [server registerHandler:indexHandler forUrl:@"/"];
   [server registerHandler:indexHandler forUrl:@"/index"];
+  [server registerHandler:indexHandler forUrl:@"/index.html"];
+  [server registerHandler:[HVBase64StaticFile handler:WEBAPP_JQUERY] forUrl:@"/jquery.js"];
+  [server registerHandler:[HVBase64StaticFile handler:WEBAPP_STYLE] forUrl:@"/style.css"];
   [server registerHandler:[HVPreviewHandler handler] forUrl:@"/preview"];
   [server registerHandler:[HVPropertyEditorHandler handler] forUrl:@"/update"];
+  coreDataHandler = [[HVCoreDataHandler handler] retain];
+  [server registerHandler:coreDataHandler forUrl:@"/core"];
   if ([server start:IOS_HIERARCHY_VIEWER_PORT]) {
     [iOSHierarchyViewer logServiceAdresses];
     return YES;
@@ -73,9 +81,25 @@ HVHTTPServer *server = nil;
 + (void)stop
 {
   if (server) {
+    [coreDataHandler release];
+    coreDataHandler = nil;
     [server stop];
     [server release];
     server = nil;
+  }
+}
+
++ (void) addContexet:(NSManagedObjectContext*)context name:(NSString*)name
+{
+  if ( coreDataHandler ) {
+    [coreDataHandler pushContext:context withName:name];
+  }
+}
+
++ (void) removeContext:(NSString*)name
+{
+  if ( coreDataHandler ) {
+    [coreDataHandler popContext:name];
   }
 }
 

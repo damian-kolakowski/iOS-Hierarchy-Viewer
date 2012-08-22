@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/> 
+  <title>iOS Hierarchy Viewer</title>
+  <link href="style.css" rel="stylesheet" type="text/css">
+  <script type="text/javascript" src="jquery.js"></script>
+</head>
+<body></body>
+<script>
+	function Screen(options) {
+		var o = options;
+
+		var createScreenNode = function(viewMeta, viewParentMeta) {
+			var viewNode = $('<div class="screen_node" data_id="' + viewMeta.id + '"></div>');
+			var leftOffset = viewParentMeta ? viewParentMeta.layer_bounds_x : 0;
+			var topOffset = viewParentMeta ? viewParentMeta.layer_bounds_y : 0;
+			viewNode.css('left'  , ( viewMeta.layer_position_x - viewMeta.layer_bounds_w * viewMeta.layer_anchor_x - leftOffset -1  ) + 'px');
+			viewNode.css('top'	 , ( viewMeta.layer_position_y - viewMeta.layer_bounds_h * viewMeta.layer_anchor_y - topOffset  -1  ) + 'px');
+			viewNode.css('width' , ( viewMeta.layer_bounds_w - 2 ) + 'px');
+			viewNode.css('height', ( viewMeta.layer_bounds_h - 2 ) + 'px');
+			viewNode.css('-webkit-origin', ( viewMeta.layer_anchor_x * 10 ) + '%', ( viewMeta.layer_anchor_y * 10 ) + '%');
+			viewNode.css('-webkit-transform', 'matrix3d(' + viewMeta.layer_transform + ')');
+			if ( viewMeta.preview ) {
+				viewNode.css('background-image', "url('" + viewMeta.preview + "')");
+				viewNode.css('background-origin', 'border-box');
+			}
+			return viewNode;
+		}
+
+		var mainNodeView = createScreenNode(o);
+		//mainNodeView.css('background-image',"url('/preview?nocache=" + (new Date().getTime()) + "')");
+		mainNodeView.addClass('screen_root_node');
+
+		var viewportScale = 1, viewportTranslateX = 0, viewportTranslateY = 0, viewportRotation = 0;
+
+		function updateTransform() {
+			var transformValue = 'translate(' + viewportTranslateX  + 'px,' + viewportTranslateY + 'px) rotate(' + viewportRotation + 'deg) scale(' + viewportScale + ')';
+			mainNodeView.css('-webkit-transform', transformValue);
+			mainNodeView.css('-moz-transform', transformValue);
+		}
+
+		var zoomInDom = $('<div class="screen_zoom_in screen_zoom" title="zoom in">+</div>');
+		var zoomOutDom = $('<div class="screen_zoom_out screen_zoom" title="zoom out">-</div>');
+		var rotLeftDom = $('<div class="screen_rot_left screen_zoom" title="rotate left">↺</div>');
+		var rotRightDom = $('<div class="screen_rot_right screen_zoom" title="rotate right">↻</div>');
+
+		zoomInDom.click(function() { viewportScale += 0.1; updateTransform(); });
+		zoomOutDom.click(function() { viewportScale -= 0.1; updateTransform(); });
+		rotLeftDom.click(function() { viewportRotation -= 90.0; updateTransform(); } );
+		rotRightDom.click(function() { viewportRotation += 90; updateTransform(); } );
+
+		o.parentDom.append(zoomInDom);
+		o.parentDom.append(zoomOutDom);
+		o.parentDom.append(rotLeftDom);
+		o.parentDom.append(rotRightDom);
+
+		var clearFunc = function() {
+			mainNodeView.empty();
+		}
+
+		var fillRecursive = function(parent, views, parentView) {
+			$.each(views, function(index, v) {
+				var viewNode = createScreenNode(v, parentView);
+				fillRecursive(viewNode, v.views, v);
+				parent.append(viewNode);
+			});
+		}
+
+		var fillFunc = function(views) {
+			fillRecursive(mainNodeView, views);
+			var downX = 0, downY = 0;
+			var lastX, lastY;
+			var viewId = 0;
+
+			var handleMouseMove = function(ee) {
+				viewportTranslateX += -(lastX - ee.pageX);
+				viewportTranslateY += -(lastY - ee.pageY);
+				lastX = ee.pageX;
+				lastY = ee.pageY;
+				updateTransform();
+			};
+
+			var handleMouseUp = function(e) {
+				e.preventDefault();
+				e.stopPropagation();
+				if ( Math.abs(downX-e.pageX) < 10 && Math.abs(downY-e.pageY) < 10 ) {
+					if ( o.onSelected ) o.onSelected(viewId);
+				}
+				$(window).unbind('mouseup', handleMouseUp);
+				$(window).unbind('mousemove', handleMouseMove);
+			};
+
+			mainNodeView.find('.screen_node').mousedown(function(e) {
+				viewId = parseInt($(this).attr('data_id'));
+				e.stopPropagation();
+				downX = e.pageX;
+				downY = e.pageY;
+				lastX = e.pageX;
+				lastY = e.pageY;
+				$(window).bind('mousemove', handleMouseMove);
+				$(window).bind('mouseup', handleMouseUp);
+			});
+		}
+
+		var sizeFunc = function(view) {
+			mainNodeView.css('left', '50%');
+			mainNodeView.css('top', '50%');
+			mainNodeView.css('margin-left', '-' + view.bounds_w/2 + 'px');
+			mainNodeView.css('margin-top' , '-' + view.bounds_h/2 + 'px');
+			mainNodeView.css('width', (view.bounds_w-2) + 'px');
+			mainNodeView.css('height',(view.bounds_h-2) + 'px');
+		}
+
+		var focusFunc = function(viewId) {
+			mainNodeView.find('.screen_node[data_id=' + viewId + ']').addClass('screen_node_focused');
+		}
+
+		var blurFunc = function(viewId) {
+			mainNodeView.find('.screen_node[data_id=' + viewId + ']').removeClass('screen_node_focused');
+		}
+
+		var showDebugFramesFunc = function() {
+			$('.screen_node').addClass('screen_node_debug');
+		}
+
+		var hideDebugFramesFunc = function() {
+			$('.screen_node').removeClass('screen_node_debug');
+		}
+
+		var showFunc = function() { o.parentDom.show(); }
+		var hideFunc = function() { o.parentDom.hide(); }
+
+		o.parentDom.append(mainNodeView);
+
+		return {
+			clear: clearFunc,
+			fill: fillFunc,
+			size: sizeFunc,
+			focus: focusFunc,
+			blur: blurFunc,
+			showDebugFrames: showDebugFramesFunc,
+			hideDebugFrames: hideDebugFramesFunc,
+			show: showFunc,
+			hide: hideFunc
+		}
+	}
+</script>
+<script>
+	function ViewsTree(options) {
+		var o = options;
+		var nodesParent = $('<div class="tree_parent"></div>');
+
+		function buildViewFunc(view) {
+			var isOpenable = view.views && view.views.length > 0;
+	        var newList = $('<ul class="tree_node" data_id="' + view.id + '"></ul');
+	        newList.append('<div class="tree_node_name" opened="0" data_id="' + view.id + '" can_expand="' + (isOpenable?'1':'0') + '">' + (isOpenable?'○':'·') +  view['class'] + '</div>');
+
+	        if ( view.views ) $.each(view.views, function(index, data) {
+	               var newElement = $('<li class="tree_child"></li>');
+	               newElement.append(buildViewFunc(data));
+	               newList.append(newElement);
+	        });
+	        return newList;
+	    }
+
+	    var fillFunc = function(views) {
+	    	$.each(views, function(index, view) {
+            	nodesParent.append(buildViewFunc(view));
+        	});
+        	nodesParent.find('.tree_node_name').hover(function() {
+        		var viewId = parseInt($(this).attr('data_id'));
+        		if ( o.onHoverInCallback ) o.onHoverInCallback(viewId);
+        	}, function() {
+        		var viewId = parseInt($(this).attr('data_id'));
+        		if ( o.onHoverOutCallback ) o.onHoverOutCallback(viewId);
+        	}).click(function() {
+        		var target = $(this);
+        		var viewId = parseInt(target.attr('data_id'));
+        		if ( o.onClickCallback ) o.onClickCallback(viewId);
+        		$('.tree_node_name_selected').removeClass('tree_node_name_selected');
+        		target.addClass('tree_node_name_selected');
+        		if ( target.attr('can_expand') == '1' ) {
+	        		if ( target.attr('opened') == '1' ) {
+	        			target.attr('opened', '0');
+	        			target.parent().children('.tree_child').hide();
+	        		} else {
+	        			target.attr('opened', '1');
+	        			target.parent().children('.tree_child').show();
+	        		}
+        		}
+        	});
+	    }
+
+	    var expandFunc = function(id) {
+	    	$('.tree_node_name_selected').removeClass('tree_node_name_selected');
+	    	$('.tree_node_name[data_id=' + id + ']').addClass('tree_node_name_selected');
+	    	var view = $('.tree_node[data_id=' + id + ']')
+	    	if ( view ) {
+	    		var parents = view.parents('.tree_child');
+	    		parents.show();
+	    		parents.parents().children('.tree_child').show();
+	    	}
+	    	console.log(view);
+	    }
+
+	    var clearFunc = function() { nodesParent.empty(); }
+		var showFunc = function() { nodesParent.show(); }
+		var hideFunc = function() { nodesParent.hide(); }
+
+	    o.parentDom.append(nodesParent);
+
+		return {
+			fill: fillFunc,
+			clear: clearFunc,
+			show: showFunc,
+			hide: hideFunc,
+			expand: expandFunc,
+			wrapper: nodesParent
+		}
+	}
+</script>
+<script>
+	function PropsEditor(options) {
+		var o = options;
+		var dom = $('<div class="editor_parent"></div>');
+
+		var buildPropRow = function(viewId, prop, editableArray) {
+			var rowParent = $('<div class="editor_row_parent"></div>');
+			var name = $('<div class="editor_row_name selectable_text">' + prop.name + '</div>');
+			var value = $('<div type="text" class="editor_row_value selectable_text"></div>');
+            //value.attr('value', (prop.value ? prop.value : ''));
+            value.text((prop.value ? prop.value : ''));
+			value.attr('data_type', prop.type);
+			value.attr('data_id', viewId);
+			value.attr('data_name', prop.name);
+			if ( $.inArray(prop.type, editableArray) >= 0 ) {
+				value.addClass('editor_row_value_editable');
+			} else {
+				value.attr('disabled', 'disabled');
+			}
+			var type = $('<div class="editor_row_type selectable_text">' + prop.type+ '</div>');
+			rowParent.append(name);
+			rowParent.append(value);
+			rowParent.append(type);
+			return rowParent;
+		}
+
+		var buildPropHeader = function(name) {
+			return $('<div class="editor_row_label">' + name + '</div>');
+		}
+
+		var buildNoPropRow = function() {
+			return $('<div class="editor_row_empty">(no properties)</div>');
+		}
+
+		var showPropsFunc = function(viewId, props, editableArray) {
+			dom.empty();
+			for (var i = 0 ; i < props.length ; ++i ) {
+				var prop = props[i];
+				dom.append(buildPropHeader(prop.name));
+				var dataProp = prop.props;
+				if ( dataProp.length > 0 ) {
+					for ( var j = 0 ; j < dataProp.length; ++j ) {
+						dom.append(buildPropRow(viewId, dataProp[j], editableArray));
+					}
+				} else {
+					dom.append(buildNoPropRow());
+				}
+			}
+			dom.find('.editor_row_value_editable').keydown(function(e) {
+				var viewId = parseInt($(this).attr('data_id'));
+				var propType = $(this).attr('data_type');
+				var newValue = $(this).attr('value');
+				var propName = $(this).attr('data_name');
+				if ( e.keyCode == 13 ) {
+					$.getJSON('/update?id=' + viewId + '&type=' + encodeURIComponent(propType) + '&value=' + encodeURIComponent(newValue) + '&name=' + encodeURIComponent(propName), function(response) {
+						console.log(response);
+						if ( response && response.error  ) {
+
+						} else {
+							if ( o.onValueChanged ) o.onValueChanged();
+						}
+					});
+				}
+				
+			});
+		}
+
+		var showFunc = function() { dom.show(); }
+		var hideFunc = function() { dom.hide(); }
+
+		o.parentDom.append(dom);
+
+		return {
+			showProps: showPropsFunc,
+			show: showFunc,
+			hide: hideFunc,
+			wrapper: dom
+		}
+	}
+</script>
+<script>
+	function Navbar(options) {
+		var o = options;
+		var dom = $('<div class="navbar"></div>');
+		var title  = $('<div class="navbar_title">iOS Hierarchy Viewer</div>');
+		var loading = $('<div class="navbar_loading">Loading....</div>');
+		dom.append(title);
+		dom.append(loading);
+		o.parentDom.append(dom);
+
+		var showLoadingFunc = function() { loading.show(); }
+		var hideLoadingFunc = function() { loading.hide(); }
+		
+		var versionFunc = function(ver) {
+			title.text('iOS Hierarchy Viewer (' + ver + ')');
+		};
+
+		hideLoadingFunc();
+
+		return {
+			domElement: dom,
+			version: versionFunc,
+			showLoading: showLoadingFunc,
+			hideLoading: hideLoadingFunc
+		};
+	}
+</script>
+<script>
+	function Checkbox(options) {
+		var o = options;
+		var dom = $('<div class="checkbox"></div>');
+		var marker = $('<div class="checkbox_marker"></div>');
+		dom.append(marker);
+		dom.append(o.title);
+
+		var updateFunc = function() {
+			if ( o.checked ) {
+				marker.text('✓');
+			} else {
+				marker.text('');
+			}
+		}
+
+		var checkedFunc = function() {
+			return o.checked;
+		}
+
+		dom.click(function() {
+			o.checked = !o.checked;
+			updateFunc();
+			if ( o.onCheckedCallback ) o.onCheckedCallback(o.checked);
+		});
+
+		updateFunc();
+		o.parentDom.append(dom);
+
+		return {
+			checked: checkedFunc
+		}
+	}
+</script>
+<script>
+	function Splitters(options) {
+		var o = options;
+
+		var leftDom = $('<div class="splitter"></div>');
+		leftDom.css('left', o.centerColumn.css('left'));
+		leftDom.css('margin-left', '-7px');
+
+		o.parentDom.append(leftDom);
+
+		leftDom.mousedown(function(e) {
+			var lastX = e.pageX;
+
+			var handleMoveFunc = function(ee) {
+				var dx = lastX - ee.pageX;
+				lastX = ee.pageX;
+				var newWidth = (parseInt(o.leftColumn.css('width')) - dx);
+				if ( newWidth > 50 ) {
+					leftDom.css('left', (parseInt(leftDom.css('left')) - dx)+'px');				
+					o.leftColumn.css('width', newWidth+'px');
+					o.centerColumn.css('left', (parseInt(o.centerColumn.css('left')) - dx)+'px');
+				}
+			}
+
+			var handleMouseUp = function() {
+				$(window).unbind('mouseup', handleMouseUp);
+				$(window).unbind('mousemove', handleMoveFunc);
+			};
+
+			$(window).bind('mousemove', handleMoveFunc);
+			$(window).bind('mouseup', handleMouseUp);
+		});
+
+		var rightDom = $('<div class="splitter"></div>');
+		rightDom.css('right', o.centerColumn.css('right'));
+		rightDom.css('margin-right', '-7px');
+
+		o.parentDom.append(rightDom);
+
+		rightDom.mousedown(function(e) {
+			var lastX = e.pageX;
+
+			var handleMoveFunc = function(ee) {
+				var dx = lastX - ee.pageX;
+				lastX = ee.pageX;
+				var newWidth = parseInt(o.rightColumn.css('width')) + dx;
+				if ( newWidth > 50 ) {
+					rightDom.css('right', (parseInt(rightDom.css('right')) + dx)+'px');
+					o.rightColumn.css('width', newWidth+'px');
+					o.centerColumn.css('right', (parseInt(o.centerColumn.css('right')) + dx)+'px');
+				}
+			}
+
+			var handleMouseUp = function() {
+				$(window).unbind('mouseup', handleMouseUp);
+				$(window).unbind('mousemove', handleMoveFunc);
+			};
+
+			$(window).bind('mousemove', handleMoveFunc);
+			$(window).bind('mouseup', handleMouseUp);
+		});
+
+		return {};
+	}
+</script>
+<script>	
+
+	var viewsData;
+
+	var propsEditor = new PropsEditor({ parentDom: $('body') });
+
+    var findViewById = function(parent, id) {
+    	if ( parent.id == id ) return parent;
+    	if ( parent.views ) {
+    		for ( var i = 0 ; i < parent.views.length ; ++i ) {
+    			var view = findViewById(parent.views[i], id);
+    			if ( view ) return view;
+    		}
+    	}
+    }
+
+    var findView = function(snapshot, id) {
+    	if ( snapshot.windows ) {
+    		for ( var i = 0 ; i < snapshot.windows.length ; ++i ) {
+    			var view = findViewById(snapshot.windows[i], id);
+    			if ( view ) return view;
+    		}
+    	}
+    }
+
+    var viewsTree = new ViewsTree({ parentDom: $('body'),
+    	onHoverInCallback: function(viewId) {
+    		previewScreen.focus(viewId);
+    	},
+    	onHoverOutCallback: function(viewId) {
+    		previewScreen.blur(viewId);
+    	},
+    	onClickCallback: function(viewId) {
+    		var view = findView(viewsData, viewId);
+    		if ( view ) propsEditor.showProps(viewId, view.props, viewsData.editable);
+    	}
+    });
+
+    var screenParent = $('<div class="screen_parent"></div>');
+    $('body').append(screenParent);
+    
+    var previewScreen = new Screen({
+    	parentDom: screenParent,
+    	frame_x: 0,
+    	frame_y: 0,
+    	frame_w: 500,
+    	frame_h: 500,
+    	onSelected: function(viewId) {
+    		console.log(viewId);
+    		var view = findView(viewsData, viewId);
+    		if ( view ) {
+    			propsEditor.showProps(viewId, view.props, viewsData.editable);
+    			viewsTree.expand(viewId);
+    		}
+    	}
+    });
+
+    var navbar = new Navbar({ parentDom: $('body') });
+
+    var checkbox = new Checkbox({ checked: false,
+    	title: 'Show debug frames',
+    	parentDom: navbar.domElement, 
+    	onCheckedCallback: function(checked) {
+    		if ( checked ) {
+    			previewScreen.showDebugFrames();
+    		} else {
+    			previewScreen.hideDebugFrames();
+    		}
+    	}
+     });
+
+    var splitters = new Splitters({
+    	leftColumn: viewsTree.wrapper,
+    	centerColumn: screenParent,
+    	rightColumn: propsEditor.wrapper,
+    	parentDom: $('body')
+    });
+
+    navbar.showLoading();
+    propsEditor.hide();
+    viewsTree.hide();
+    previewScreen.hide();
+
+    $.getJSON('/snapshot?nocache=' + (new Date().getTime()), function(loadedData) {
+    	viewsData = loadedData;
+        viewsTree.fill(loadedData.windows);
+        previewScreen.size({ frame_x: 0, frame_y: 0, bounds_w: loadedData.screen_w, bounds_h: loadedData.screen_h });
+        previewScreen.clear();
+        previewScreen.fill(loadedData.windows);
+        if ( loadedData.windows[0] ) propsEditor.showProps(loadedData.windows[0].id, loadedData.windows[0].props, loadedData.editable);
+        navbar.hideLoading();
+        navbar.version(loadedData.version);
+   		propsEditor.show();
+    	viewsTree.show();
+    	previewScreen.show();
+    });
+</script>
+</html>

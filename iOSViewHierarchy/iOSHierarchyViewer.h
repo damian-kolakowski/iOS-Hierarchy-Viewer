@@ -5,11 +5,15 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <CoreData/CoreData.h>
 
 @interface iOSHierarchyViewer : NSObject
 
 + (BOOL)start;
 
 + (void)stop;
+
++ (void) addContexet:(NSManagedObjectContext*)context name:(NSString*)name;
++ (void) removeContext:(NSString*)name;
 
 @end

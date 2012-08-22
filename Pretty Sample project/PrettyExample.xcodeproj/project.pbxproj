@@ -31,6 +31,7 @@
 		57CF9FB1151BA08600BC035B /* PlainExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 57CF9FAF151BA08600BC035B /* PlainExample.m */; };
 		57CF9FB2151BA08600BC035B /* PlainExample.xib in Resources */ = {isa = PBXBuildFile; fileRef = 57CF9FB0151BA08600BC035B /* PlainExample.xib */; };
 		7C4C63A515D6D3900054BDC3 /* index2 in Resources */ = {isa = PBXBuildFile; fileRef = 7C4C63A415D6D3900054BDC3 /* index2 */; };
+		7CE2ED1815E4158700684792 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CE2ED1715E4158700684792 /* CoreData.framework */; };
 		D108B951158FC42E002DCC6F /* libiOSViewHierarchy.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D108B94B158FC411002DCC6F /* libiOSViewHierarchy.a */; };
 		EDA7DCB11548EBD1002219BA /* PrettyToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = EDA7DCB01548EBD1002219BA /* PrettyToolbar.m */; };
 		EDA7DCB61548ED3F002219BA /* ModalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDA7DCB41548ED3E002219BA /* ModalViewController.m */; };
@@ -95,6 +96,7 @@
 		57CF9FAF151BA08600BC035B /* PlainExample.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlainExample.m; sourceTree = "<group>"; };
 		57CF9FB0151BA08600BC035B /* PlainExample.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlainExample.xib; sourceTree = "<group>"; };
 		7C4C63A415D6D3900054BDC3 /* index2 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = index2; path = ../iOSViewHierarchy/webapp/index2; sourceTree = "<group>"; };
+		7CE2ED1715E4158700684792 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		D108B943158FC411002DCC6F /* iOSHierarchyViewer.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = iOSHierarchyViewer.xcodeproj; path = ../iOSHierarchyViewer.xcodeproj; sourceTree = "<group>"; };
 		D108B94E158FC425002DCC6F /* iOSHierarchyViewer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iOSHierarchyViewer.h; path = ../iOSViewHierarchy/iOSHierarchyViewer.h; sourceTree = "<group>"; };
 		EDA7DCAF1548EBD1002219BA /* PrettyToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrettyToolbar.h; sourceTree = "<group>"; };
@@ -109,6 +111,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7CE2ED1815E4158700684792 /* CoreData.framework in Frameworks */,
 				D108B951158FC42E002DCC6F /* libiOSViewHierarchy.a in Frameworks */,
 				57360BE114FF911200343B7B /* QuartzCore.framework in Frameworks */,
 				5735F8BC14FD2FFC00DD7370 /* UIKit.framework in Frameworks */,
@@ -123,6 +126,7 @@
 		5735F8AC14FD2FFC00DD7370 = {
 			isa = PBXGroup;
 			children = (
+				7CE2ED1715E4158700684792 /* CoreData.framework */,
 				7C4C63A415D6D3900054BDC3 /* index2 */,
 				D108B94E158FC425002DCC6F /* iOSHierarchyViewer.h */,
 				5735F8C114FD2FFC00DD7370 /* PrettyExample */,
@@ -256,7 +260,7 @@
 		5735F8AE14FD2FFC00DD7370 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0420;
+				LastUpgradeCheck = 0440;
 			};
 			buildConfigurationList = 5735F8B114FD2FFC00DD7370 /* Build configuration list for PBXProject "PrettyExample" */;
 			compatibilityVersion = "Xcode 3.2";

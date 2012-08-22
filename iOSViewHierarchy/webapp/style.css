@@ -1,0 +1,299 @@
+ html, body, div, ul, li
+    {
+        padding: 0px; margin: 0px; list-style: none;
+        cursor: default;
+		-moz-user-select: -moz-none;  
+    	-webkit-user-select: none;  
+   		-ms-user-select: none; 
+   		user-select: none;
+    }
+    body
+    {
+        background: #3c5a75;
+    }
+    .selectable_text
+    {
+    	-moz-user-select: text;  
+    	-webkit-user-select: text;  
+   		-ms-user-select: text;
+   		user-select: text;
+   		cursor: text;
+    }
+    .tree_parent
+    {
+		display: inline-block;
+		border-right: 2px dotted #000;
+		padding: 5px;
+		position: fixed;
+		top: 25px;
+		bottom: 0px;
+		left: 0px;
+		width: 230px;
+		overflow: auto;
+    }
+    .tree_expand
+    {
+		color: white;
+		text-shadow: 0px 1px 2px black;
+		display: inline;
+		white-space: nowrap;
+		font-size: 22px;
+    }
+    .tree_node_name
+    {
+		color: white;
+		text-shadow: 0px 1px 2px black;
+		display: inline;
+		padding-left: 2px;
+		padding-right: 5px;
+		white-space: nowrap;
+    }
+    .tree_node_name:hover
+    {
+        background: #21011F;
+        border-radius: 3px;
+        box-shadow: 0px 0px 3px #213140;
+    }
+    .tree_node_name_selected
+    {
+        background: #213140;
+        border-radius: 3px;
+        box-shadow: 0px 0px 3px #213140;
+    }
+    .tree_node_name:active
+    {	
+    	opacity: 0.5;
+    	-moz-opacity: 0.5;
+    	filter:alpha(opacity=5);
+    }
+    .tree_node
+    {
+        margin-left: 20px;
+    }
+    .tree_child
+    {
+        display: none;
+    }
+    .preview
+    {
+        position: fixed;
+        top: 0px;
+        right: 0px;
+    }
+    .screen_root_node
+    {
+    	background-repeat: no-repeat;
+    	cursor: crosshair;
+    	background-position: -1px -1px;
+    	overflow: hidden;
+    }
+    .screen_node
+    {
+    	position: absolute;
+    	cursor: crosshair;
+    	-webkit-transform-style: preserve-3d; 
+    	-webkit-backface-visibility: hidden;
+    	border: 1px solid transparent;
+    }
+    .screen_node_debug
+    {
+    	border: 1px solid red;
+    }
+    .screen_node:hover {
+      	border: 1px solid red;
+    }
+    .screen_node_focused
+    {
+    	background: yellow;
+    	opacity: 0.8;
+    	-moz-opacity: 0.8;
+    	filter:alpha(opacity=8);
+    }
+    .screen_zoom
+    {
+    	z-index: 100;
+		position: absolute;
+		font-size: 25px;
+		width: 20px;
+		text-align: center;
+		color: white;
+		text-shadow: 0px 1px 1px black;
+		font-weight: bold;
+    }
+    .screen_zoom:hover
+    {
+    	color: #CCC;
+    }
+    .screen_zoom:active
+    {
+    	opacity: 0.8;
+    	-moz-opacity: 0.8;
+    	filter:alpha(opacity=8);
+    }
+    .screen_zoom_in
+    {
+		top: 0px;
+		right: 22px;
+    }
+    .screen_zoom_out
+    {
+		top: 0px;
+		right: 2px;
+    }
+    .screen_rot_left
+    {
+		top: 0px;
+		left: 6px;
+    }
+    .screen_rot_right
+    {
+		top: 0px;
+		left: 33px;
+    }
+    .screen_parent
+    {
+		position: fixed;
+		right: 252px;
+		top: 25px;
+		left: 241px;
+		bottom: 0px;
+		background-repeat: no-repeat;
+		overflow: hidden;
+		cursor: crosshair;
+		-webkit-transform-style: preserve-3d; 
+		-webkit-backface-visibility: hidden;
+    }
+    .navbar
+    {
+		position: fixed;
+		top: 0px;
+		left: 0px;
+		right: 0px;
+		height: 25px;
+		color: white;
+		background: #333;
+		box-shadow: 0px 0px 10px #000;
+    }
+    .navbar_title
+    {
+		position: absolute;
+		top: 0px;
+		bottom: 0px;
+		right: 20px;
+		text-shadow: 0px 1px 2px black;
+		line-height: 25px;
+		font-size: 21px;
+    }
+    .navbar_loading
+    {
+		position: absolute;
+		top: 2px;
+		left: 50%;
+		margin-left: -50px;
+		font-size: 19px;
+		color: yellow;
+    }
+    .editor_parent
+    {
+    	position: fixed;
+    	top: 25px;
+    	bottom: 0px;
+    	border-left: 2px dotted #000;
+    	width: 251px;
+    	right: 0px;
+    	overflow: auto;
+    }
+    .editor_row_label
+    {
+		padding: 5px;
+		font-size: 18px;
+		color: #CCC;
+		background: #222;
+		text-shadow: 0px 1px 1px black;
+    }
+    .editor_row_empty
+    {
+    	padding: 10px;
+		text-align: center;
+		font-style: italic;
+		color: #222;
+    }
+    .editor_row_value
+    {
+    	display: inline;
+    	color: #FF9;
+    	font-size: 15px;
+    	text-shadow: 0px 1px 1px black;
+    	background: transparent;
+    	outline: none;
+    	border: 0px;   
+    	margin-left: 7px; 
+    	min-width: 200px;
+    }
+  	.editor_row_value_editable
+  	{
+  		color: yellow;
+  	}
+    .editor_row_value_editable:hover
+    {
+		background: #213140;
+    }
+    .editor_row_type
+    {
+		display: block;a
+		padding: 1px;
+		overflow: hidden;
+		color: #59F;
+		text-shadow: 0px 1px 1px black;
+    }
+    .editor_row_name
+    {
+  		display: inline-block;
+		font-size: 15px;
+		color: white;
+		text-shadow: 0px 1px 1px black; 	
+    }
+    .editor_row_parent
+    {
+		padding: 2px;
+		border-bottom: 1px solid #222;
+		padding-left: 5px;
+		overflow: hidden;
+    }
+    .editor_row_parent:hover
+    {
+    	background: #2c4a65;
+    }
+    .editor_row_parent:active
+    {
+    	opacity: 0.9;
+    	-moz-opacity: 0.9;
+    	filter:alpha(opacity=9);
+    }
+    .checkbox
+    {
+		margin-left: 15px;
+		display: block;
+		margin-top: 4px;
+    }
+    .checkbox_marker
+    {
+		display: block;
+		width: 12px;
+		height: 15px;
+		line-height: 15px;
+		border: 1px solid #666;
+		margin-right: 5px;
+		float: left;
+    }
+    .splitter
+    {
+    	position: fixed;
+    	top: 25px;
+    	bottom: 0px;
+    	width: 16px;
+    	cursor: move;
+    	opacity: 0.8;
+    	-moz-opacity: 0.8;
+    	filter:alpha(opacity=8);
+    }
