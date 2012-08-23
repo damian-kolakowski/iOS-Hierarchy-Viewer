@@ -55,15 +55,25 @@
         color: #FFF;
         border: 1px solid #000;
     }
+    .datatable_empty
+    {
+        color: #888;
+        position: absolute;
+        top: 50%;
+        left: 0px;
+        right: 0px;
+        text-align: center;
+        font-size: 46px;
+        text-shadow: 0px 1px 2px black;
+    }
     .entities_list
     {
         position: fixed;
         top: 58px;
         left: 0px;
-        width: 200px;
+        width: 220px;
         bottom: 0px;
         background: #111;
-        padding: 10px;
     }
     .entities_list_item
     {
@@ -71,12 +81,20 @@
         font-size: 17px;
         font-family: Arial;
         border-bottom: 1px solid #222;
-        padding-bottom: 10px;
-        padding-top: 10px;
+        padding-bottom: 4px;
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top: 4px;
+        margin-left: 10px;
+        margin-right: 10px;
     }
     .entities_list_item:hover
     {
         background: #333;
+    }
+    .entities_list_item[data-selected="1"]
+    {
+        background: #666;
     }
     .context_list
     {
@@ -105,6 +123,10 @@
     .context_list_item:hover
     {
         background: #333;
+    }
+    .context_list_item[data-selected="1"]
+    {
+        border: 1px solid #F00;
     }
     .tree_parent
     {

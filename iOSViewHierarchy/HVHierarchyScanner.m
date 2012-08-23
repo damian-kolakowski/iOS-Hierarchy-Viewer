@@ -97,7 +97,7 @@ CGFloat handleNaN(CGFloat value) {
   return @"nil";
 }
 
-NSString* NSStringFromCGAffineTransform2(CGAffineTransform transform)
+static NSString* NSStringFromCGAffineTransform2(CGAffineTransform transform)
 {
   return [NSString stringWithFormat:@"%f,%f,%f,%f,%f,%f", 
           transform.a, 
@@ -108,7 +108,7 @@ NSString* NSStringFromCGAffineTransform2(CGAffineTransform transform)
           transform.ty];
 }
 
-NSString* NSStringFromCATransform3D(CATransform3D transform)
+static NSString* NSStringFromCATransform3D(CATransform3D transform)
 {
   return [NSString stringWithFormat:@"%.2f,%.2f,%.2f,%.2f,%.2f,%.2f,%.2f,%.2f,%.2f,%.2f,%.2f,%.2f,%.2f,%.2f,%.2f,%.2f",
      (transform.m11),
@@ -420,7 +420,7 @@ NSString* NSStringFromCATransform3D(CATransform3D transform)
     void (^gatherProperties)() = ^() {
       for (UIWindow *window in app.windows) {
         NSDictionary* windowDictionary = [HVHierarchyScanner recursivePropertiesScan:window];
-        [windowDictionary setValue:[NSString stringWithFormat:@"/preview?id=%d", (long)window] forKey:@"preview"];
+        [windowDictionary setValue:[NSString stringWithFormat:@"/preview?id=%ld", (long)window] forKey:@"preview"];
         [windowViews addObject:windowDictionary];
       }
     };

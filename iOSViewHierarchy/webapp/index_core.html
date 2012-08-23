@@ -25,11 +25,23 @@
 
   		o.parentDom.append(dom);
 
+      var contextSchemes;
+
+      var handleClickFunc = function(event) {
+        $('.context_list_item').attr('data-selected', '0');
+        $(this).attr('data-selected', '1');
+        var index = parseInt($(this).attr('data-index'));
+        if ( o.onContextSelected ) o.onContextSelected(contextSchemes[index]);
+      }
+
   		var presentSchemeFunc = function(schemes) {
   			dom.empty();
+        contextSchemes = schemes;
   			$.each(schemes, function(index, scheme) {
   				var itemDom = $('<div class="context_list_item"></div>');
+          itemDom.attr('data-index', index);
   				itemDom.text(scheme.name);
+          itemDom.click(handleClickFunc);
   				dom.append(itemDom);
   			});
   		}
@@ -59,6 +71,8 @@
 
   		var handleClickFunc = function(ev) {
   			var index = parseInt($(this).attr('data-index'));
+        $('.entities_list_item').attr('data-selected', '0');
+        $(this).attr('data-selected', '1');
   			if ( o.onEntitSelected ) {
   				o.onEntitSelected(contextSechme.name, contextSechme.entities[index]);
   			}
@@ -86,8 +100,12 @@
   		var o = options;
 
   		var dom = $('<div class="datatable_wrap"></div>');
+      var empty = $('<div class="datatable_empty">...no data...</div>');
   		var table = $('<table width="100%" class="datatable"></table>');
   		dom.append(table);
+      dom.append(empty);
+
+      empty.hide();
 
   		var showFunc = function() {
   			dom.show();
@@ -96,6 +114,10 @@
   		var hideFunc = function() {
   			dom.hide();
   		}
+
+      var clearDataFunc = function() {
+        table.empty();
+      }
 
   		o.parentDom.append(dom);
 
@@ -110,6 +132,11 @@
   			});
   			table.append(trHeader);
   			$.getJSON('/core?entity=' + encodeURIComponent(entityScheme.name) + '&context=' + encodeURIComponent(contextName), function(data) {
+          if ( data.length <= 0 ) {
+            empty.show();
+          } else {
+            empty.hide();
+          }
   				$.each(data, function(index, row) {
 	  				var tr = $('<tr></tr>');	
 	  				$.each(entityScheme.properties, function(index, attribute) {
@@ -121,16 +148,12 @@
   					table.append(tr);
   				});
   			});
-  			/*$.each(schemes.entities, function(index, entity) {
-  				//var itemDom = $('<div class="entities_list_item"></div>');
-  				//itemDom.text(entity.name);
-  				//dom.append(itemDom);
-  			});*/
   		}
 
   		return {
   			show: showFunc,
   			hide: hideFunc,
+        clearData: clearDataFunc,
   			presentData: presentDataFunc
   		}
   	}
@@ -138,15 +161,21 @@
   <script>
   	var navbar = new Navbar({ parentDom: $('body') });
     navbar.showLoading();
-    
-    var contextList = new ContextsList({ parentDom: $('body') });
-    contextList.show();
 
     var dataTable = new DataTable({ parentDom: $('body') });
     dataTable.show();
     
+    var contextList = new ContextsList({ 
+      parentDom: $('body'),
+      onContextSelected: function(contextScheme) {
+        dataTable.clearData();
+        entitiesList.presentEntities(contextScheme);
+      }
+    });
+    contextList.show();
+
     var entitiesList = new EntitiesList({ 
-    	parentDom: $('body') ,
+    	parentDom: $('body'),
     	onEntitSelected: function(contextName, entityScheme) {
     		dataTable.presentData(contextName, entityScheme, undefined);
     	}
