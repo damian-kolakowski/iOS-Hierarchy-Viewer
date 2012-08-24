@@ -32,39 +32,51 @@
         bottom: 0px;
         display: block;
         overflow: auto;
+        padding: 10px;
+        padding-top: 5px;
     }
     .datatable
     {
-        border-collapse:collapse;
+        border-collapse: collapse;
     }
     .datatable tr
     {
-
+        color: #DDD;
     }
     .datatable th
     {
         text-align: center;
-        background: #000;
-        padding: 5px;
-        color: #777;
+        background: #213140;
+        padding: 2px;
+        color: white;
+        font-family: Verdana;
+        font-weight: normal;
+        font-size: 13px;
+        border: 1px solid black;
+    }
+    .datatable tr:hover
+    {
+        background: #c2c25f;
+        color: #000;
     }
     .datatable td
     {
         text-align: center;
-        padding: 5px;
-        color: #FFF;
-        border: 1px solid #000;
+        padding: 3px;
+        border: 1px solid black;
+        font-family: Verdana;
+        font-size: 11px;
     }
     .datatable_empty
     {
-        color: #888;
+        color: white;
         position: absolute;
         top: 50%;
         left: 0px;
         right: 0px;
         text-align: center;
-        font-size: 46px;
-        text-shadow: 0px 1px 2px black;
+        font-size: 11px;
+        font-family: Verdana;
     }
     .entities_list
     {
@@ -73,28 +85,30 @@
         left: 0px;
         width: 220px;
         bottom: 0px;
-        background: #111;
+        border-right: 1px solid black;
+        padding-top: 5px;
     }
     .entities_list_item
     {
         color: white;
-        font-size: 17px;
+        font-size: 13px;
         font-family: Arial;
-        border-bottom: 1px solid #222;
         padding-bottom: 4px;
-        padding-left: 10px;
-        padding-right: 10px;
+        padding-left: 5px;
+        padding-right: 5px;
         padding-top: 4px;
-        margin-left: 10px;
-        margin-right: 10px;
+        margin-left: 4px;
+        margin-right: 4px;
+        border-radius: 3px;
     }
     .entities_list_item:hover
     {
-        background: #333;
+        background: #21011F;
     }
     .entities_list_item[data-selected="1"]
     {
-        background: #666;
+        background: #213140;
+        color: #FF9;
     }
     .context_list
     {
@@ -126,7 +140,8 @@
     }
     .context_list_item[data-selected="1"]
     {
-        border: 1px solid #F00;
+        background: #213140;
+        color: #FF9;
     }
     .tree_parent
     {
