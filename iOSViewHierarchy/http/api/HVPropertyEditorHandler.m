@@ -43,7 +43,6 @@
               return [self writeText:[[NSDictionary dictionaryWithObject:@"OK" forKey:@"response"] JSONString] toSocket:socket];
             }
           }
-          //return [self writeData:(char*)[scaledData bytes] length:[scaledData length] toSocket:socket];
         }
       }
     }

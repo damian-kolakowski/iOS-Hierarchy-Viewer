@@ -18,7 +18,7 @@
 #import "HVBase64StaticFile.h"
 #import "HVPropertyEditorHandler.h"
 #import "HVCoreDataHandler.h"
-#import "webapp_index2.h"
+#import "webapp_index_ui.h"
 #import "webapp_index_core.h"
 #import "webapp_navbar.h"
 #import "webapp_jquery.h"
@@ -62,7 +62,7 @@ HVCoreDataHandler *coreDataHandler = nil;
   }
   server = [[HVHTTPServer alloc] init];
   [server registerHandler:[HVHierarchyHandler handler] forUrl:@"/snapshot"];
-  HVBase64StaticFile *indexHandler = [HVBase64StaticFile handler:WEBAPP_INDEX2];
+  HVBase64StaticFile *indexHandler = [HVBase64StaticFile handler:WEBAPP_INDEX_UI];
   [server registerHandler:indexHandler forUrl:@""];
   [server registerHandler:indexHandler forUrl:@"/"];
   [server registerHandler:indexHandler forUrl:@"/index"];

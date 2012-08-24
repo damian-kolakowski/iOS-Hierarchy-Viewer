@@ -26,7 +26,6 @@
 {
   [cachedResponse release];
   cachedResponse = nil;
-  
   [super dealloc];
 }
 
