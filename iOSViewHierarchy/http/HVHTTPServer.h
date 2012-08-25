@@ -20,7 +20,11 @@
   NSMutableDictionary *handlers;
 }
 
++ (HVHTTPServer*) server;
+
 - (void)registerHandler:(NSObject <HVRequestHandler> *)handler forUrl:(NSString *)url;
+
+- (void)registerHandler:(NSObject <HVRequestHandler> *)handler forUrls:(NSArray *)urls;
 
 - (BOOL)start:(int)port;
 

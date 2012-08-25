@@ -133,6 +133,7 @@
         font-family: Arial;
         font-size: 13px;
         margin: 4px;
+        border-radius: 5px;
     }
     .context_list_item:hover
     {

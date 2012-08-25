@@ -94,7 +94,7 @@
 		7C861E29153DF2DF00935C95 = {
 			isa = PBXGroup;
 			children = (
-				7CD97A5415B299E500CBAAA1 /* QuartzCore.framework */,
+				7C861E3A153DF2E000935C95 /* Supporting Files */,
 				7C861E39153DF2E000935C95 /* iOSViewHierarchy */,
 				7C861E36153DF2E000935C95 /* Frameworks */,
 				7C861E35153DF2E000935C95 /* Products */,
@@ -112,6 +112,7 @@
 		7C861E36153DF2E000935C95 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7CD97A5415B299E500CBAAA1 /* QuartzCore.framework */,
 				7C861E37153DF2E000935C95 /* Foundation.framework */,
 			);
 			name = Frameworks;
@@ -127,7 +128,6 @@
 				7CE955D11540C5CB0042A03A /* HVHierarchyScanner.m */,
 				7C861E49153DF33A00935C95 /* iOSHierarchyViewer.h */,
 				7C861E4A153DF33A00935C95 /* iOSHierarchyViewer.m */,
-				7C861E3A153DF2E000935C95 /* Supporting Files */,
 				688149CF15D1929400E38AE0 /* HVDefines.h */,
 			);
 			path = iOSViewHierarchy;
@@ -139,6 +139,7 @@
 				7C861E3B153DF2E000935C95 /* iOSHierarchyViewer-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			path = iOSViewHierarchy;
 			sourceTree = "<group>";
 		};
 		7CB3BD56158A44CF0001D338 /* http */ = {

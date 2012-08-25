@@ -15,6 +15,11 @@
 
 @implementation HVHTTPServer
 
++ (HVHTTPServer*) server
+{
+  return [[[HVHTTPServer alloc] init] autorelease];
+}
+
 - (id)init
 {
   self = [super init];
@@ -206,6 +211,15 @@
 {
   if (url && handler) {
     [handlers setValue:handler forKey:url];
+  }
+}
+
+- (void)registerHandler:(NSObject <HVRequestHandler> *)handler forUrls:(NSArray *)urls
+{
+  if ( handler && urls ) {
+    for ( NSString* url in urls ) {
+      [self registerHandler:handler forUrl:url];
+    }
   }
 }
 

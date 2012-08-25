@@ -26,15 +26,8 @@
 
 @implementation iOSHierarchyViewer
 
-HVHTTPServer *server = nil;
-HVCoreDataHandler *coreDataHandler = nil;
-
-- (id)init
-{
-  self = [super init];
-  if (self) {}
-  return self;
-}
+static HVHTTPServer *server = nil;
+static HVCoreDataHandler *coreDataHandler = nil;
 
 + (void)logServiceAdresses
 {
@@ -45,8 +38,9 @@ HVCoreDataHandler *coreDataHandler = nil;
     temp_addr = interfaces;
     while (temp_addr != NULL) {
       if (temp_addr->ifa_addr->sa_family == AF_INET) {
-        NSLog(@"(%@): %@", [NSString stringWithUTF8String:temp_addr->ifa_name], [NSString stringWithFormat:@"http://%@:%d",
-                                                                                                           [NSString stringWithUTF8String:inet_ntoa(((struct sockaddr_in *)temp_addr->ifa_addr)->sin_addr)], IOS_HIERARCHY_VIEWER_PORT]);
+        NSLog(@"(%@): %@",
+              [NSString stringWithUTF8String:temp_addr->ifa_name],
+              [NSString stringWithFormat:@"http://%@:%d", [NSString stringWithUTF8String:inet_ntoa(((struct sockaddr_in *)temp_addr->ifa_addr)->sin_addr)], IOS_HIERARCHY_VIEWER_PORT]);
       }
       temp_addr = temp_addr->ifa_next;
     }
@@ -60,13 +54,10 @@ HVCoreDataHandler *coreDataHandler = nil;
   if (server) {
     return YES;
   }
-  server = [[HVHTTPServer alloc] init];
+  server = [[HVHTTPServer server] retain];
   [server registerHandler:[HVHierarchyHandler handler] forUrl:@"/snapshot"];
   HVBase64StaticFile *indexHandler = [HVBase64StaticFile handler:WEBAPP_INDEX_UI];
-  [server registerHandler:indexHandler forUrl:@""];
-  [server registerHandler:indexHandler forUrl:@"/"];
-  [server registerHandler:indexHandler forUrl:@"/index"];
-  [server registerHandler:indexHandler forUrl:@"/index.html"];
+  [server registerHandler:indexHandler forUrls:[NSArray arrayWithObjects:@"", @"/", @"/index", @"index.html", nil]];
   [server registerHandler:[HVBase64StaticFile handler:WEBAPP_INDEX_CORE] forUrl:@"/core.html"];
   [server registerHandler:[HVBase64StaticFile handler:WEBAPP_JQUERY] forUrl:@"/jquery.js"];
   [server registerHandler:[HVBase64StaticFile handler:WEBAPP_NAVBAR] forUrl:@"/navbar.js"];
