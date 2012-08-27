@@ -110,6 +110,30 @@
         background: #213140;
         color: #FF9;
     }
+    .context_query
+    {
+        position: fixed;
+        top: 29px;
+        width: 459px;
+        right: 3px;
+        height: 23px;
+        background: #222;
+        line-height: 23px;
+        outline: none;
+        border: 0px;
+        box-shadow: inset 0px 0px 22px #444;
+        color: #EEE;
+        font-family: Verdana;
+        font-size: 14px;
+        border-radius: 10px;
+        padding-left: 8px;
+        padding-right: 8px;
+        font-weight: normal;
+    }
+    .context_query::-webkit-input-placeholder
+    {
+        color: #999;
+    }
     .context_list
     {
         position: fixed;

@@ -10,6 +10,33 @@
 <body>
 </body>
   <script>
+    function QueryInput(options) {
+
+      var o = options;
+
+      var dom = $('<input class="context_query" placeholder=""></input>');
+
+      var showFunc = function() {
+        dom.show();
+      }
+
+      var hideFunc = function() {
+        dom.hide();
+      }
+
+      var entityNameFunc = function(entityName) {
+        dom.attr('placeholder', 'enter query for "' + entityName + '" entity');
+      }
+
+      o.parentDom.append(dom);
+
+      return {
+        show: showFunc,
+        hide: hideFunc,
+        entityName: entityNameFunc
+      }
+    }
+
   	function ContextsList(options) {
   		var o = options;
 
@@ -159,6 +186,7 @@
   	}
    </script>
   <script>
+
   	var navbar = new Navbar({ parentDom: $('body') });
     navbar.showLoading();
 
@@ -174,16 +202,18 @@
     });
     contextList.show();
 
+    var queryInput = QueryInput({ parentDom: $('body') });
+
     var entitiesList = new EntitiesList({ 
     	parentDom: $('body'),
     	onEntitSelected: function(contextName, entityScheme) {
+        queryInput.entityName(entityScheme.name);
     		dataTable.presentData(contextName, entityScheme, undefined);
     	}
     });
     entitiesList.show();
     
-    $.getJSON('/core', function(scheme) {
-       console.log(scheme);       
+    $.getJSON('/core', function(scheme) {      
        navbar.hideLoading();     
        contextList.presentScheme(scheme); 
        entitiesList.presentEntities(scheme[0]);
