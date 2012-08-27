@@ -83,7 +83,7 @@ static HVCoreDataHandler *coreDataHandler = nil;
   }
 }
 
-+ (void) addContexet:(NSManagedObjectContext*)context name:(NSString*)name
++ (void) addContext:(NSManagedObjectContext*)context name:(NSString*)name
 {
   if ( coreDataHandler ) {
     [coreDataHandler pushContext:context withName:name];

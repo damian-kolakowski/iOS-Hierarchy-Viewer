@@ -148,7 +148,6 @@
         return [self handleSchemeRequest:socket];
       }
     }
-    return NO;
   }
   return NO;
 }

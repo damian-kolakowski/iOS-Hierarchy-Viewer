@@ -13,7 +13,8 @@
 
 + (void)stop;
 
-+ (void) addContexet:(NSManagedObjectContext*)context name:(NSString*)name;
++ (void) addContext:(NSManagedObjectContext*)context name:(NSString*)name;
+
 + (void) removeContext:(NSString*)name;
 
 @end
