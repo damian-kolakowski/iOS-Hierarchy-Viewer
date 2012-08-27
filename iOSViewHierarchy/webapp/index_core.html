@@ -16,6 +16,17 @@
 
       var dom = $('<input class="context_query" placeholder=""></input>');
 
+      var entityScheme, contextName;
+
+      dom.keypress(function(e) {
+        if ( e.which == 13 ) {
+          var query = dom.val();
+          if ( o && o.onQueryEntered ) o.onQueryEntered(query, entityScheme, contextName);
+          dom.val('');
+          e.preventDefault();
+        }
+      });
+
       var showFunc = function() {
         dom.show();
       }
@@ -24,8 +35,10 @@
         dom.hide();
       }
 
-      var entityNameFunc = function(entityName) {
-        dom.attr('placeholder', 'enter query for "' + entityName + '" entity');
+      var entitySchemeFunc = function(ctxName, entScheme) {
+        contextName = ctxName;
+        entityScheme = entScheme;
+        dom.attr('placeholder', 'enter query for "' + entityScheme.name + '" entity');
       }
 
       o.parentDom.append(dom);
@@ -33,7 +46,7 @@
       return {
         show: showFunc,
         hide: hideFunc,
-        entityName: entityNameFunc
+        entityScheme: entitySchemeFunc
       }
     }
 
@@ -148,7 +161,7 @@
 
   		o.parentDom.append(dom);
 
-  		var presentDataFunc = function(contextName, entityScheme, data) {
+  		var presentDataFunc = function(contextName, entityScheme, predicate) {
   			table.empty();
   			var trHeader = $('<tr></tr>');
   			$.each(entityScheme.properties, function(index, attribute) {
@@ -158,8 +171,18 @@
   				trHeader.append(td);
   			});
   			table.append(trHeader);
-  			$.getJSON('/core?entity=' + encodeURIComponent(entityScheme.name) + '&context=' + encodeURIComponent(contextName), function(data) {
+        var url = '/core?entity=' + encodeURIComponent(entityScheme.name) + '&context=' + encodeURIComponent(contextName);
+        if ( predicate ) {
+          url += '&predicate=' + encodeURIComponent(predicate);
+        }
+  			$.getJSON(url, function(data) {
+          if  ( data.error ) {
+            empty.text(data.error);
+            empty.show();
+            return;
+          }
           if ( data.length <= 0 ) {
+            empty.text('...no data...');
             empty.show();
           } else {
             empty.hide();
@@ -202,13 +225,18 @@
     });
     contextList.show();
 
-    var queryInput = QueryInput({ parentDom: $('body') });
+    var queryInput = QueryInput({ 
+      parentDom: $('body'),
+      onQueryEntered: function(query, entityScheme, contextName) {
+        dataTable.presentData(contextName, entityScheme, query);
+      }
+    });
 
     var entitiesList = new EntitiesList({ 
     	parentDom: $('body'),
     	onEntitSelected: function(contextName, entityScheme) {
-        queryInput.entityName(entityScheme.name);
-    		dataTable.presentData(contextName, entityScheme, undefined);
+        queryInput.entityScheme(contextName, entityScheme);
+    		dataTable.presentData(contextName, entityScheme);
     	}
     });
     entitiesList.show();

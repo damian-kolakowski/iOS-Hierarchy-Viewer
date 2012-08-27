@@ -107,7 +107,13 @@
     return [self writeText:[[NSDictionary dictionaryWithObject:@"Can't find entity" forKey:@"error"] JSONString] toSocket:socket];
   }
   NSError* error = nil;
-  NSArray* result = [context executeFetchRequest:request error:&error];
+  NSArray* result = nil;
+  @try {
+    result = [context executeFetchRequest:request error:&error];
+  }
+  @catch (NSException *exception) {
+    return [self writeText:[[NSDictionary dictionaryWithObject:[exception description] forKey:@"error"] JSONString] toSocket:socket];
+  }
   if ( result ) {
     NSMutableArray* resultArray = [[[NSMutableArray alloc] init] autorelease];
     for ( NSManagedObject* object in result) {
