@@ -1,7 +1,9 @@
-iOS-Hierarchy-Viewer
+iOS-Hierarchy-Viewer (with new Core Data viewer)
 ====================
 
 iOS Hierarchy Viewer allows developers to debug their user interfaces. If there are problems with layout calculations, it will catch them by giving a real time preview of the UIViews hierarchy.
+
+**iOS Hierarchy Viewer (since 1.4.6 version) gives preview of data if you use Core Data API in your project. See 'Instruction' section to start with it.**
 
 ![](http://androiddev.vipserv.org/wordpress/wp-content/uploads/2012/04/Screen-Shot-2012-04-24-at-9.09.20-PM.png)
 
@@ -28,6 +30,19 @@ Installation
 {
     // your stuff
     [iOSHierarchyViewer start];    
+}
+```
+
++ if you would like to see data from Core Data API go to 'http://[ip_address]:9449/core.html' and add NSManagedContext object to iOSHierarchyViewer library
+
+```objc
+- (void)applicationDidBecomeActive:(UIApplication *)application
+{
+    // your stuff
+    
+    setup persistent store coordinator for _managedObjectContext
+    
+    [iOSHierarchyViewer addContext:_managedObjectContext name:@"Root managed context"];    
 }
 ```
 
