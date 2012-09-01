@@ -1,4 +1,4 @@
-iOS-Hierarchy-Viewer (latest release has new Core Data viewer)
+iOS-Hierarchy-Viewer (with new Core Data viewer)
 ====================
 
 iOS Hierarchy Viewer allows developers to debug their user interfaces. If there are problems with layout calculations, it will catch them by giving a real time preview of the UIViews hierarchy.
