@@ -33,7 +33,7 @@ Installation
 }
 ```
 
-+ if you would like to see data from Core Data API go to 'http://[ip_address]:9449/core.html' and add ManagedContext object to iOSHierarchyViewer library
++ if you would like to see data from Core Data API go to 'http://[ip_address]:9449/core.html' and add NSManagedContext object to iOSHierarchyViewer library
 
 ```objc
 - (void)applicationDidBecomeActive:(UIApplication *)application
