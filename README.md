@@ -42,7 +42,7 @@ Installation
     
     setup persistent store coordinator for _managedObjectContext
     
-    [iOSHierarchyViewer addContext:_managedObjectContext name:@"Root manged context"];    
+    [iOSHierarchyViewer addContext:_managedObjectContext name:@"Root managed context"];    
 }
 ```
 
