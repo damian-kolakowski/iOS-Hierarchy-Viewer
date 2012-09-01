@@ -6,9 +6,11 @@
 //  Copyright (c) 2012 Victor Pena Placer. All rights reserved.
 //
 
+#import <CoreData/CoreData.h>
 #import "AppDelegate.h"
 #import "ExampleViewController.h"
 #import "iOSHierarchyViewer.h"
+#import "Product.h"
 
 @implementation AppDelegate
 
@@ -19,12 +21,26 @@
 {
     self.tabBarController = nil;
     [_window release];
+    [_persistentStoreCoordinator release];
+    [_managedObjectModel release];
+    [_managedObjectContext release];
     [super dealloc];
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    [iOSHierarchyViewer start];    
+    [iOSHierarchyViewer start];
+  
+    _managedObjectModel = [[NSManagedObjectModel mergedModelFromBundles:nil] retain];
+  
+    _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:_managedObjectModel];
+    NSURL *storeUrl = [NSURL fileURLWithPath:[NSHomeDirectory() stringByAppendingPathComponent:@"Documents/database.sqlite"]];
+    [_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeUrl options:nil error:nil];
+  
+    _managedObjectContext = [[NSManagedObjectContext alloc] init];
+    [_managedObjectContext setPersistentStoreCoordinator:_persistentStoreCoordinator];
+  
+    [iOSHierarchyViewer addContext:_managedObjectContext name:@"Root context"];
 
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackOpaque];
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
@@ -34,8 +50,30 @@
     self.window.rootViewController = self.tabBarController;
     
     [self.window makeKeyAndVisible];
+  
+    [self pushMockData];
+  
     return YES;
 }
+
+- (void) pushMockData
+{
+  NSArray* mockNames = [NSArray arrayWithObjects:@"iPhone", @"iPad", @"iPod", nil];
+  NSArray* mockPrices = [NSArray arrayWithObjects:@"100$", @"200$", @"300$", nil];
+  NSArray* mockModels = [NSArray arrayWithObjects:@"white", @"black", @"orange", nil];
+  
+  for ( int i = 0 ; i < 20 ; ++ i ) {
+    Product *newProduct = (Product*)[NSEntityDescription
+                                  insertNewObjectForEntityForName:NSStringFromClass([Product class])
+                                  inManagedObjectContext:_managedObjectContext];
+    newProduct.name = [mockNames objectAtIndex:rand() % mockNames.count];
+    newProduct.price = [mockPrices objectAtIndex:rand() % mockPrices.count];
+    newProduct.model = [mockModels objectAtIndex:rand() % mockModels.count];
+  }
+  
+  [_managedObjectContext save:nil];
+}
+
 
 - (void)applicationWillResignActive:(UIApplication *)application
 {

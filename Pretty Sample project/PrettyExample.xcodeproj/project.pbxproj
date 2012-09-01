@@ -30,6 +30,8 @@
 		57A6337614FE7672004D2647 /* ExampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57A6337514FE7672004D2647 /* ExampleViewController.m */; };
 		57CF9FB1151BA08600BC035B /* PlainExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 57CF9FAF151BA08600BC035B /* PlainExample.m */; };
 		57CF9FB2151BA08600BC035B /* PlainExample.xib in Resources */ = {isa = PBXBuildFile; fileRef = 57CF9FB0151BA08600BC035B /* PlainExample.xib */; };
+		7CAC693D15F25BF50066BAF0 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7CAC693B15F25BF50066BAF0 /* Model.xcdatamodeld */; };
+		7CAC695015F25E930066BAF0 /* Product.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CAC694F15F25E930066BAF0 /* Product.m */; };
 		7CE2ED1815E4158700684792 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CE2ED1715E4158700684792 /* CoreData.framework */; };
 		D108B951158FC42E002DCC6F /* libiOSViewHierarchy.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D108B94B158FC411002DCC6F /* libiOSViewHierarchy.a */; };
 		EDA7DCB11548EBD1002219BA /* PrettyToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = EDA7DCB01548EBD1002219BA /* PrettyToolbar.m */; };
@@ -94,6 +96,9 @@
 		57CF9FAE151BA08600BC035B /* PlainExample.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlainExample.h; sourceTree = "<group>"; };
 		57CF9FAF151BA08600BC035B /* PlainExample.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlainExample.m; sourceTree = "<group>"; };
 		57CF9FB0151BA08600BC035B /* PlainExample.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlainExample.xib; sourceTree = "<group>"; };
+		7CAC693C15F25BF50066BAF0 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		7CAC694E15F25E930066BAF0 /* Product.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Product.h; sourceTree = "<group>"; };
+		7CAC694F15F25E930066BAF0 /* Product.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Product.m; sourceTree = "<group>"; };
 		7CE2ED1715E4158700684792 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		D108B943158FC411002DCC6F /* iOSHierarchyViewer.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = iOSHierarchyViewer.xcodeproj; path = ../iOSHierarchyViewer.xcodeproj; sourceTree = "<group>"; };
 		D108B94E158FC425002DCC6F /* iOSHierarchyViewer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iOSHierarchyViewer.h; path = ../iOSViewHierarchy/iOSHierarchyViewer.h; sourceTree = "<group>"; };
@@ -173,6 +178,9 @@
 				572B2E6515348E1B0002228B /* RotableTabBarController.m */,
 				572B2E68153496870002228B /* background.png */,
 				572B2E69153496870002228B /* background@2x.png */,
+				7CAC693B15F25BF50066BAF0 /* Model.xcdatamodeld */,
+				7CAC694E15F25E930066BAF0 /* Product.h */,
+				7CAC694F15F25E930066BAF0 /* Product.m */,
 			);
 			path = PrettyExample;
 			sourceTree = "<group>";
@@ -330,6 +338,8 @@
 				578998CB1535E02000E06FCA /* PrettyTabBar.m in Sources */,
 				EDA7DCB11548EBD1002219BA /* PrettyToolbar.m in Sources */,
 				EDA7DCB61548ED3F002219BA /* ModalViewController.m in Sources */,
+				7CAC693D15F25BF50066BAF0 /* Model.xcdatamodeld in Sources */,
+				7CAC695015F25E930066BAF0 /* Product.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -454,6 +464,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		7CAC693B15F25BF50066BAF0 /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				7CAC693C15F25BF50066BAF0 /* Model.xcdatamodel */,
+			);
+			currentVersion = 7CAC693C15F25BF50066BAF0 /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 5735F8AE14FD2FFC00DD7370 /* Project object */;
 }
