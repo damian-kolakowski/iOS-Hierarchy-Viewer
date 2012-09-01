@@ -38,8 +38,10 @@
       var entitySchemeFunc = function(ctxName, entScheme) {
         contextName = ctxName;
         entityScheme = entScheme;
-        dom.attr('placeholder', 'enter query for "' + entityScheme.name + '" entity');
+        dom.attr('placeholder', 'enter predicate for "' + entityScheme.name + '" entity');
       }
+
+      dom.hide();
 
       o.parentDom.append(dom);
 
@@ -74,7 +76,7 @@
         if ( o.onContextSelected ) o.onContextSelected(contextSchemes[index]);
       }
 
-  		var presentSchemeFunc = function(schemes) {
+  		var presentSchemeFunc = function(schemes, selectFirst) {
   			dom.empty();
         contextSchemes = schemes;
   			$.each(schemes, function(index, scheme) {
@@ -83,6 +85,9 @@
   				itemDom.text(scheme.name);
           itemDom.click(handleClickFunc);
   				dom.append(itemDom);
+          if ( index == 0 && selectFirst ) {
+            itemDom.click();
+          }
   			});
   		}
 
@@ -118,7 +123,7 @@
   			}
   		}
 
-  		var presentEntitiesFunc = function(context) {
+  		var presentEntitiesFunc = function(context, selectFirst) {
   			dom.empty();
   			contextSechme = context;
   			$.each(context.entities, function(index, entity) {
@@ -127,6 +132,9 @@
   				itemDom.text(entity.name);
   				itemDom.click(handleClickFunc);
   				dom.append(itemDom);
+          if ( index == 0 && selectFirst ){
+            itemDom.click();
+          }
   			});
   		}
 
@@ -220,7 +228,7 @@
       parentDom: $('body'),
       onContextSelected: function(contextScheme) {
         dataTable.clearData();
-        entitiesList.presentEntities(contextScheme);
+        entitiesList.presentEntities(contextScheme, true);
       }
     });
     contextList.show();
@@ -237,14 +245,14 @@
     	onEntitSelected: function(contextName, entityScheme) {
         queryInput.entityScheme(contextName, entityScheme);
     		dataTable.presentData(contextName, entityScheme);
+        queryInput.show();
     	}
     });
     entitiesList.show();
     
     $.getJSON('/core', function(scheme) {      
        navbar.hideLoading();     
-       contextList.presentScheme(scheme); 
-       entitiesList.presentEntities(scheme[0]);
+       contextList.presentScheme(scheme, true); 
     });
   </script>
 </html>

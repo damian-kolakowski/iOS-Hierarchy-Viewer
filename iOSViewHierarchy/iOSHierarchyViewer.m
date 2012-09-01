@@ -56,7 +56,7 @@ static HVCoreDataHandler *coreDataHandler = nil;
   }
   server = [[HVHTTPServer server] retain];
   [server registerHandler:[HVHierarchyHandler handler] forUrl:@"/snapshot"];
-  [server registerHandler:[HVBase64StaticFile handler:WEBAPP_INDEX_UI] forUrls:[NSArray arrayWithObjects:@"", @"/", @"/index", @"index.html", nil]];
+  [server registerHandler:[HVBase64StaticFile handler:WEBAPP_INDEX_UI] forUrls:[NSArray arrayWithObjects:@"", @"/", @"/index", @"/index.html", nil]];
   [server registerHandler:[HVBase64StaticFile handler:WEBAPP_INDEX_CORE] forUrl:@"/core.html"];
   [server registerHandler:[HVBase64StaticFile handler:WEBAPP_JQUERY] forUrl:@"/jquery.js"];
   [server registerHandler:[HVBase64StaticFile handler:WEBAPP_NAVBAR] forUrl:@"/navbar.js"];
