@@ -1,5 +1,5 @@
 Lead Development:
-	Damian Kołakowski (http://androiddev.vipserv.org/wordpress/) - Lead developer and idea creator.
+	Damian Kołakowski (https://github.com/glock45/) - Lead developer and idea creator.
 	Krzysztof Zabłocki (http://merowing.info).
 	
 Contributors (alphabetically ordered):
