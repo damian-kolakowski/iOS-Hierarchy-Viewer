@@ -22,7 +22,7 @@ Installation
 + download newest version of library avaiable here: [Lib]
 + add these files to your project (drag&drop into xCode project)
 + make sure that you have added “-ObjC -all_load” to “other linker flags” (click at project root element, select “Build settings” tab, search for “other linker flags”)
-+ if you already have JSONKit.m file in your project, please remove it because of linker conflict
++ <del>if you already have JSONKit.m file in your project, please remove it because of linker conflict</del> We switched to Apple's NSJSONSerialization so skip this step.
 + add QuartzCore to frameworks list
 + launch hierarchy viewer in your code by calling [iOSHierarchyViewer start];. The best place for it is AppDelegate::applicationDidBecomeActive callback
 + find or get from logs device/simulator ip address and go to ‘http://[ip_address]:9449′ address (Chrome/Firefox only)
@@ -35,7 +35,9 @@ Installation
 }
 ```
 
-+ if you would like to see data from Core Data API go to 'http://[ip_address]:9449/core.html' and add NSManagedContext object to iOSHierarchyViewer library
+If you would like to see data from Core Data API:
++ add CoreData to frameworks list
++ go to 'http://[ip_address]:9449/core.html' and add NSManagedContext object to iOSHierarchyViewer library
 
 ```objc
 - (void)applicationDidBecomeActive:(UIApplication *)application
