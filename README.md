@@ -19,7 +19,7 @@ Features
 Installation
 ====================
 
-+ download newest version of library avaiable here: [Lib]
++ download newest version of library from releases section [Lib]
 + add these files to your project (drag&drop into xCode project)
 + make sure that you have added “-ObjC -all_load” to “other linker flags” (click at project root element, select “Build settings” tab, search for “other linker flags”)
 + <del>if you already have JSONKit.m file in your project, please remove it because of linker conflict</del> We switched to Apple's NSJSONSerialization so skip this step.
@@ -79,4 +79,4 @@ Contributing:
 Did you find a bug ? Do you have feature request ? Do you want to merge a feature ?
 Send us a pull request or add an issue in the tracker!
 
-[LIB]: https://github.com/glock45/iOS-Hierarchy-Viewer/downloads
+[LIB]: https://github.com/glock45/iOS-Hierarchy-Viewer/releases
