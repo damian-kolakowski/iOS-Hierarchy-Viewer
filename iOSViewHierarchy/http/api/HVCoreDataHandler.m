@@ -6,7 +6,6 @@
 //
 //
 
-#import "JSONKit.h"
 #import "HVCoreDataHandler.h"
 
 @implementation HVCoreDataHandler
@@ -81,7 +80,7 @@
     [contextModelDictionary setObject:contextName forKey:@"name"];
     [resultArray addObject:contextModelDictionary];
   }
-  return [self writeText:[resultArray JSONString] toSocket:socket];
+  return [self writeJSONResponse:resultArray toSocket:socket];
 }
 
 - (BOOL) handleFetchRequest:(int)socket query:(NSDictionary *)query
@@ -91,7 +90,7 @@
   NSString* contextName = [query objectForKey:@"context"];
   NSManagedObjectContext* context = [contextDictionary objectForKey:contextName];
   if ( !context ) {
-    return [self writeText:[[NSDictionary dictionaryWithObject:@"Can't find context" forKey:@"error"] JSONString] toSocket:socket];
+    return [self writeJSONErrorResponse:@"Can't find context" toSocket:socket];
   }
   NSFetchRequest* request = [[[NSFetchRequest alloc] init] autorelease];
   if ( predicate ) {
@@ -99,12 +98,12 @@
       request.predicate = [NSPredicate predicateWithFormat:predicate];
     }
     @catch (NSException *exception) {
-      return [self writeText:[[NSDictionary dictionaryWithObject:[exception description] forKey:@"error"] JSONString] toSocket:socket];
+      return [self writeJSONErrorResponse:exception.description toSocket:socket];
     }
   }
   request.entity = [NSEntityDescription entityForName:entity inManagedObjectContext:context];
   if ( !request.entity ) {
-    return [self writeText:[[NSDictionary dictionaryWithObject:@"Can't find entity" forKey:@"error"] JSONString] toSocket:socket];
+    return [self writeJSONErrorResponse:@"Can't find entity" toSocket:socket];
   }
   NSError* error = nil;
   NSArray* result = nil;
@@ -112,7 +111,7 @@
     result = [context executeFetchRequest:request error:&error];
   }
   @catch (NSException *exception) {
-    return [self writeText:[[NSDictionary dictionaryWithObject:[exception description] forKey:@"error"] JSONString] toSocket:socket];
+    return [self writeJSONErrorResponse:[exception description] toSocket:socket];
   }
   if ( result ) {
     NSMutableArray* resultArray = [[[NSMutableArray alloc] init] autorelease];
@@ -132,28 +131,20 @@
       }
       [resultArray addObject:dictionary];
     }
-    NSError* jsonSerializationError;
-    NSString* json = [resultArray JSONStringWithOptions:JKSerializeOptionNone error:&jsonSerializationError];
-    if ( json ) {
-      return [self writeText:[resultArray JSONString] toSocket:socket];
-    } else {
-      return [self writeText:[[NSDictionary dictionaryWithObject:[jsonSerializationError description] forKey:@"error"] JSONString] toSocket:socket];
-    }
+    return [self writeJSONResponse:resultArray toSocket:socket];
   } else {
-    return [self writeText:[[NSDictionary dictionaryWithObject:[error description] forKey:@"error"] JSONString] toSocket:socket];
+    return [self writeJSONErrorResponse:[error description] toSocket:socket];
   }
 }
 
 - (BOOL)handleRequest:(NSString *)url withHeaders:(NSDictionary *)headers query:(NSDictionary *)query address:(NSString *)address onSocket:(int)socket
 {
   if ([super handleRequest:url withHeaders:headers query:query address:address onSocket:socket]) {
-    if ([self writeText:@"\r\n" toSocket:socket]) {
       if ( query && [query count] > 0 ) {
         return [self handleFetchRequest:socket query:query];
       } else {
         return [self handleSchemeRequest:socket];
       }
-    }
   }
   return NO;
 }

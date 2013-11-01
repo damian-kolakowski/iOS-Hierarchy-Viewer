@@ -33,17 +33,15 @@
 - (BOOL)handleRequest:(NSString *)url withHeaders:(NSDictionary *)headers query:(NSDictionary *)query address:(NSString *)address onSocket:(int)socket
 {
   if ([super handleRequest:url withHeaders:headers query:query address:address onSocket:socket]) {
-    if ([self writeText:@"\r\n" toSocket:socket]) {
-      NSString *filePath = [[NSBundle mainBundle] pathForResource:file ofType:nil];
-      if (filePath) {
-        NSData *data = [[NSData alloc] initWithContentsOfFile:filePath];
-        if (data) {
-          [self writeData:(char *)[data bytes] length:[data length] toSocket:socket];
-          [data release];
-        }
+    NSString *filePath = [[NSBundle mainBundle] pathForResource:file ofType:nil];
+    if (filePath) {
+      NSData *data = [[NSData alloc] initWithContentsOfFile:filePath];
+      if (data) {
+        [self writeData:data toSocket:socket];
+        [data release];
       }
-      return YES;
     }
+    return YES;
   }
   return NO;
 }

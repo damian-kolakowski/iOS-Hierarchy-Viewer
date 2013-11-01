@@ -9,10 +9,10 @@
 
 @interface HVBaseRequestHandler : NSObject <HVRequestHandler>
 
-- (BOOL)writeData:(char *)data length:(int)length toSocket:(int)socket;
+- (BOOL)writeData:(NSData*)data toSocket:(int)socket;
 
-- (BOOL)writeOKStatus:(int)socket;
+- (BOOL)writeJSONResponse:(id)object toSocket:(int)socket;
 
-- (BOOL)writeText:(NSString *)text toSocket:(int)socket;
+- (BOOL)writeJSONErrorResponse:(NSString*)error toSocket:(int)socket;
 
 @end

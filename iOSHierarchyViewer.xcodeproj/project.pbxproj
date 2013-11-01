@@ -31,8 +31,6 @@
 		7CB3BD71158A44CF0001D338 /* HVBaseRequestHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CB3BD63158A44CF0001D338 /* HVBaseRequestHandler.m */; };
 		7CB3BD72158A44CF0001D338 /* HVHTTPServer.h in Headers */ = {isa = PBXBuildFile; fileRef = 7CB3BD64158A44CF0001D338 /* HVHTTPServer.h */; };
 		7CB3BD73158A44CF0001D338 /* HVHTTPServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CB3BD65158A44CF0001D338 /* HVHTTPServer.m */; };
-		7CB3BD79158A45850001D338 /* JSONKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 7CB3BD77158A45850001D338 /* JSONKit.h */; };
-		7CB3BD7A158A45850001D338 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CB3BD78158A45850001D338 /* JSONKit.m */; };
 		7CE2ED1415E40CDE00684792 /* HVCoreDataHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 7CE2ED1215E40CDE00684792 /* HVCoreDataHandler.h */; };
 		7CE2ED1515E40CDE00684792 /* HVCoreDataHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CE2ED1315E40CDE00684792 /* HVCoreDataHandler.m */; };
 		7CE955DE1540C5CB0042A03A /* HVHierarchyScanner.h in Headers */ = {isa = PBXBuildFile; fileRef = 7CE955D01540C5CB0042A03A /* HVHierarchyScanner.h */; };
@@ -49,7 +47,7 @@
 		7C11395715E580BA004AED3F /* navbar.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = navbar.js; sourceTree = "<group>"; };
 		7C11395915E580C4004AED3F /* webapp_navbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = webapp_navbar.h; sourceTree = "<group>"; };
 		7C12E28115E7E292009D2F26 /* webapp_index_ui.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = webapp_index_ui.h; sourceTree = "<group>"; };
-		7C861E34153DF2E000935C95 /* libiOSViewHierarchy.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libiOSViewHierarchy.a; path = libiOSHierarchyViewer.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		7C861E34153DF2E000935C95 /* libiOSHierarchyViewer.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libiOSHierarchyViewer.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C861E37153DF2E000935C95 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		7C861E3B153DF2E000935C95 /* iOSHierarchyViewer-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iOSHierarchyViewer-Prefix.pch"; sourceTree = "<group>"; };
 		7C861E49153DF33A00935C95 /* iOSHierarchyViewer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iOSHierarchyViewer.h; sourceTree = "<group>"; };
@@ -69,8 +67,6 @@
 		7CB3BD64158A44CF0001D338 /* HVHTTPServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HVHTTPServer.h; sourceTree = "<group>"; };
 		7CB3BD65158A44CF0001D338 /* HVHTTPServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HVHTTPServer.m; sourceTree = "<group>"; };
 		7CB3BD75158A45690001D338 /* index_ui.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = index_ui.html; sourceTree = "<group>"; };
-		7CB3BD77158A45850001D338 /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONKit.h; sourceTree = "<group>"; };
-		7CB3BD78158A45850001D338 /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
 		7CD97A5415B299E500CBAAA1 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		7CDFD54415E55B97001D5841 /* jquery.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = jquery.js; sourceTree = "<group>"; };
 		7CE2ED1215E40CDE00684792 /* HVCoreDataHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HVCoreDataHandler.h; sourceTree = "<group>"; };
@@ -104,7 +100,7 @@
 		7C861E35153DF2E000935C95 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				7C861E34153DF2E000935C95 /* libiOSViewHierarchy.a */,
+				7C861E34153DF2E000935C95 /* libiOSHierarchyViewer.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -121,7 +117,6 @@
 		7C861E39153DF2E000935C95 /* iOSViewHierarchy */ = {
 			isa = PBXGroup;
 			children = (
-				7CB3BD76158A45850001D338 /* json */,
 				7CB3BD74158A45690001D338 /* webapp */,
 				7CB3BD56158A44CF0001D338 /* http */,
 				7CE955D01540C5CB0042A03A /* HVHierarchyScanner.h */,
@@ -190,15 +185,6 @@
 			path = webapp;
 			sourceTree = "<group>";
 		};
-		7CB3BD76158A45850001D338 /* json */ = {
-			isa = PBXGroup;
-			children = (
-				7CB3BD77158A45850001D338 /* JSONKit.h */,
-				7CB3BD78158A45850001D338 /* JSONKit.m */,
-			);
-			path = json;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -215,7 +201,6 @@
 				7CB3BD6E158A44CF0001D338 /* HVStaticFileHandler.h in Headers */,
 				7CB3BD70158A44CF0001D338 /* HVBaseRequestHandler.h in Headers */,
 				7CB3BD72158A44CF0001D338 /* HVHTTPServer.h in Headers */,
-				7CB3BD79158A45850001D338 /* JSONKit.h in Headers */,
 				688149D115D1929400E38AE0 /* HVDefines.h in Headers */,
 				7CE2ED1415E40CDE00684792 /* HVCoreDataHandler.h in Headers */,
 				7C11391B15E57627004AED3F /* webapp_jquery.h in Headers */,
@@ -244,7 +229,7 @@
 			);
 			name = iOSHierarchyViewer;
 			productName = iOSViewHierarchy;
-			productReference = 7C861E34153DF2E000935C95 /* libiOSViewHierarchy.a */;
+			productReference = 7C861E34153DF2E000935C95 /* libiOSHierarchyViewer.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
@@ -303,7 +288,6 @@
 				7CB3BD6F158A44CF0001D338 /* HVStaticFileHandler.m in Sources */,
 				7CB3BD71158A44CF0001D338 /* HVBaseRequestHandler.m in Sources */,
 				7CB3BD73158A44CF0001D338 /* HVHTTPServer.m in Sources */,
-				7CB3BD7A158A45850001D338 /* JSONKit.m in Sources */,
 				7CE2ED1515E40CDE00684792 /* HVCoreDataHandler.m in Sources */,
 				7C11395815E580BA004AED3F /* navbar.js in Sources */,
 			);
@@ -364,6 +348,7 @@
 				);
 				PRODUCT_NAME = iOSHierarchyViewer;
 				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -379,6 +364,7 @@
 				);
 				PRODUCT_NAME = iOSHierarchyViewer;
 				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

@@ -130,9 +130,7 @@
 - (BOOL)handleRequest:(NSString *)url withHeaders:(NSDictionary *)headers query:(NSDictionary *)query address:(NSString *)address onSocket:(int)socket
 {
   if ([super handleRequest:url withHeaders:headers query:query address:address onSocket:socket]) {
-    if ([self writeText:@"\r\n" toSocket:socket]) {
-      return [self writeData:(char *)[cachedResponse bytes] length:[cachedResponse length] toSocket:socket];
-    }
+    return [self writeData:cachedResponse toSocket:socket];
   }
   return NO;
 }

@@ -9,7 +9,7 @@
 
 @implementation HVBaseRequestHandler
 
-- (BOOL)writeData:(char *)data length:(int)length toSocket:(int)socket;
+- (BOOL)writeRawData:(char *)data length:(int)length toSocket:(int)socket;
 {
   int sent = 0;
   while (sent < length) {
@@ -23,23 +23,40 @@
   return YES;
 }
 
+- (BOOL)writeData:(NSData*)data toSocket:(int)socket
+{
+  return [self writeRawData:(char*)[data bytes] length:[data length] toSocket:socket];
+}
+
 - (BOOL)writeText:(NSString *)text toSocket:(int)socket
 {
   if (text) {
     NSData *data = [text dataUsingEncoding:NSUTF8StringEncoding];
-    return [self writeData:(char *)[data bytes] length:[data length] toSocket:socket];
+    return [self writeRawData:(char *)[data bytes] length:[data length] toSocket:socket];
   }
   return NO;
 }
 
-- (BOOL)writeOKStatus:(int)socket
+- (BOOL)writeJSONErrorResponse:(NSString*)error toSocket:(int)socket
 {
-  return [self writeText:@"HTTP/1.0 200 OK\r\n" toSocket:socket];
+  return [self writeJSONResponse:[NSDictionary dictionaryWithObject:error forKey:@"error"] toSocket:socket];
+}
+
+- (BOOL)writeJSONResponse:(id)object toSocket:(int)socket
+{
+    NSError* serializationError;
+    NSData* data = [NSJSONSerialization dataWithJSONObject:object options:kNilOptions
+                                                     error:&serializationError];
+    if ( data ) {
+      return [self writeData:data toSocket:socket];
+    } else {
+      return [self writeJSONErrorResponse: serializationError.description toSocket:socket];
+    }
 }
 
 - (BOOL)handleRequest:(NSString *)url withHeaders:(NSDictionary *)headers query:(NSDictionary *)query address:(NSString *)address onSocket:(int)socket
 {
-  return [self writeOKStatus:socket];
+  return [self writeText:@"HTTP/1.0 200 OK\r\n\r\n" toSocket:socket];
 }
 
 @end

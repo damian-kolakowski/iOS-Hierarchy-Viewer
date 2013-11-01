@@ -8,7 +8,6 @@
 #import <math.h>
 #import <QuartzCore/QuartzCore.h>
 #import "HVHierarchyScanner.h"
-#import "JSONKit.h"
 
 @implementation HVHierarchyScanner
 
