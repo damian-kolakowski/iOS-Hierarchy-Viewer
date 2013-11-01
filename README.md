@@ -19,7 +19,7 @@ Features
 Installation
 ====================
 
-+ download newest version of library from releases section [Lib]
++ download newest version of library from releases section [Lib] or use it as cocoapods spec
 + add these files to your project (drag&drop into xCode project)
 + make sure that you have added “-ObjC -all_load” to “other linker flags” (click at project root element, select “Build settings” tab, search for “other linker flags”)
 + <del>if you already have JSONKit.m file in your project, please remove it because of linker conflict</del> We switched to Apple's NSJSONSerialization so skip this step.
