@@ -1,8 +1,11 @@
 function Navbar(options) {
+  
   var o = options;
+  
   var dom = $('<div class="navbar"></div>');
   var title  = $('<div class="navbar_title">iOS Hierarchy Viewer</div>');
   var loading = $('<div class="navbar_loading">Loading....</div>');
+  
   dom.append(title);
   dom.append(loading);
   o.parentDom.append(dom);

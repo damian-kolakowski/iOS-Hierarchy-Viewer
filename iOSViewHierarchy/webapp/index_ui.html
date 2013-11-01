@@ -308,6 +308,7 @@
 		var marker = $('<div class="checkbox_marker"></div>');
 		dom.append(marker);
 		dom.append(o.title);
+    dom.hide();
 
 		var updateFunc = function() {
 			if ( o.checked ) {
@@ -330,8 +331,13 @@
 		updateFunc();
 		o.parentDom.append(dom);
 
+    var showFunc = function() { dom.show(); }
+    var hideFunc = function() { dom.hide(); }
+
 		return {
-			checked: checkedFunc
+			checked: checkedFunc,
+      show: showFunc,
+			hide: hideFunc
 		}
 	}
 </script>
@@ -484,7 +490,12 @@
     previewScreen.hide();
 
     $.getJSON('/snapshot?nocache=' + (new Date().getTime()), function(loadedData) {
-    	viewsData = loadedData;
+        if ( loadedData.error ) {
+            navbar.hideLoading();
+            $('body').append('<div class="error_box">' + loadedData.error + '</div');
+            return;
+        }
+    	  viewsData = loadedData;
         viewsTree.fill(loadedData.windows);
         previewScreen.size({ frame_x: 0, frame_y: 0, bounds_w: loadedData.screen_w, bounds_h: loadedData.screen_h });
         previewScreen.clear();
@@ -492,9 +503,10 @@
         if ( loadedData.windows[0] ) propsEditor.showProps(loadedData.windows[0].id, loadedData.windows[0].props, loadedData.editable);
         navbar.hideLoading();
         navbar.version(loadedData.version);
-   		propsEditor.show();
-    	viewsTree.show();
-    	previewScreen.show();
+        checkbox.show();
+   		  propsEditor.show();
+    	  viewsTree.show();
+    	  previewScreen.show();
     });
 </script>
 </html>

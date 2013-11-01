@@ -44,13 +44,17 @@
 
 - (BOOL)writeJSONResponse:(id)object toSocket:(int)socket
 {
-    NSError* serializationError;
+  NSError* serializationError = nil;
     NSData* data = [NSJSONSerialization dataWithJSONObject:object options:kNilOptions
                                                      error:&serializationError];
     if ( data ) {
       return [self writeData:data toSocket:socket];
     } else {
-      return [self writeJSONErrorResponse: serializationError.description toSocket:socket];
+      if ( serializationError ) {
+        return [self writeJSONErrorResponse: serializationError.description toSocket:socket];
+      } else {
+        return [self writeJSONErrorResponse: @"Unknown error occured during JSON serialization." toSocket:socket];
+      }
     }
 }
 

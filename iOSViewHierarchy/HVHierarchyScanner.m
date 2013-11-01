@@ -11,7 +11,8 @@
 
 @implementation HVHierarchyScanner
 
-CGFloat handleNaN(CGFloat value) {
+CGFloat handleNotFinite(CGFloat value)
+{
   if (!isfinite(value)) {
     return 1;
   }
@@ -28,7 +29,6 @@ CGFloat handleNaN(CGFloat value) {
     if (result) {
       return result;
     }
-
   }
   return nil;
 }
@@ -279,10 +279,10 @@ static NSString* NSStringFromCATransform3D(CATransform3D transform)
       @catch (NSException *exception) {
         propertyValue = nil;
       }
-      if (!checkOnlyIfNil) {
-        [propertyDescription setValue:(propertyValue != nil ? [NSString stringWithFormat:@"%@", propertyValue] : @"nil") forKey:@"value"];
-      } else {
+      if (checkOnlyIfNil) {
         [propertyDescription setValue:(propertyValue != nil ? @"OBJECT" : @"nil") forKey:@"value"];
+      } else {
+        [propertyDescription setValue:(propertyValue != nil ? [NSString stringWithFormat:@"%@", propertyValue] : @"nil") forKey:@"value"];
       }
     }
     [propertiesArray addObject:propertyDescription];
@@ -355,14 +355,14 @@ static NSString* NSStringFromCATransform3D(CATransform3D transform)
     [viewDescription setValue:[NSNumber numberWithLong:(long)view] forKey:@"id"];
     
     [viewDescription setValue:NSStringFromCATransform3D(view.layer.transform) forKey:@"layer_transform"];
-    [viewDescription setValue:[NSNumber numberWithFloat:handleNaN(view.layer.bounds.origin.x)] forKey:@"layer_bounds_x"];
-    [viewDescription setValue:[NSNumber numberWithFloat:handleNaN(view.layer.bounds.origin.y)] forKey:@"layer_bounds_y"];
-    [viewDescription setValue:[NSNumber numberWithFloat:handleNaN(view.layer.bounds.size.width)] forKey:@"layer_bounds_w"];
-    [viewDescription setValue:[NSNumber numberWithFloat:handleNaN(view.layer.bounds.size.height)] forKey:@"layer_bounds_h"];
-    [viewDescription setValue:[NSNumber numberWithFloat:handleNaN(view.layer.position.x)] forKey:@"layer_position_x"];
-    [viewDescription setValue:[NSNumber numberWithFloat:handleNaN(view.layer.position.y)] forKey:@"layer_position_y"];
-    [viewDescription setValue:[NSNumber numberWithFloat:handleNaN(view.layer.anchorPoint.x)] forKey:@"layer_anchor_x"];
-    [viewDescription setValue:[NSNumber numberWithFloat:handleNaN(view.layer.anchorPoint.y)] forKey:@"layer_anchor_y"];
+    [viewDescription setValue:[NSNumber numberWithFloat:handleNotFinite(view.layer.bounds.origin.x)] forKey:@"layer_bounds_x"];
+    [viewDescription setValue:[NSNumber numberWithFloat:handleNotFinite(view.layer.bounds.origin.y)] forKey:@"layer_bounds_y"];
+    [viewDescription setValue:[NSNumber numberWithFloat:handleNotFinite(view.layer.bounds.size.width)] forKey:@"layer_bounds_w"];
+    [viewDescription setValue:[NSNumber numberWithFloat:handleNotFinite(view.layer.bounds.size.height)] forKey:@"layer_bounds_h"];
+    [viewDescription setValue:[NSNumber numberWithFloat:handleNotFinite(view.layer.position.x)] forKey:@"layer_position_x"];
+    [viewDescription setValue:[NSNumber numberWithFloat:handleNotFinite(view.layer.position.y)] forKey:@"layer_position_y"];
+    [viewDescription setValue:[NSNumber numberWithFloat:handleNotFinite(view.layer.anchorPoint.x)] forKey:@"layer_anchor_x"];
+    [viewDescription setValue:[NSNumber numberWithFloat:handleNotFinite(view.layer.anchorPoint.y)] forKey:@"layer_anchor_y"];
 
     // put properties from super classes
     NSMutableArray *properties = [[[NSMutableArray alloc] initWithCapacity:10] autorelease];

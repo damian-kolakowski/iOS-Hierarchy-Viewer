@@ -7,7 +7,7 @@
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
 
-CGFloat handleNaN(CGFloat value);
+CGFloat handleNotFinite(CGFloat value);
 
 @interface HVHierarchyScanner : NSObject
 

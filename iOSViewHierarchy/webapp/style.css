@@ -236,10 +236,10 @@ table, tr, td, tbody {
     cursor: crosshair;
     background-position: -1px -1px;
     overflow: hidden;
-    -webkit-transition: all 1s ease-in-out;
-    -moz-transition: all 1s ease-in-out;
-    -o-transition: all 1s ease-in-out;
-    transition: all 1s ease-in-out;
+    -webkit-transition: all 300ms ease-in-out;
+    -moz-transition: all 300ms ease-in-out;
+    -o-transition: all 300ms ease-in-out;
+    transition: all 300ms ease-in-out;
 }
 
 .screen_node {
@@ -395,8 +395,7 @@ table, tr, td, tbody {
 
 .editor_row_type {
     display: block;
-    a
-		padding: 1px;
+    padding: 1px;
     overflow: hidden;
     color: #59F;
     text-shadow: 0px 1px 1px black;
@@ -451,4 +450,14 @@ table, tr, td, tbody {
     opacity: 0.8;
     -moz-opacity: 0.8;
     filter: alpha(opacity=8);
+}
+
+.error_box {
+  position: fixed;
+  top: 48%;
+  left: 50px;
+  right: 50px;
+  text-align: center;
+  color: #FF9;
+  font-size: 25px;
 }
