@@ -35,6 +35,8 @@
 		7CE2ED1515E40CDE00684792 /* HVCoreDataHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CE2ED1315E40CDE00684792 /* HVCoreDataHandler.m */; };
 		7CE955DE1540C5CB0042A03A /* HVHierarchyScanner.h in Headers */ = {isa = PBXBuildFile; fileRef = 7CE955D01540C5CB0042A03A /* HVHierarchyScanner.h */; };
 		7CE955DF1540C5CB0042A03A /* HVHierarchyScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CE955D11540C5CB0042A03A /* HVHierarchyScanner.m */; };
+		D91F9C151888A5DC00206104 /* HVAutostarter.h in Headers */ = {isa = PBXBuildFile; fileRef = D91F9C131888A5DC00206104 /* HVAutostarter.h */; };
+		D91F9C161888A5DC00206104 /* HVAutostarter.m in Sources */ = {isa = PBXBuildFile; fileRef = D91F9C141888A5DC00206104 /* HVAutostarter.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -73,6 +75,8 @@
 		7CE2ED1315E40CDE00684792 /* HVCoreDataHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HVCoreDataHandler.m; sourceTree = "<group>"; };
 		7CE955D01540C5CB0042A03A /* HVHierarchyScanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HVHierarchyScanner.h; sourceTree = "<group>"; };
 		7CE955D11540C5CB0042A03A /* HVHierarchyScanner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HVHierarchyScanner.m; sourceTree = "<group>"; };
+		D91F9C131888A5DC00206104 /* HVAutostarter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HVAutostarter.h; sourceTree = "<group>"; };
+		D91F9C141888A5DC00206104 /* HVAutostarter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HVAutostarter.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +128,8 @@
 				7C861E49153DF33A00935C95 /* iOSHierarchyViewer.h */,
 				7C861E4A153DF33A00935C95 /* iOSHierarchyViewer.m */,
 				688149CF15D1929400E38AE0 /* HVDefines.h */,
+				D91F9C131888A5DC00206104 /* HVAutostarter.h */,
+				D91F9C141888A5DC00206104 /* HVAutostarter.m */,
 			);
 			path = iOSViewHierarchy;
 			sourceTree = "<group>";
@@ -201,6 +207,7 @@
 				7CB3BD6E158A44CF0001D338 /* HVStaticFileHandler.h in Headers */,
 				7CB3BD70158A44CF0001D338 /* HVBaseRequestHandler.h in Headers */,
 				7CB3BD72158A44CF0001D338 /* HVHTTPServer.h in Headers */,
+				D91F9C151888A5DC00206104 /* HVAutostarter.h in Headers */,
 				688149D115D1929400E38AE0 /* HVDefines.h in Headers */,
 				7CE2ED1415E40CDE00684792 /* HVCoreDataHandler.h in Headers */,
 				7C11391B15E57627004AED3F /* webapp_jquery.h in Headers */,
@@ -289,6 +296,7 @@
 				7CB3BD71158A44CF0001D338 /* HVBaseRequestHandler.m in Sources */,
 				7CB3BD73158A44CF0001D338 /* HVHTTPServer.m in Sources */,
 				7CE2ED1515E40CDE00684792 /* HVCoreDataHandler.m in Sources */,
+				D91F9C161888A5DC00206104 /* HVAutostarter.m in Sources */,
 				7C11395815E580BA004AED3F /* navbar.js in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

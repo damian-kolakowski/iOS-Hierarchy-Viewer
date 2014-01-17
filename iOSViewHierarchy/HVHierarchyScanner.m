@@ -11,6 +11,8 @@
 
 @implementation HVHierarchyScanner
 
+
+
 CGFloat handleNotFinite(CGFloat value)
 {
   if (!isfinite(value)) {

@@ -11,6 +11,7 @@ CGFloat handleNotFinite(CGFloat value);
 
 @interface HVHierarchyScanner : NSObject
 
+
 + (NSDictionary *)recursivePropertiesScan:(UIView *)view;
 
 + (NSArray *)hierarchySnapshot;
