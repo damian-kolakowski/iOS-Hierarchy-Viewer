@@ -41,23 +41,31 @@
 
 -(void) start{
     NSLog(@"start");
-    id<UIApplicationDelegate> appDelegate = [[UIApplication sharedApplication] delegate];
-    NSDictionary *classProperities = [NSObject classPropsFor:[appDelegate class]];
+    NSManagedObjectContext *context = nil;
     NSString *contextKey = nil;
-    contextKey = [[classProperities objectForKey:@"NSManagedObjectContext"] retain];
-    NSManagedObjectContext *contex = nil;
-    if (contextKey != nil) {
-        if ([appDelegate respondsToSelector:@selector(valueForKey:)]) {
-            contex =[[appDelegate performSelector:@selector(valueForKey:) withObject:contextKey] retain];
+    if ([[NSManagedObjectContext class] respondsToSelector:@selector(MR_defaultContext)]) {
+        contextKey = @"MagicalRecords";
+        context = [NSManagedObjectContext MR_defaultContext];
+    } else {
+        id<UIApplicationDelegate> appDelegate = [[UIApplication sharedApplication] delegate];
+        NSDictionary *classProperities = [NSObject classPropsFor:[appDelegate class]];
+        
+        contextKey = [[classProperities objectForKey:@"NSManagedObjectContext"] retain];
+        
+        if (contextKey != nil) {
+            if ([appDelegate respondsToSelector:@selector(valueForKey:)]) {
+                context =[[appDelegate performSelector:@selector(valueForKey:) withObject:contextKey] retain];
+            }
         }
     }
+    NSLog(@"Loaded cpmtext from %@: %@", contextKey, context);
     [iOSHierarchyViewer start];
-    if (contex != nil) {
-        [iOSHierarchyViewer addContext:contex name:contextKey];
+    if (context != nil) {
+        [iOSHierarchyViewer addContext:context name:contextKey];
     }
 
     [contextKey release];
-    [contex release];
+    [context release];
 }
 /*
 -(void) dealloc{
