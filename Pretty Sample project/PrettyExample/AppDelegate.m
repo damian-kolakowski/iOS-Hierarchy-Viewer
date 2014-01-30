@@ -29,7 +29,6 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    [iOSHierarchyViewer start];
   
     _managedObjectModel = [[NSManagedObjectModel mergedModelFromBundles:nil] retain];
   
@@ -40,7 +39,6 @@
     _managedObjectContext = [[NSManagedObjectContext alloc] init];
     [_managedObjectContext setPersistentStoreCoordinator:_persistentStoreCoordinator];
   
-    [iOSHierarchyViewer addContext:_managedObjectContext name:@"Root context"];
 
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackOpaque];
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];

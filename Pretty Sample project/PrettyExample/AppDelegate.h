@@ -11,11 +11,11 @@
 @interface AppDelegate : UIResponder <UIApplicationDelegate> {
   NSManagedObjectModel*_managedObjectModel;
   NSPersistentStoreCoordinator*_persistentStoreCoordinator;
-  NSManagedObjectContext*_managedObjectContext;
 }
 
 @property (strong, nonatomic) UIWindow *window;
 
 @property (nonatomic, retain) IBOutlet UITabBarController *tabBarController;
+@property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 
 @end

@@ -3,7 +3,7 @@ iOS-Hierarchy-Viewer (with new Core Data viewer)
 
 iOS Hierarchy Viewer allows developers to debug their user interfaces. If there are problems with layout calculations, it will catch them by giving a real time preview of the UIViews hierarchy.
 
-**iOS Hierarchy Viewer (since 1.4.6 version) gives preview of data if you use Core Data API in your project. See 'Instruction' section to start with it.**
+**iOS Hierarchy Viewer (since 1.4.6 version) gives preview of data if you use Core Data API in your project. See 'Installation' section to start with it.**
 
 ![](http://i.stack.imgur.com/ynqvG.png)
 ![](http://dl.dropbox.com/u/858551/core_data.png)
@@ -15,6 +15,7 @@ Features
 + preview of device/simulator screen. Can be scaled and/or rotated on demand
 + debug frames shows the exact UIViews frames
 + property list shows obj-c properties and their values for selected UIView
++ preview of Core Data API
 
 Installation
 ====================
@@ -24,33 +25,15 @@ Installation
 + make sure that you have added “-ObjC -all_load” to “other linker flags” (click at project root element, select “Build settings” tab, search for “other linker flags”)
 + <del>if you already have JSONKit.m file in your project, please remove it because of linker conflict</del> We switched to Apple's NSJSONSerialization so skip this step.
 + add QuartzCore to frameworks list
-+ launch hierarchy viewer in your code by calling [iOSHierarchyViewer start];. The best place for it is AppDelegate::applicationDidBecomeActive callback
++ add CoreData to frameworks list (is necessary to run iOS Hierarchy Viewer, even you don't use core data)
++ <del>launch hierarchy viewer in your code by calling [iOSHierarchyViewer start];. The best place for it is AppDelegate::applicationDidBecomeActive callback</del> No need to add this code to project due to autostart feature
 + find or get from logs device/simulator ip address and go to ‘http://[ip_address]:9449′ address (Chrome/Firefox only)
 
-```objc
-- (void)applicationDidBecomeActive:(UIApplication *)application
-{
-    // your stuff
-    [iOSHierarchyViewer start];    
-}
-```
-
 If you would like to see data from Core Data API:
-+ add CoreData to frameworks list
-+ go to 'http://[ip_address]:9449/core.html' and add NSManagedContext object to iOSHierarchyViewer library
++ if you don't use MagicalRecords, make sure that NSManagedContext object is AppDelegate property 
++ go to 'http://[ip_address]:9449/core.html'
 
-```objc
-- (void)applicationDidBecomeActive:(UIApplication *)application
-{
-    // your stuff
-    
-    setup persistent store coordinator for _managedObjectContext
-    
-    [iOSHierarchyViewer addContext:_managedObjectContext name:@"Root managed context"];    
-}
-```
-
-You can always look at sample project, there is only 1 line of code needed for iOSHierarchyViewer to work with your project.
+You can always look at sample project. <del>there is only 1 line of code needed for iOSHierarchyViewer to work with your project</del>.
 We really like PrettyKit ( https://github.com/vicpenap/PrettyKit ), so we just enabled our hierarchy viewer in their sample project. If you don't know what PrettyKit is you need to check it out!
 
 Changelog:
@@ -64,6 +47,7 @@ Version 1.3:
 Version 1.4:
 + Accesibility labels are used when set, making it easier to read hierarchy
 + All scaning now takes place on main thread.
++ Add autostart (no need to change your application code, to use iOS Hierarchy Viewer)
 
 Roadmap:
 ====================

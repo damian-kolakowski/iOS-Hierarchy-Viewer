@@ -41,6 +41,7 @@
 
 -(void) start{
     NSLog(@"start");
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
     NSManagedObjectContext *context = nil;
     NSString *contextKey = nil;
     if ([[NSManagedObjectContext class] respondsToSelector:@selector(MR_defaultContext)]) {
@@ -58,9 +59,10 @@
             }
         }
     }
-    NSLog(@"Loaded cpmtext from %@: %@", contextKey, context);
+    
     [iOSHierarchyViewer start];
     if (context != nil) {
+        NSLog(@"Loaded context from %@: %@", contextKey, context);
         [iOSHierarchyViewer addContext:context name:contextKey];
     }
 
