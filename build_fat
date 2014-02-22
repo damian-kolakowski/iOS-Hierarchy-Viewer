@@ -10,7 +10,7 @@ rm -rfd build/Release-iphoneos
 rm -rfd build/Release-iphonesimulator
 rm -rfd build/iOSHierarchyViewer.build
 
-lipo build/libiOSHierarchyViewer_ARM.a -arch i386 build/libiOSHierarchyViewer_SIM.a -create -output build/libiOSHierarchyViewer_fat.a
+lipo -create build/libiOSHierarchyViewer_ARM.a build/libiOSHierarchyViewer_SIM.a -output build/libiOSHierarchyViewer_fat.a
 
 cp iOSViewHierarchy/iOSHierarchyViewer.h build/iOSHierarchyViewer.h
 
