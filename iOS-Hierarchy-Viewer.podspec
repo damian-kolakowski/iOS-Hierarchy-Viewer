@@ -12,7 +12,7 @@ Pod::Spec.new do |s|
   s.license      = { :type => 'BSD' }
   s.author       = { "Damian Kołakowski" => "kolakowski.damian@gmail.com" }
   s.frameworks   =  'CFNetwork', 'QuartzCore'
-  s.source       = { :git => "https://github.com/glock45/iOS-Hierarchy-Viewer.git"}
+  s.source       = { :git => "https://github.com/wangdengwu/iOS-Hierarchy-Viewer.git"}
   s.compiler_flags = '-ObjC'
   s.platform     = :ios
   s.source_files = 'iOSViewHierarchy/**/*.{h,m}'
