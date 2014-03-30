@@ -5,6 +5,7 @@
 //
 
 #import <Foundation/NSURL.h>
+#import <UIKit/UIApplication.h>
 #import <sys/socket.h>
 #import <netinet/in.h>
 #import <ifaddrs.h>
@@ -29,6 +30,22 @@
 
 static HVHTTPServer *server = nil;
 static HVCoreDataHandler *coreDataHandler = nil;
+
+//addObserver UIApplicationDidFinishLaunchingNotification auto start
+//don't need [iOSHierarchyViewer start] at applicationDidBecomeActive
+//add by dengwu.wangdw
++(void)load{
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(doStart) name:UIApplicationDidFinishLaunchingNotification object:nil];
+}
+
++(void)doStart{
+    [iOSHierarchyViewer start];
+}
+
+-(void)dealloc{
+    [super dealloc];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
 
 + (void)logServiceAdresses
 {
