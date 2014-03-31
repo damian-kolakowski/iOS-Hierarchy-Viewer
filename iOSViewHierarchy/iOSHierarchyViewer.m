@@ -31,15 +31,11 @@
 static HVHTTPServer *server = nil;
 static HVCoreDataHandler *coreDataHandler = nil;
 
-//addObserver UIApplicationDidFinishLaunchingNotification auto start
-//don't need [iOSHierarchyViewer start] at applicationDidBecomeActive
-//add by dengwu.wangdw
+/// addObserver UIApplicationDidFinishLaunchingNotification auto start
+/// so don't need [iOSHierarchyViewer start] at applicationDidBecomeActive
+/// added by dengwu.wang
 +(void)load{
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(doStart) name:UIApplicationDidFinishLaunchingNotification object:nil];
-}
-
-+(void)doStart{
-    [iOSHierarchyViewer start];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(start) name:UIApplicationDidFinishLaunchingNotification object:nil];
 }
 
 -(void)dealloc{
