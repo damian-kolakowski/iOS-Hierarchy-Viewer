@@ -99,11 +99,11 @@ CGFloat handleNotFinite(CGFloat value)
 static NSString* NSStringFromCGAffineTransform2(CGAffineTransform transform)
 {
   return [NSString stringWithFormat:@"%f,%f,%f,%f,%f,%f", 
-          transform.a, 
-          transform.b, 
-          transform.c, 
-          transform.d, 
-          transform.tx, 
+          transform.a,
+          transform.b,
+          transform.c,
+          transform.d,
+          transform.tx,
           transform.ty];
 }
 
