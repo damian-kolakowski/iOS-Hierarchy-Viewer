@@ -1,4 +1,4 @@
-iOS-Hierarchy-Viewer (with new Core Data viewer)
+iOS Hierarchy Viewer for Views and CoreData
 ====================
 
 iOS Hierarchy Viewer allows developers to debug their hierarchies for both UIView's and CoreData models. 
