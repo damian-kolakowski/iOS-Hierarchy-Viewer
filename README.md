@@ -1,9 +1,12 @@
 iOS-Hierarchy-Viewer (with new Core Data viewer)
 ====================
 
-iOS Hierarchy Viewer allows developers to debug their user interfaces. If there are problems with layout calculations, it will catch them by giving a real time preview of the UIViews hierarchy.
+iOS Hierarchy Viewer allows developers to debug their hierarchies for both UIView's and CoreData models. 
+- If there are problems with layout calculations, you can find them with ease by introspecting real-time preview of your views inside a browser.
+- If your data is behaving weirdly, you can easily navigate through it via a browser.
+- This tool predates commercial tools like Reveal and Spark Inspector, and it's available for free.
 
-**iOS Hierarchy Viewer (since 1.4.6 version) gives preview of data if you use Core Data API in your project. See 'Instruction' section to start with it.**
+**since 1.4.6 version, we also give you debugging Core Data API in your project (if you use it). See 'Instruction' section to set it up.**
 
 ![](http://i.stack.imgur.com/ynqvG.png)
 ![](http://dl.dropbox.com/u/858551/core_data.png)
