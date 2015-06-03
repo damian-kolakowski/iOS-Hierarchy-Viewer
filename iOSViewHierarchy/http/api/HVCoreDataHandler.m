@@ -1,9 +1,7 @@
 //
 //  HVCoreDataHandler.m
-//  iOSHierarchyViewer
 //
-//  Created by Damian Kolakowski on 8/21/12.
-//
+//  Copyright (c) 2015 Damian Kolakowski. All rights reserved.
 //
 
 #import "HVCoreDataHandler.h"
