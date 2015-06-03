@@ -11,7 +11,6 @@
 		7C11391B15E57627004AED3F /* webapp_jquery.h in Headers */ = {isa = PBXBuildFile; fileRef = 7C11391815E57627004AED3F /* webapp_jquery.h */; };
 		7C11391C15E57627004AED3F /* webapp_style.h in Headers */ = {isa = PBXBuildFile; fileRef = 7C11391915E57627004AED3F /* webapp_style.h */; };
 		7C11395615E58076004AED3F /* webapp_index_core.h in Headers */ = {isa = PBXBuildFile; fileRef = 7C11395515E58076004AED3F /* webapp_index_core.h */; };
-		7C11395815E580BA004AED3F /* navbar.js in Sources */ = {isa = PBXBuildFile; fileRef = 7C11395715E580BA004AED3F /* navbar.js */; };
 		7C11395A15E580C4004AED3F /* webapp_navbar.h in Headers */ = {isa = PBXBuildFile; fileRef = 7C11395915E580C4004AED3F /* webapp_navbar.h */; };
 		7C12E28215E7E292009D2F26 /* webapp_index_ui.h in Headers */ = {isa = PBXBuildFile; fileRef = 7C12E28115E7E292009D2F26 /* webapp_index_ui.h */; };
 		7C861E38153DF2E000935C95 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C861E37153DF2E000935C95 /* Foundation.framework */; };
@@ -289,7 +288,6 @@
 				7CB3BD71158A44CF0001D338 /* HVBaseRequestHandler.m in Sources */,
 				7CB3BD73158A44CF0001D338 /* HVHTTPServer.m in Sources */,
 				7CE2ED1515E40CDE00684792 /* HVCoreDataHandler.m in Sources */,
-				7C11395815E580BA004AED3F /* navbar.js in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
