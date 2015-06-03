@@ -9,11 +9,11 @@
 
 @implementation HVBaseRequestHandler
 
-- (BOOL)writeRawData:(char *)data length:(int)length toSocket:(int)socket;
+- (BOOL)writeRawData:(char *)data length:(NSUInteger)length toSocket:(int)socket;
 {
-  int sent = 0;
+  ssize_t sent = 0;
   while (sent < length) {
-    int s = write(socket, data + sent, length - sent);
+    ssize_t s = write(socket, data + sent, length - sent);
     if (s > 0) {
       sent += s;
     } else {

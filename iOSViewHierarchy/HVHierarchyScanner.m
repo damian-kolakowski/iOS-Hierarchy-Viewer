@@ -334,7 +334,7 @@ static NSString* NSStringFromCATransform3D(CATransform3D transform)
   NSDictionary *hidden = [NSDictionary dictionaryWithObjectsAndKeys:@"hidden", @"name", @"BOOL", @"type", view.hidden ? @"YES" : @"NO", @"value", nil];
   [properties addObject:hidden];
 
-  NSDictionary *contentMode = [NSDictionary dictionaryWithObjectsAndKeys:@"contentMode", @"name", @"UIViewContentMode", @"type", [NSString stringWithFormat:@"%ld", view.contentMode], @"value", nil];
+  NSDictionary *contentMode = [NSDictionary dictionaryWithObjectsAndKeys:@"contentMode", @"name", @"UIViewContentMode", @"type", [NSString stringWithFormat:@"%ld", (long)view.contentMode], @"value", nil];
   [properties addObject:contentMode];
 
   NSDictionary *clearContextBeforeDrawing = [NSDictionary dictionaryWithObjectsAndKeys:@"clearsContextBeforeDrawing", @"name", @"BOOL", @"type", view.clearsContextBeforeDrawing ? @"YES" : @"NO", @"value", nil];

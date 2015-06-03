@@ -47,7 +47,7 @@
 {
   NSMutableData *lineData = [[[NSMutableData alloc] initWithCapacity:100] autorelease];
   char buff[1];
-  int r = 0;
+  ssize_t r = 0;
   do {
     r = recv(socket, buff, 1, 0);
     if (r > 0 && buff[0] > '\r') {
@@ -97,7 +97,7 @@
   do {
     tmpLine = [self line:socket];
     if (tmpLine) {
-      int lineLength = [tmpLine length];
+      NSUInteger lineLength = [tmpLine length];
       if (lineLength > 0) {
         NSString *tmpLineString = [[[NSString alloc] initWithData:tmpLine encoding:NSASCIIStringEncoding] autorelease];
         NSArray *headerTokens = [tmpLineString componentsSeparatedByString:@":"];
