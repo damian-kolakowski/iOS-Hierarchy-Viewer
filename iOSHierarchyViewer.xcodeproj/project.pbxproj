@@ -7,35 +7,33 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		688149D115D1929400E38AE0 /* HVDefines.h in Headers */ = {isa = PBXBuildFile; fileRef = 688149CF15D1929400E38AE0 /* HVDefines.h */; };
-		7C11391B15E57627004AED3F /* webapp_jquery.h in Headers */ = {isa = PBXBuildFile; fileRef = 7C11391815E57627004AED3F /* webapp_jquery.h */; };
-		7C11391C15E57627004AED3F /* webapp_style.h in Headers */ = {isa = PBXBuildFile; fileRef = 7C11391915E57627004AED3F /* webapp_style.h */; };
-		7C11395615E58076004AED3F /* webapp_index_core.h in Headers */ = {isa = PBXBuildFile; fileRef = 7C11395515E58076004AED3F /* webapp_index_core.h */; };
 		7C11395815E580BA004AED3F /* navbar.js in Sources */ = {isa = PBXBuildFile; fileRef = 7C11395715E580BA004AED3F /* navbar.js */; };
-		7C11395A15E580C4004AED3F /* webapp_navbar.h in Headers */ = {isa = PBXBuildFile; fileRef = 7C11395915E580C4004AED3F /* webapp_navbar.h */; };
-		7C12E28215E7E292009D2F26 /* webapp_index_ui.h in Headers */ = {isa = PBXBuildFile; fileRef = 7C12E28115E7E292009D2F26 /* webapp_index_ui.h */; };
 		7C861E38153DF2E000935C95 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C861E37153DF2E000935C95 /* Foundation.framework */; };
-		7C861E5C153DF33A00935C95 /* iOSHierarchyViewer.h in Headers */ = {isa = PBXBuildFile; fileRef = 7C861E49153DF33A00935C95 /* iOSHierarchyViewer.h */; };
 		7C861E5D153DF33A00935C95 /* iOSHierarchyViewer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C861E4A153DF33A00935C95 /* iOSHierarchyViewer.m */; };
-		7CB3BD66158A44CF0001D338 /* HVHierarchyHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 7CB3BD58158A44CF0001D338 /* HVHierarchyHandler.h */; };
 		7CB3BD67158A44CF0001D338 /* HVHierarchyHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CB3BD59158A44CF0001D338 /* HVHierarchyHandler.m */; };
-		7CB3BD68158A44CF0001D338 /* HVBase64StaticFile.h in Headers */ = {isa = PBXBuildFile; fileRef = 7CB3BD5A158A44CF0001D338 /* HVBase64StaticFile.h */; };
 		7CB3BD69158A44CF0001D338 /* HVBase64StaticFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CB3BD5B158A44CF0001D338 /* HVBase64StaticFile.m */; };
-		7CB3BD6A158A44CF0001D338 /* HVPreviewHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 7CB3BD5C158A44CF0001D338 /* HVPreviewHandler.h */; };
 		7CB3BD6B158A44CF0001D338 /* HVPreviewHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CB3BD5D158A44CF0001D338 /* HVPreviewHandler.m */; };
-		7CB3BD6C158A44CF0001D338 /* HVPropertyEditorHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 7CB3BD5E158A44CF0001D338 /* HVPropertyEditorHandler.h */; };
 		7CB3BD6D158A44CF0001D338 /* HVPropertyEditorHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CB3BD5F158A44CF0001D338 /* HVPropertyEditorHandler.m */; };
-		7CB3BD6E158A44CF0001D338 /* HVStaticFileHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 7CB3BD60158A44CF0001D338 /* HVStaticFileHandler.h */; };
 		7CB3BD6F158A44CF0001D338 /* HVStaticFileHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CB3BD61158A44CF0001D338 /* HVStaticFileHandler.m */; };
-		7CB3BD70158A44CF0001D338 /* HVBaseRequestHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 7CB3BD62158A44CF0001D338 /* HVBaseRequestHandler.h */; };
 		7CB3BD71158A44CF0001D338 /* HVBaseRequestHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CB3BD63158A44CF0001D338 /* HVBaseRequestHandler.m */; };
-		7CB3BD72158A44CF0001D338 /* HVHTTPServer.h in Headers */ = {isa = PBXBuildFile; fileRef = 7CB3BD64158A44CF0001D338 /* HVHTTPServer.h */; };
 		7CB3BD73158A44CF0001D338 /* HVHTTPServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CB3BD65158A44CF0001D338 /* HVHTTPServer.m */; };
-		7CE2ED1415E40CDE00684792 /* HVCoreDataHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 7CE2ED1215E40CDE00684792 /* HVCoreDataHandler.h */; };
 		7CE2ED1515E40CDE00684792 /* HVCoreDataHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CE2ED1315E40CDE00684792 /* HVCoreDataHandler.m */; };
-		7CE955DE1540C5CB0042A03A /* HVHierarchyScanner.h in Headers */ = {isa = PBXBuildFile; fileRef = 7CE955D01540C5CB0042A03A /* HVHierarchyScanner.h */; };
 		7CE955DF1540C5CB0042A03A /* HVHierarchyScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CE955D11540C5CB0042A03A /* HVHierarchyScanner.m */; };
+		C9A6B0E8185032EF00FA0070 /* iOSHierarchyViewer.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7C861E49153DF33A00935C95 /* iOSHierarchyViewer.h */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		C9A6B0E7185032C200FA0070 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+				C9A6B0E8185032EF00FA0070 /* iOSHierarchyViewer.h in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		688149CF15D1929400E38AE0 /* HVDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HVDefines.h; sourceTree = "<group>"; };
@@ -187,32 +185,6 @@
 		};
 /* End PBXGroup section */
 
-/* Begin PBXHeadersBuildPhase section */
-		7C861E32153DF2E000935C95 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				7C861E5C153DF33A00935C95 /* iOSHierarchyViewer.h in Headers */,
-				7CE955DE1540C5CB0042A03A /* HVHierarchyScanner.h in Headers */,
-				7CB3BD66158A44CF0001D338 /* HVHierarchyHandler.h in Headers */,
-				7CB3BD68158A44CF0001D338 /* HVBase64StaticFile.h in Headers */,
-				7CB3BD6A158A44CF0001D338 /* HVPreviewHandler.h in Headers */,
-				7CB3BD6C158A44CF0001D338 /* HVPropertyEditorHandler.h in Headers */,
-				7CB3BD6E158A44CF0001D338 /* HVStaticFileHandler.h in Headers */,
-				7CB3BD70158A44CF0001D338 /* HVBaseRequestHandler.h in Headers */,
-				7CB3BD72158A44CF0001D338 /* HVHTTPServer.h in Headers */,
-				688149D115D1929400E38AE0 /* HVDefines.h in Headers */,
-				7CE2ED1415E40CDE00684792 /* HVCoreDataHandler.h in Headers */,
-				7C11391B15E57627004AED3F /* webapp_jquery.h in Headers */,
-				7C11391C15E57627004AED3F /* webapp_style.h in Headers */,
-				7C11395615E58076004AED3F /* webapp_index_core.h in Headers */,
-				7C11395A15E580C4004AED3F /* webapp_navbar.h in Headers */,
-				7C12E28215E7E292009D2F26 /* webapp_index_ui.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXHeadersBuildPhase section */
-
 /* Begin PBXNativeTarget section */
 		7C861E33153DF2E000935C95 /* iOSHierarchyViewer */ = {
 			isa = PBXNativeTarget;
@@ -220,8 +192,8 @@
 			buildPhases = (
 				7C861E30153DF2E000935C95 /* Sources */,
 				7C861E31153DF2E000935C95 /* Frameworks */,
-				7C861E32153DF2E000935C95 /* Headers */,
 				7CDFD55115E55FB7001D5841 /* ShellScript */,
+				C9A6B0E7185032C200FA0070 /* CopyFiles */,
 			);
 			buildRules = (
 			);
