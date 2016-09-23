@@ -1,7 +1,7 @@
 //
 //  HVCoreDataHandler.h
 //
-//  Copyright (c) 2015 Damian Kolakowski. All rights reserved.
+//  Copyright (c) 2012-2016 Damian Kolakowski. All rights reserved.
 //
 
 #import <CoreData/CoreData.h>
