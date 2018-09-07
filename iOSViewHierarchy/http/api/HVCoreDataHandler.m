@@ -121,7 +121,7 @@
           if ( [value isKindOfClass:[NSDate class]]) {
             value = [NSNumber numberWithDouble:[((NSDate*)value) timeIntervalSince1970]];
           }
-          if ( [value isKindOfClass:[NSData class]]) {
+          if ( [value isKindOfClass:[NSData class]] || [value isKindOfClass:[UIImage class]]) {
             value = @"binary";
           }
           [dictionary setValue:value forKey:property.name];
